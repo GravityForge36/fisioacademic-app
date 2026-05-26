@@ -1,0 +1,15 @@
+# Cache do PyInstaller
+build/
+dist/
+*.spec
+
+# Armazenamento local de testes
+.dev_storage/
+
+# Arquivos compactados de distribuição
+*.rar
+*.zip
+
+# Cache do Python
+__pycache__/
+*.pyc

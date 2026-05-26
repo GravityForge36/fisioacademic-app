@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Uniasselve - Gestor de Estudos de Fisioterapia</title>
+  <!-- Google Fonts: Outfit e Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="lucide.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Sidebar de Navegação (Desktop) -->
+    <aside class="app-sidebar">
+      <div class="brand">
+        <div class="brand-logo" style="overflow: hidden; padding: 2px;">
+          <img src="logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <span class="brand-name" style="font-size: 1.1rem; letter-spacing: -0.5px; line-height: 1.1;">Fisio Uniasselve</span>
+          <span style="font-size: 0.65rem; color: var(--primary); font-weight: 600; opacity: 0.8; letter-spacing: 0.5px; margin-top: 1px;">v2.0.1 - Ativo</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="curriculum">
+          <i data-lucide="book-open"></i>
+          <span>Grade Curricular</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="planner">
+          <i data-lucide="calendar"></i>
+          <span>Cronograma & Pomodoro</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="flashcards">
+          <i data-lucide="copy"></i>
+          <span>Flashcards</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="reference">
+          <i data-lucide="search"></i>
+          <span>Pocket Fisio</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="internship">
+          <i data-lucide="award"></i>
+          <span>Estágio Clínico</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="quiz">
+          <i data-lucide="graduation-cap"></i>
+          <span>Simulados</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">FR</div>
+          <div class="user-info">
+            <span class="username" id="sidebar-username">Fisioterapeuta em Formação</span>
+            <span class="user-subtitle">Semestre Atual: <strong id="sidebar-current-semester">1º</strong></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Barra de Navegação Inferior (Mobile) -->
+    <nav class="mobile-nav">
+      <a href="#" class="mobile-nav-item active" data-tab="dashboard">
+        <i data-lucide="layout-dashboard"></i>
+        <span>Dash</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="curriculum">
+        <i data-lucide="book-open"></i>
+        <span>Grade</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="planner">
+        <i data-lucide="calendar"></i>
+        <span>Estudos</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="flashcards">
+        <i data-lucide="copy"></i>
+        <span>Cards</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="reference">
+        <i data-lucide="search"></i>
+        <span>Pocket</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="internship">
+        <i data-lucide="award"></i>
+        <span>Estágio</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="quiz">
+        <i data-lucide="graduation-cap"></i>
+        <span>Simulados</span>
+      </a>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="app-content">
+      
+      <!-- Cabeçalho Principal -->
+      <header class="app-header">
+        <div class="header-search">
+          <h1 id="view-title">Dashboard</h1>
+          <p id="view-subtitle" class="text-muted">Acompanhe seu desempenho no curso de Fisioterapia.</p>
+        </div>
+        <div class="header-actions">
+          <div class="current-date">
+            <i data-lucide="calendar-days"></i>
+            <span id="header-date">22 de Maio de 2026</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- SEÇÃO 1: DASHBOARD -->
+      <section id="tab-dashboard" class="tab-panel active">
+        <!-- Grid Superior: Resumos -->
+        <div class="dashboard-grid">
+          
+          <!-- Card 1: Progresso Global -->
+          <div class="card glass-card progress-card">
+            <div class="card-header">
+              <span class="card-tag">Curso</span>
+              <h3>Progresso do Curso</h3>
+            </div>
+            <div class="card-body progress-body">
+              <div class="radial-progress-container">
+                <svg class="radial-progress-svg" viewBox="0 0 120 120">
+                  <circle class="circle-bg" cx="60" cy="60" r="50"></circle>
+                  <circle class="circle-fg" id="course-progress-circle" cx="60" cy="60" r="50" style="stroke-dasharray: 314; stroke-dashoffset: 314;"></circle>
+                </svg>
+                <div class="radial-progress-text">
+                  <span class="value" id="course-progress-percent">0%</span>
+                  <span class="label">Concluído</span>
+                </div>
+              </div>
+              <div class="progress-details">
+                <div class="detail-item">
+                  <span class="count-label">Matérias Concluídas</span>
+                  <span class="count-val" id="completed-subjects-count">0 / 41</span>
+                </div>
+                <div class="detail-item">
+                  <span class="count-label">Média Geral (IRA)</span>
+                  <span class="count-val" id="academic-average">0.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Horas de Estágio -->
+          <div class="card glass-card internship-summary-card">
+            <div class="card-header">
+              <span class="card-tag tag-purple">Estágio Obrigatório</span>
+              <h3>Horas de Prática Clínica</h3>
+            </div>
+            <div class="card-body internship-summary-body">
+              <div class="hours-progress">
+                <div class="hours-numbers">
+                  <span class="hours-current" id="dash-hours-completed">0h</span>
+                  <span class="hours-divider">/</span>
+                  <span class="hours-total">600h</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" id="dash-hours-bar" style="width: 0%"></div>
+                </div>
+                <p class="hours-meta" id="dash-hours-meta">Falta completar 600 horas de estágio supervisionado.</p>
+              </div>
+              <div class="specialties-mini-list">
+                <div class="mini-specialty">
+                  <span>Traumato-Ortopedia</span>
+                  <span id="dash-ortho-hours">0 / 150h</span>
+                </div>
+                <div class="mini-specialty">
+                  <span>Neurofuncional</span>
+                  <span id="dash-neuro-hours">0 / 150h</span>
+                </div>
+                <div class="mini-specialty">
+                  <span>Cardiorrespiratória/UTI</span>
+                  <span id="dash-cardio-hours">0 / 150h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Cronômetro Rápido e Agenda -->
+          <div class="card glass-card alert-agenda-card">
+            <div class="card-header">
+              <span class="card-tag tag-green">Foco Ativo</span>
+              <h3>Pomodoro Rápido</h3>
+            </div>
+            <div class="card-body pomodoro-mini-body">
+              <div class="pomodoro-mini-timer">
+                <div class="mini-time" id="mini-timer-display">25:00</div>
+                <button class="btn btn-icon btn-primary" id="btn-mini-play" title="Iniciar Foco">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" class="timer-svg-icon" style="margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+              
+              <div class="next-event-alert">
+                <div class="event-icon"><i data-lucide="calendar"></i></div>
+                <div class="event-details">
+                  <span class="event-title">Próxima Aula Prática</span>
+                  <span class="event-time" id="dash-next-class">Nenhuma cadastrada</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linha Inferior: Citação do Dia e Dica de Anatomia -->
+        <div class="dashboard-row">
+          <div class="card glass-card info-card quote-card flex-1">
+            <div class="card-body" style="display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+              <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
+                <div class="info-icon text-primary"><i data-lucide="quote"></i></div>
+                <div class="info-content" style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <h4 class="info-title" style="margin: 0;">Pérola Clínica / Citação do Dia</h4>
+                    <button id="btn-next-quote" class="btn-card-action" style="padding: 4px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: none; background: transparent; color: var(--text-muted);" title="Nova Citação">
+                      <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+                    </button>
+                  </div>
+                  <blockquote id="daily-quote" style="margin-top: 10px; font-style: italic; font-size: 0.95rem; line-height: 1.5; color: var(--text-main); border-left: 2px solid var(--primary); padding-left: 10px; margin-bottom: 0;">"O movimento é nossa arma, a atividade é nosso objetivo e a independência é nossa recompensa."</blockquote>
+                  <div id="daily-quote-author" style="text-align: right; margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: var(--primary);">- Hipócrates</div>
+                  <p id="daily-quote-context" style="margin-top: 12px; font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; margin-bottom: 0;">A cinesioterapia é a base da reabilitação física. O foco é sempre restabelecer a função motora e a autonomia nas atividades de vida diária (AVDs).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card glass-card info-card anatomy-tip-card flex-1">
+            <div class="card-body" style="display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+              <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
+                <div class="info-icon text-emerald"><i data-lucide="brain"></i></div>
+                <div class="info-content" style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <h4 class="info-title" style="margin: 0;">Dica Rápida de Anatomia</h4>
+                    <button id="btn-next-tip" class="btn-card-action" style="padding: 4px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: none; background: transparent; color: var(--text-muted);" title="Nova Dica">
+                      <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+                    </button>
+                  </div>
+                  <p id="anatomy-tip" style="margin-top: 10px; font-size: 0.9rem; line-height: 1.4; color: var(--text-main); margin-bottom: 0;"><strong>Inervação do Músculo Serrátil Anterior:</strong> Nervo Torácico Longo (C5-C7). Lesão desse nervo causa a clássica patologia de 'Escápula Alada'.</p>
+                  <p id="anatomy-tip-test" style="margin-top: 10px; font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; margin-bottom: 0;"><strong>Teste Clínico:</strong> Testes funcionais como apoiar-se na parede revelam a escápula alada (escapula alada periférica).</p>
+                  
+                  <!-- Container da Imagem Ilustrativa -->
+                  <div class="tip-image-container" style="margin-top: 12px; border-radius: var(--radius-md); overflow: hidden; height: 130px; border: 1px solid var(--border-glass); background: rgba(0,0,0,0.2);">
+                    <img id="anatomy-tip-img" src="" alt="Ilustração Clínica" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.3s ease;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card glass-card info-card backup-card flex-1">
+            <div class="card-body">
+              <div class="info-icon text-purple"><i data-lucide="database"></i></div>
+              <div class="info-content">
+                <h4 class="info-title">Backup de Progresso</h4>
+                <p class="text-muted pb-2" style="font-size: 0.75rem; line-height: 1.3;">Mova seus estudos para outro computador facilmente.</p>
+                <div style="display: flex; gap: 8px; margin-top: 6px;">
+                  <button id="btn-export-data" class="btn btn-secondary btn-sm" style="padding: 6px 10px; font-size: 0.75rem; display: flex; align-items: center; gap: 4px;" title="Exportar Progresso">
+                    <i data-lucide="download" style="width: 12px; height: 12px;"></i> Exportar
+                  </button>
+                  <button id="btn-import-data" class="btn btn-secondary btn-sm" style="padding: 6px 10px; font-size: 0.75rem; display: flex; align-items: center; gap: 4px;" title="Importar Progresso">
+                    <i data-lucide="upload" style="width: 12px; height: 12px;"></i> Importar
+                  </button>
+                  <input type="file" id="import-file-input" style="display: none;" accept=".json">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção de Anotações Consolidadas no Dashboard -->
+        <div class="dashboard-row" style="margin-top: 24px;">
+          <div class="card glass-card flex-1" style="padding: 20px 24px;">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-glass); padding-bottom: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="notebook-tabs" style="color: var(--primary); width: 22px; height: 22px; vertical-align: middle;"></i>
+                <h3 style="margin: 0; font-family: var(--font-title); font-size: 1.2rem; color: var(--text);">Resumos & Anotações Consolidadas</h3>
+              </div>
+              <span class="card-tag tag-purple" id="dash-notes-count" style="font-size: 0.75rem;">0 Disciplinas com Anotações</span>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div id="dash-notes-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                <!-- Preenchido via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 2: GRADE CURRICULAR -->
+      <section id="tab-curriculum" class="tab-panel">
+        <div class="curriculum-container">
+          <div class="curriculum-header-controls">
+            <div class="select-wrapper">
+              <label for="semester-select">Selecione o Semestre:</label>
+              <select id="semester-select" class="custom-select">
+                <option value="1">1º Semestre - Fundamentos</option>
+                <option value="2">2º Semestre - Sistemas e Movimento</option>
+                <option value="3">3º Semestre - Função e Avaliação</option>
+                <option value="4">4º Semestre - Recursos e Farmacologia</option>
+                <option value="5">5º Semestre - Especialidades I</option>
+                <option value="6">6º Semestre - Especialidades II</option>
+                <option value="7">7º Semestre - Especialidades III e Trabalho</option>
+                <option value="8">8º Semestre - Preparação Clínica</option>
+                <option value="9">9º Semestre - Prática Supervisionada I</option>
+                <option value="10">10º Semestre - Prática Supervisionada II</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="btn-add-subject">
+              <i data-lucide="plus"></i> Adicionar Disciplina
+            </button>
+          </div>
+
+          <div class="semester-summary-banner">
+            <div class="banner-stat">
+              <span class="label">Disciplinas no Semestre</span>
+              <span class="value" id="sem-total-subjects">0</span>
+            </div>
+            <div class="banner-stat">
+              <span class="label">Matérias Concluídas</span>
+              <span class="value text-emerald" id="sem-completed-subjects">0</span>
+            </div>
+            <div class="banner-stat">
+              <span class="label">Média do Semestre</span>
+              <span class="value text-primary" id="sem-average">0.0</span>
+            </div>
+          </div>
+
+          <!-- Grade de Cards de Disciplinas -->
+          <div class="subjects-grid" id="subjects-list">
+            <!-- Gerado via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 3: CRONOGRAMA & POMODORO -->
+      <section id="tab-planner" class="tab-panel">
+        <div class="planner-layout">
+          <!-- Coluna 1: Planejamento Híbrido -->
+          <div class="planner-column flex-2">
+            <div class="card glass-card">
+              <div class="card-header flex-row justify-between align-center">
+                <h3>Planejador Semanal de Estudos</h3>
+                <button class="btn btn-secondary btn-sm" id="btn-add-task">
+                  <i data-lucide="plus"></i> Novo Item
+                </button>
+              </div>
+              <div class="card-body">
+                <p class="text-muted pb-3">Organize suas atividades teóricas online (EAD) e as aulas presenciais em laboratório.</p>
+                <div class="weekly-planner-list" id="planner-tasks-list">
+                  <!-- Gerado dinamicamente -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Pomodoro focado em Fisioterapia -->
+          <div class="planner-column flex-1">
+            <div class="card glass-card pomodoro-deep-card">
+              <div class="card-header text-center">
+                <span class="card-tag">Foco Clínico</span>
+                <h3>Cronômetro Pomodoro</h3>
+              </div>
+              <div class="card-body pomodoro-deep-body text-center">
+                <div class="pomodoro-focus-selector">
+                  <label for="pomodoro-topic">Foco do Estudo:</label>
+                  <select id="pomodoro-topic" class="custom-select w-full">
+                    <option value="Origem, Inserção e Ação (OIA)">Músculos (Origem, Inserção e Ação)</option>
+                    <option value="Revisão de Testes Ortopédicos">Testes Ortopédicos Especiais</option>
+                    <option value="Amplitude de Movimento (Goniometria)">Goniometria & Escalas</option>
+                    <option value="Estudo de Caso Clínico">Estudo de Caso Clínico (EAD)</option>
+                    <option value="Fisiopatologia & Neuro">Fisiopatologia & Neurofuncional</option>
+                  </select>
+                </div>
+
+                <div class="main-pomodoro-timer-container">
+                  <div class="timer-ring-wrapper">
+                    <svg class="timer-ring-svg" viewBox="0 0 200 200">
+                      <circle class="ring-bg" cx="100" cy="100" r="90"></circle>
+                      <circle class="ring-fg" id="pomodoro-ring" cx="100" cy="100" r="90" style="stroke-dasharray: 565; stroke-dashoffset: 0;"></circle>
+                    </svg>
+                    <div class="timer-display-content">
+                      <span class="timer-countdown" id="main-timer-display">25:00</span>
+                      <span class="timer-status" id="pomodoro-status">Estudo Ativo</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timer-controls">
+                  <button class="btn btn-secondary btn-icon" id="btn-pomo-reset" title="Reiniciar">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="timer-svg-icon"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><polyline points="3 3 3 8 8 8"></polyline></svg>
+                  </button>
+                  <button class="btn btn-primary btn-large btn-icon" id="btn-pomo-play" title="Iniciar/Pausar">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" class="timer-svg-icon" style="margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  </button>
+                  <button class="btn btn-secondary btn-icon" id="btn-pomo-skip" title="Pular Sessão">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" class="timer-svg-icon"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                  </button>
+                </div>
+
+                <div class="pomodoro-sound-toggle mt-4">
+                  <button class="btn btn-outline btn-sm" id="btn-toggle-sound">
+                    <i data-lucide="volume-2" id="sound-icon"></i> <span id="sound-status-text">Som Ativado</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 4: FLASHCARDS -->
+      <section id="tab-flashcards" class="tab-panel">
+        <div class="flashcards-layout">
+          <!-- Coluna Lateral: Categorias e Adicionar -->
+          <div class="flashcards-sidebar">
+            <div class="card glass-card">
+              <div class="card-header">
+                <h3>Categorias</h3>
+              </div>
+              <div class="card-body no-padding">
+                <div class="deck-list" id="categories-list">
+                  <button class="deck-item active" data-category="all">
+                    <i data-lucide="layers"></i> Todos os Cards (<span id="count-all-cards">0</span>)
+                  </button>
+                  <button class="deck-item" data-category="Anatomia">
+                    <i data-lucide="box"></i> Anatomia (<span id="count-anatomy-cards">0</span>)
+                  </button>
+                  <button class="deck-item" data-category="Cinesiologia">
+                    <i data-lucide="shuffle"></i> Cinesiologia (<span id="count-cinesio-cards">0</span>)
+                  </button>
+                  <button class="deck-item" data-category="Avaliação">
+                    <i data-lucide="check-square"></i> Avaliação (<span id="count-assessment-cards">0</span>)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Criador de Cartões -->
+            <div class="card glass-card mt-4">
+              <div class="card-header">
+                <h3>Criar Novo Card</h3>
+              </div>
+              <div class="card-body">
+                <form id="form-create-flashcard">
+                  <div class="form-group">
+                    <label for="fc-category">Categoria:</label>
+                    <select id="fc-category" class="custom-select w-full">
+                      <option value="Anatomia">Anatomia</option>
+                      <option value="Cinesiologia">Cinesiologia</option>
+                      <option value="Avaliação">Avaliação</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="fc-question">Pergunta / Estrutura:</label>
+                    <textarea id="fc-question" class="custom-textarea w-full" rows="3" placeholder="Ex: Qual a inervação do Bíceps Braquial?" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="fc-answer">Resposta / Explicação:</label>
+                    <textarea id="fc-answer" class="custom-textarea w-full" rows="4" placeholder="Ex: Nervo Musculocutâneo (C5, C6). Ação: Flexão do cotovelo e supinação." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-full mt-2">
+                    <i data-lucide="plus"></i> Salvar Flashcard
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna Central: O Flashcard Ativo -->
+          <div class="flashcards-main">
+            <div class="flashcard-study-container">
+              <div class="study-progress-bar">
+                <div class="bar-fill" id="flashcard-progress-fill" style="width: 0%"></div>
+              </div>
+              <div class="study-progress-text text-center text-muted" id="flashcard-progress-text">
+                Card 0 de 0
+              </div>
+
+              <!-- Cartão 3D Flip -->
+              <div class="flashcard-scene">
+                <div class="flashcard-card" id="flashcard-element">
+                  <!-- Lado da Frente -->
+                  <div class="flashcard-face flashcard-front">
+                    <span class="card-category-badge" id="fc-view-category">Categoria</span>
+                    <div class="flashcard-question-text" id="fc-view-question">Pergunta</div>
+                    <span class="click-hint"><i data-lucide="mouse-pointer-click"></i> Clique para revelar a resposta</span>
+                  </div>
+                  <!-- Lado de Trás -->
+                  <div class="flashcard-face flashcard-back">
+                    <span class="card-category-badge" id="fc-view-category-back">Categoria</span>
+                    <div class="flashcard-answer-text" id="fc-view-answer">Resposta</div>
+                    <div class="flashcard-actions">
+                      <p class="rate-label">Como foi o seu desempenho?</p>
+                      <div class="rate-buttons">
+                        <button class="btn btn-red" id="btn-fc-hard">Errei / Difícil ❌</button>
+                        <button class="btn btn-secondary" id="btn-fc-medium">Mais ou Menos ⚠️</button>
+                        <button class="btn btn-green" id="btn-fc-easy">Fácil / Acertei ✅</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 5: POCKET FISIO (REFERÊNCIA) -->
+      <section id="tab-reference" class="tab-panel">
+        <div class="reference-container">
+          <div class="reference-search-bar card glass-card">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="ref-search-input" placeholder="Pesquisar teste clínico, grau de força, goniometria ou dermátomo..." class="search-input">
+          </div>
+
+          <div class="reference-tabs-nav mt-4">
+            <button class="ref-tab-btn active" data-ref-type="goniometria">
+              <i data-lucide="activity"></i> Goniometria (ROM)
+            </button>
+            <button class="ref-tab-btn" data-ref-type="forca">
+              <i data-lucide="dumbbell"></i> Força Muscular
+            </button>
+            <button class="ref-tab-btn" data-ref-type="testes">
+              <i data-lucide="clipboard-list"></i> Testes Ortopédicos
+            </button>
+            <button class="ref-tab-btn" data-ref-type="dermatomos">
+              <i data-lucide="map"></i> Dermátomos & Miótomos
+            </button>
+          </div>
+
+          <div class="reference-results mt-4" id="reference-results-container">
+            <!-- Inserido dinamicamente via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 6: ESTÁGIO CLÍNICO -->
+      <section id="tab-internship" class="tab-panel">
+        <div class="internship-layout">
+          <!-- Coluna Lateral: Formulário de Registro -->
+          <div class="internship-form-column">
+            <div class="card glass-card">
+              <div class="card-header">
+                <h3>Registrar Turno de Estágio</h3>
+              </div>
+              <div class="card-body">
+                <form id="form-add-shift">
+                  <div class="form-group">
+                    <label for="shift-date">Data:</label>
+                    <input type="date" id="shift-date" class="custom-input w-full" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="shift-specialty">Especialidade / Área:</label>
+                    <select id="shift-specialty" class="custom-select w-full" required>
+                      <option value="orthopedics">Traumato-Ortopedia / Reumatologia</option>
+                      <option value="neuro">Neurologia Adulto / Pediatria</option>
+                      <option value="cardio">Cardiorrespiratória / UTI</option>
+                      <option value="public_health">Saúde Coletiva / Atenção Básica</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="shift-hours">Horas Realizadas:</label>
+                    <input type="number" id="shift-hours" class="custom-input w-full" min="1" max="12" placeholder="Ex: 4" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="shift-supervisor">Fisioterapeuta Supervisor:</label>
+                    <input type="text" id="shift-supervisor" class="custom-input w-full" placeholder="Nome do preceptor/professor" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="shift-notes">Resumo / Observações Clínicas:</label>
+                    <textarea id="shift-notes" class="custom-textarea w-full" rows="3" placeholder="Ex: Avaliação de paciente pós-operatório de LCA. Conduta realizada: mobilização patelar, cinesioterapia passiva..."></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-full mt-2">
+                    <i data-lucide="plus"></i> Gravar Turno de Estágio
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna Central: Estatísticas de Horas e Registro de Turnos -->
+          <div class="internship-main-column">
+            <!-- Barra Geral Detalhada -->
+            <div class="card glass-card">
+              <div class="card-header">
+                <h3>Resumo de Carga Horária Exigida</h3>
+              </div>
+              <div class="card-body">
+                <div class="specialties-progress-grid">
+                  <!-- Especialidade 1 -->
+                  <div class="specialty-progress-card">
+                    <div class="specialty-label">
+                      <span>Traumato-Ortopedia / Reuma</span>
+                      <strong id="hours-count-ortho">0 / 150h</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar bg-primary" id="hours-bar-ortho" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <!-- Especialidade 2 -->
+                  <div class="specialty-progress-card">
+                    <div class="specialty-label">
+                      <span>Neurologia / Pediatria</span>
+                      <strong id="hours-count-neuro">0 / 150h</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar bg-purple" id="hours-bar-neuro" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <!-- Especialidade 3 -->
+                  <div class="specialty-progress-card">
+                    <div class="specialty-label">
+                      <span>Cardiorrespiratória / UTI</span>
+                      <strong id="hours-count-cardio">0 / 150h</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar bg-green" id="hours-bar-cardio" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <!-- Especialidade 4 -->
+                  <div class="specialty-progress-card">
+                    <div class="specialty-label">
+                      <span>Saúde Coletiva / Atenção Básica</span>
+                      <strong id="hours-count-public">0 / 150h</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar bg-yellow" id="hours-bar-public" style="width: 0%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista de Histórico -->
+            <div class="card glass-card mt-4">
+              <div class="card-header">
+                <h3>Histórico de Turnos e Condutas</h3>
+              </div>
+              <div class="card-body no-padding">
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Data</th>
+                        <th>Área</th>
+                        <th>Horas</th>
+                        <th>Supervisor</th>
+                        <th>Conduta / Casos</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody id="internship-history-rows">
+                      <!-- Preenchido via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="no-records-msg id-empty-msg" id="internship-empty-msg">
+                  <i data-lucide="award"></i> Nenhum turno de estágio registrado ainda.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 7: SIMULADOS -->
+      <section id="tab-quiz" class="tab-panel">
+        <div class="quiz-layout">
+          <!-- Coluna Lateral: Configurações do Simulado -->
+          <div class="quiz-sidebar">
+            <div class="card glass-card">
+              <div class="card-header">
+                <h3>Configuração do Teste</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="quiz-category-select">Filtrar por Categoria:</label>
+                  <select id="quiz-category-select" class="custom-select w-full">
+                    <option value="all">Simulado Geral (Todas as Áreas)</option>
+                    <option value="Anatomia">Anatomia Humana</option>
+                    <option value="Cinesiologia">Cinesiologia & Biomecânica</option>
+                    <option value="Avaliação">Avaliação Cinésio-Funcional</option>
+                    <option value="Casos Clínicos">Casos Clínicos</option>
+                    <option value="Especialidades">Especialidades Clínicas</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary w-full mt-2" id="btn-start-quiz">
+                  <i data-lucide="play"></i> Iniciar Novo Simulado
+                </button>
+              </div>
+            </div>
+
+            <!-- Card de Placar / Desempenho -->
+            <div class="card glass-card">
+              <div class="card-header">
+                <h3>Histórico de Desempenho</h3>
+              </div>
+              <div class="card-body">
+                <div class="banner-stat pb-3">
+                  <span class="label">Total de Questões Respondidas</span>
+                  <span class="value" id="quiz-total-answered">0</span>
+                </div>
+                <div class="banner-stat pb-3">
+                  <span class="label">Taxa de Acertos</span>
+                  <span class="value text-emerald" id="quiz-success-rate">0%</span>
+                </div>
+                <button class="btn btn-secondary btn-sm w-full" id="btn-reset-quiz-stats">
+                  <i data-lucide="trash-2"></i> Limpar Estatísticas
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna Central: O Quiz Ativo -->
+          <div class="quiz-main">
+            <!-- Barra de Progresso e Placar Rápido -->
+            <div class="quiz-score-banner" id="quiz-active-header" style="display: none;">
+              <div class="banner-stat">
+                <span class="label">Questão</span>
+                <span class="value" id="quiz-current-question-num">1 / 10</span>
+              </div>
+              <div class="banner-stat flex-grow">
+                <span class="label">Progresso do Simulado</span>
+                <div class="progress-bar-container mt-2">
+                  <div class="progress-bar bg-primary" id="quiz-progress-bar" style="width: 10%"></div>
+                </div>
+              </div>
+              <div class="banner-stat">
+                <span class="label">Pontuação</span>
+                <span class="value text-emerald" id="quiz-current-score">0</span>
+              </div>
+            </div>
+
+            <!-- Card Principal da Questão -->
+            <div class="card glass-card" id="quiz-card-container">
+              <!-- Tela Inicial (Selecione uma Categoria) -->
+              <div class="quiz-results-card" id="quiz-welcome-screen">
+                <i data-lucide="graduation-cap" style="width: 48px; height: 48px; color: var(--primary); margin-bottom: 16px;"></i>
+                <h2>Simulados Acadêmicos</h2>
+                <p class="quiz-results-text mt-2">Teste seus conhecimentos teóricos e práticos com o banco de questões integradas do FisioAcademic. Escolha uma categoria ao lado para começar.</p>
+              </div>
+
+              <!-- Tela de Questão Ativa (Gerada Dinamicamente) -->
+              <div class="card-body" id="quiz-active-body" style="display: none;">
+                <div class="card-tag tag-purple" id="quiz-question-category">Categoria</div>
+                <h3 id="quiz-question-text" style="font-family: var(--font-title); font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin-top: 8px;">Texto da pergunta</h3>
+                
+                <div class="quiz-options-list" id="quiz-options-container">
+                  <!-- Alternativas A, B, C, D geradas dinamicamente -->
+                </div>
+
+                <!-- Justificativa da Questão (oculta por padrão) -->
+                <div class="quiz-rationale" id="quiz-rationale-container" style="display: none;">
+                  <h4><i data-lucide="help-circle"></i> Justificativa do Gabarito</h4>
+                  <p id="quiz-rationale-text">Explicação clínica detalhada da questão...</p>
+                </div>
+
+                <div class="flex-row justify-between align-center mt-4 pt-3" style="border-top: 1px solid var(--border-glass);">
+                  <button class="btn btn-secondary" id="btn-quit-quiz">Desistir</button>
+                  <button class="btn btn-primary" id="btn-next-question" style="display: none;">
+                    Próxima Questão <i data-lucide="arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tela de Resultados Finais -->
+              <div class="quiz-results-card" id="quiz-results-screen" style="display: none;">
+                <i data-lucide="trophy" style="width: 60px; height: 60px; color: var(--yellow); margin-bottom: 16px;"></i>
+                <h2>Simulado Concluído!</h2>
+                <div class="quiz-results-score" id="quiz-final-score-text">8 / 10</div>
+                <p class="quiz-results-text" id="quiz-performance-feedback">Ótimo desempenho! Você está bem preparado.</p>
+                <div class="flex-row justify-center gap-4">
+                  <button class="btn btn-primary" id="btn-restart-quiz">Tentar Novamente</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- MODAL: ADICIONAR/EDITAR DISCIPLINA -->
+  <div class="modal-backdrop" id="modal-subject">
+    <div class="modal-card glass-modal">
+      <div class="modal-header">
+        <h3 id="modal-subject-title">Adicionar Disciplina</h3>
+        <button class="btn-close" id="btn-close-subject-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-subject">
+          <input type="hidden" id="modal-subject-id">
+          <div class="form-group">
+            <label for="modal-subject-name">Nome da Disciplina:</label>
+            <input type="text" id="modal-subject-name" class="custom-input w-full" placeholder="Ex: Fisioterapia Pediátrica" required>
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <label for="modal-subject-hours">Carga Horária (horas):</label>
+              <input type="number" id="modal-subject-hours" class="custom-input w-full" min="1" max="300" placeholder="Ex: 80" required>
+            </div>
+            <div class="col">
+              <label for="modal-subject-grade">Nota Final (0.0 a 10.0):</label>
+              <input type="number" id="modal-subject-grade" class="custom-input w-full" min="0" max="10" step="0.1" placeholder="Ex: 8.5">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="modal-subject-status">Status de Conclusão:</label>
+            <select id="modal-subject-status" class="custom-select w-full">
+              <option value="not_started">Não Iniciada</option>
+              <option value="in_progress">Cursando (Em Progresso)</option>
+              <option value="completed">Concluída</option>
+            </select>
+          </div>
+          <div class="form-group study-panel" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-glass); display: flex; flex-direction: column; gap: 10px;">
+            <label style="font-weight: 600; color: var(--primary);">Área de Estudos e Caderno Digital:</label>
+            <div style="display: flex; gap: 12px;">
+              <button type="button" class="btn btn-secondary flex-1" id="btn-open-caderno" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i data-lucide="book-open" style="width: 16px; height: 16px;"></i> Caderno Digital
+              </button>
+              <button type="button" class="btn btn-secondary flex-1" id="btn-open-anotacoes-materia" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i> Anotações da Matéria
+              </button>
+            </div>
+            <input type="hidden" id="modal-subject-notes">
+          </div>
+          <div class="modal-actions mt-4">
+            <button type="button" class="btn btn-outline" id="btn-cancel-subject">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar Disciplina</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CRIAR TAREFA / EVENTO DE CRONOGRAMA -->
+  <div class="modal-backdrop" id="modal-task">
+    <div class="modal-card glass-modal">
+      <div class="modal-header">
+        <h3>Adicionar Item ao Cronograma</h3>
+        <button class="btn-close" id="btn-close-task-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-task">
+          <div class="form-group">
+            <label for="task-title">Descrição do Item / Tópico:</label>
+            <input type="text" id="task-title" class="custom-input w-full" placeholder="Ex: Estudar Músculos do Antebraço" required>
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <label for="task-type">Tipo de Atividade:</label>
+              <select id="task-type" class="custom-select w-full">
+                <option value="ead">EAD - Estudo Teórico</option>
+                <option value="pratica">Presencial - Prática/Laboratório</option>
+                <option value="prova">Avaliação / Prova</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="task-day">Dia da Semana:</label>
+              <select id="task-day" class="custom-select w-full">
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="task-details">Detalhes (Link do EAD ou local do laboratório):</label>
+            <input type="text" id="task-details" class="custom-input w-full" placeholder="Ex: Laboratório de Anatomia III ou Portal de Alunos">
+          </div>
+          <div class="modal-actions mt-4">
+            <button type="button" class="btn btn-outline" id="btn-cancel-task">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CADERNO DIGITAL (LEITURA INTEGRAL COM BUSCA, NAVEGAÇÃO E SELEÇÃO LIVRE) -->
+  <div class="modal-backdrop" id="modal-caderno">
+    <div class="modal-card glass-modal" style="max-width: 1200px; width: 95%; height: 90vh; display: flex; flex-direction: column;">
+      
+      <!-- Cabeçalho com barra de ferramentas -->
+      <div class="modal-header" style="display: flex; flex-direction: column; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--border-glass);">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <h3 id="modal-caderno-title" style="margin: 0; font-family: var(--font-title); font-size: 1.25rem;">Caderno Digital - Carregando...</h3>
+          <button class="btn-close" id="btn-close-caderno" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+        </div>
+        
+        <!-- Barra de Ferramentas: Busca, Marca-texto, Borracha, Controles -->
+        <div class="caderno-toolbar" style="display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+          <!-- Controles de Ferramentas de Edição -->
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button type="button" class="btn btn-outline btn-sm active" id="btn-tool-read" title="Modo Leitura / Seleção Normal" style="padding: 6px 12px; display: flex; align-items: center; gap: 6px; height: 32px;">
+              <i data-lucide="navigation" style="width: 14px; height: 14px;"></i> <span>Leitura</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-tool-highlight" title="Marca-Texto (Selecionar para destacar)" style="padding: 6px 12px; display: flex; align-items: center; gap: 6px; height: 32px;">
+              <i data-lucide="highlighter" style="color: #ffeb3b; width: 14px; height: 14px;"></i> <span>Marca-Texto</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-tool-erase" title="Borracha (Selecionar ou clicar para apagar)" style="padding: 6px 12px; display: flex; align-items: center; gap: 6px; height: 32px;">
+              <i data-lucide="eraser" style="color: #e91e63; width: 14px; height: 14px;"></i> <span>Borracha</span>
+            </button>
+          </div>
+
+          <!-- Barra de Pesquisa de Conteúdo -->
+          <div style="display: flex; gap: 6px; flex-grow: 1; max-width: 400px; position: relative;">
+            <input type="text" id="caderno-search-input" placeholder="Pesquisar palavra-chave no livro..." class="custom-input w-full" style="padding: 6px 36px 6px 12px; font-size: 0.85rem; height: 32px;">
+            <button type="button" id="btn-caderno-search" class="btn btn-icon btn-secondary" style="position: absolute; right: 2px; top: 2px; width: 28px; height: 28px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center;" title="Pesquisar">
+              <i data-lucide="search" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Corpo Principal (Split em 3 colunas) -->
+      <div class="modal-body" style="flex-grow: 1; display: flex; overflow: hidden; padding: 0; height: calc(100% - 110px);">
+        
+        <!-- Sidebar Esquerda: Índice (ToC) e Resultados da Busca -->
+        <div class="caderno-sidebar-column" style="width: 280px; flex-shrink: 0; overflow-y: auto; background: rgba(0, 0, 0, 0.15); border-right: 1px solid var(--border-glass); display: flex; flex-direction: column; height: 100%;">
+          <!-- Seleção de Aba da Sidebar -->
+          <div style="display: flex; border-bottom: 1px solid var(--border-glass); background: rgba(0,0,0,0.1);">
+            <button type="button" class="sidebar-tab-btn active" id="btn-sidebar-toc" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text); border-bottom: 2px solid var(--primary); outline: none;">Índice</button>
+            <button type="button" class="sidebar-tab-btn" id="btn-sidebar-search" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; outline: none;">Busca (<span id="caderno-search-count">0</span>)</button>
+          </div>
+          
+          <div style="flex-grow: 1; overflow-y: auto; padding: 12px; height: calc(100% - 40px);">
+            <!-- Índice (ToC) -->
+            <div id="caderno-toc-area" style="display: block;">
+              <ul class="toc-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                <!-- Carregado via JS -->
+              </ul>
+            </div>
+            
+            <!-- Resultados de Busca -->
+            <div id="caderno-search-results-area" style="display: none;">
+              <div id="caderno-search-results-list" style="display: flex; flex-direction: column; gap: 8px;">
+                <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; text-align: center; margin-top: 20px;">Pesquise uma palavra no topo para ver os resultados.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Coluna Central: Leitura do Livro -->
+        <div class="caderno-text-column" style="flex-grow: 1; overflow-y: auto; padding: 28px; position: relative; height: 100%; background: #0b0f13; scroll-behavior: smooth;" id="caderno-scroll-container">
+          <div id="caderno-content-area" class="study-content-rich" style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #cbd5e1; font-size: 1rem; font-family: 'Inter', sans-serif;">
+            <p>Carregando material de estudo...</p>
+          </div>
+        </div>
+        
+        <!-- Coluna Direita: Anotações Rápidas -->
+        <div class="caderno-notes-column" style="width: 320px; flex-shrink: 0; overflow-y: auto; padding: 20px; border-left: 1px solid var(--border-glass); background: rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; gap: 16px; height: 100%;">
+          <h4 style="font-family: var(--font-title); font-size: 1rem; color: var(--primary); margin: 0; display: flex; align-items: center; gap: 6px;">
+            <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i> Minhas Observações
+          </h4>
+          <textarea id="caderno-observation-input" class="custom-textarea w-full" style="flex-grow: 1; resize: none; min-height: 200px; font-size: 0.9rem;" placeholder="Digite aqui suas observações sobre esta disciplina..."></textarea>
+          
+          <div style="background-color: rgba(43, 186, 181, 0.05); border: 1px dashed var(--border-glass); padding: 12px; border-radius: var(--radius-md); font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">
+            <i data-lucide="info" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 4px; color: var(--primary);"></i>
+            <strong>Instruções de Estudo:</strong>
+            <ul style="margin: 6px 0 0 16px; padding: 0;">
+              <li>Ative o <strong>Marca-Texto</strong> e selecione o texto arrastando para destacar.</li>
+              <li>Ative a <strong>Borracha</strong> e arraste sobre o texto destacado para apagá-lo.</li>
+              <li>Suas observações serão salvas automaticamente ao salvar.</li>
+            </ul>
+          </div>
+          
+          <button type="button" class="btn btn-primary w-full" id="btn-save-caderno-notes" style="height: 40px; font-weight: 600;">
+            <i data-lucide="check" style="width: 16px; height: 16px; margin-right: 4px; vertical-align: middle;"></i> Salvar Alterações
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ANOTAÇÕES CONSOLIDADAS DA MATÉRIA (HIGHLIGHTS + NOTAS DIGITADAS) -->
+  <div class="modal-backdrop" id="modal-anotacoes-consolidado">
+    <div class="modal-card glass-modal" style="max-width: 700px; width: 95%; height: 75vh; display: flex; flex-direction: column;">
+      <div class="modal-header">
+        <h3 id="modal-anotacoes-title">Anotações da Matéria - Carregando...</h3>
+        <button class="btn-close" id="btn-close-anotacoes-consolidado">&times;</button>
+      </div>
+      <div class="modal-body" style="flex-grow: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+        
+        <!-- Bloco 1: Observações Digitadas -->
+        <div>
+          <h4 style="font-family: var(--font-title); font-size: 1rem; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i> Observações Digitadas
+          </h4>
+          <div id="consolidado-notes-area" class="custom-input w-full" style="min-height: 100px; background-color: rgba(255,255,255,0.01); line-height: 1.5; white-space: pre-wrap; font-size: 0.9rem;">
+            Nenhuma observação digitada ainda.
+          </div>
+        </div>
+
+        <!-- Bloco 2: Marcações Importantes (Texto Destacado) -->
+        <div>
+          <h4 style="font-family: var(--font-title); font-size: 1rem; color: var(--purple); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i data-lucide="highlighter" style="width: 16px; height: 16px;"></i> Trechos Marcados (Highlights)
+          </h4>
+          <div id="consolidado-highlights-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-style: italic; color: var(--text-muted); font-size: 0.85rem;">Nenhum trecho marcado ainda.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer" style="padding: 16px 24px; border-top: 1px solid var(--border-glass); display: flex; justify-content: flex-end; gap: 12px; background: rgba(0,0,0,0.1);">
+        <button type="button" class="btn btn-secondary" id="btn-export-anotacoes-txt">
+          <i data-lucide="download" style="width: 16px; height: 16px; margin-right: 4px; vertical-align: middle;"></i> Exportar Resumo
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-close-anotacoes-footer">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALHES DA IMAGEM CLINICA (LIGHTBOX) -->
+  <div class="modal-backdrop" id="modal-lightbox" style="z-index: 2000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.9);">
+    <div style="position: absolute; top: 16px; right: 24px; font-size: 2.5rem; color: rgba(255,255,255,0.7); cursor: pointer; user-select: none; transition: color 0.2s;" id="btn-close-lightbox" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">&times;</div>
+    <div style="max-width: 90%; max-height: 90%; display: flex; align-items: center; justify-content: center;">
+      <img id="lightbox-img" src="" alt="Ilustração Clínica Ampliada" style="max-width: 100%; max-height: 100%; border-radius: var(--radius-lg); border: 2px solid var(--border-glass); box-shadow: 0 20px 50px rgba(0,0,0,0.8); object-fit: contain;">
+    </div>
+  </div>
+
+  <!-- Carregar módulos JS -->
+  <script src="jspdf.umd.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="planner.js"></script>
+  <script src="flashcards.js"></script>
+  <script src="reference.js"></script>
+  <script src="tracker.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
