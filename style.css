@@ -5,32 +5,32 @@
   --font-title: 'Outfit', 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Cores Temáticas baseadas nas capturas de tela - TEMPORARIAMENTE EM VERMELHO PARA TESTE */
-  --bg-app: #0d0a0a; /* Fundo grafite muito escuro com toque de vermelho */
-  --bg-sidebar: #090707; /* Sidebar ainda mais escura vermelha */
-  --bg-card: rgba(38, 22, 22, 0.55); /* Cards translúcidos em tom vermelho escuro */
-  --bg-card-hover: rgba(53, 30, 30, 0.70);
-  --border-glass: rgba(239, 68, 68, 0.15); /* Bordas em vermelho suave */
-  --border-focus: rgba(239, 68, 68, 0.4);
+  /* Cores Temáticas baseadas nas capturas de tela */
+  --bg-app: #0a0d0c; /* Fundo grafite muito escuro com toque de verde-petróleo */
+  --bg-sidebar: #070909; /* Sidebar ainda mais escura */
+  --bg-card: rgba(22, 38, 37, 0.55); /* Cards translúcidos em tom verde-petróleo escuro */
+  --bg-card-hover: rgba(30, 53, 51, 0.70);
+  --border-glass: rgba(43, 186, 181, 0.15); /* Bordas em teal suave */
+  --border-focus: rgba(43, 186, 181, 0.4);
   
-  --primary: #ef4444; /* Vermelho vibrante */
-  --primary-hover: #dc2626;
-  --primary-glow: rgba(239, 68, 68, 0.15);
+  --primary: #2bbab5; /* Verde-petróleo claro / Teal brilhante */
+  --primary-hover: #229994;
+  --primary-glow: rgba(43, 186, 181, 0.15);
   
-  --secondary: #f87171; /* Vermelho pastel */
-  --secondary-hover: #ef4444;
+  --secondary: #69c3be; /* Teal pastel */
+  --secondary-hover: #4db0a9;
   
   --purple: #9d7df8;
   --purple-glow: rgba(157, 125, 248, 0.15);
-  --green: #10b981;
+  --green: #2bbab5;
   --red: #ef4444;
   --red-hover: #dc2626;
   --yellow: #f59e0b;
 
   /* Texto */
-  --text-main: #fcf3f3; /* Off-white com tom de cinza avermelhado */
-  --text-muted: #9c8282; /* Muted vermelho-cinza */
-  --text-dark: #120a0a; /* Texto escuro para botões primários */
+  --text-main: #f3f7f6; /* Off-white com tom de cinza azulado */
+  --text-muted: #829c9a; /* Muted verde-cinza */
+  --text-dark: #0a1211; /* Texto escuro para botões primários */
 
   /* Efeitos */
   --shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
