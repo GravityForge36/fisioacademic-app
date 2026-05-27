@@ -1,5 +1,767 @@
 // FisioAcademic - Módulo Principal (Estado, Roteamento e Grade Curricular)
 
+// A. SISTEMA DE AUTENTICAÇÃO E PERFIS
+function getProfileKey(baseKey) {
+  const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+  if (!activeProfileId) return baseKey;
+  return `${activeProfileId}_${baseKey}`;
+}
+window.getProfileKey = getProfileKey; // Tornar disponível para outros scripts
+
+const THEMES = {
+  teal: {
+    primary: "#2bbab5",
+    secondary: "#69c3be",
+    primaryHover: "#229994",
+    secondaryHover: "#4db0a9",
+    primaryGlow: "rgba(43, 186, 181, 0.15)",
+    borderGlass: "rgba(43, 186, 181, 0.15)",
+    borderFocus: "rgba(43, 186, 181, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #0e2221 0%, #050808 100%)",
+    bgSidebar: "#050808",
+    bgCard: "rgba(22, 38, 37, 0.4)",
+    bgCardHover: "rgba(30, 53, 51, 0.6)",
+    bgCardGradientStart: "rgba(22, 38, 37, 0.8)",
+    bgCardGradientEnd: "rgba(10, 15, 15, 0.8)"
+  },
+  red: {
+    primary: "#ef4444",
+    secondary: "#f87171",
+    primaryHover: "#dc2626",
+    secondaryHover: "#ef4444",
+    primaryGlow: "rgba(239, 68, 68, 0.15)",
+    borderGlass: "rgba(239, 68, 68, 0.15)",
+    borderFocus: "rgba(239, 68, 68, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #2a0e0e 0%, #060303 100%)",
+    bgSidebar: "#060303",
+    bgCard: "rgba(38, 22, 22, 0.4)",
+    bgCardHover: "rgba(53, 30, 30, 0.6)",
+    bgCardGradientStart: "rgba(38, 22, 22, 0.8)",
+    bgCardGradientEnd: "rgba(15, 10, 10, 0.8)"
+  },
+  purple: {
+    primary: "#9d7df8",
+    secondary: "#c084fc",
+    primaryHover: "#8b5cf6",
+    secondaryHover: "#a78bfa",
+    primaryGlow: "rgba(157, 125, 248, 0.15)",
+    borderGlass: "rgba(157, 125, 248, 0.15)",
+    borderFocus: "rgba(157, 125, 248, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #1a0e2f 0%, #050307 100%)",
+    bgSidebar: "#050307",
+    bgCard: "rgba(30, 22, 38, 0.4)",
+    bgCardHover: "rgba(45, 30, 58, 0.6)",
+    bgCardGradientStart: "rgba(30, 22, 38, 0.8)",
+    bgCardGradientEnd: "rgba(12, 10, 15, 0.8)"
+  },
+  gold: {
+    primary: "#f59e0b",
+    secondary: "#fbbf24",
+    primaryHover: "#d97706",
+    secondaryHover: "#f59e0b",
+    primaryGlow: "rgba(245, 158, 11, 0.15)",
+    borderGlass: "rgba(245, 158, 11, 0.15)",
+    borderFocus: "rgba(245, 158, 11, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #251605 0%, #060403 100%)",
+    bgSidebar: "#060403",
+    bgCard: "rgba(38, 30, 20, 0.4)",
+    bgCardHover: "rgba(53, 40, 26, 0.6)",
+    bgCardGradientStart: "rgba(38, 30, 20, 0.8)",
+    bgCardGradientEnd: "rgba(15, 12, 10, 0.8)"
+  },
+  blue: {
+    primary: "#3b82f6",
+    secondary: "#60a5fa",
+    primaryHover: "#2563eb",
+    secondaryHover: "#3b82f6",
+    primaryGlow: "rgba(59, 130, 246, 0.15)",
+    borderGlass: "rgba(59, 130, 246, 0.15)",
+    borderFocus: "rgba(59, 130, 246, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #0b1a30 0%, #030406 100%)",
+    bgSidebar: "#030406",
+    bgCard: "rgba(20, 25, 38, 0.4)",
+    bgCardHover: "rgba(28, 35, 53, 0.6)",
+    bgCardGradientStart: "rgba(20, 25, 38, 0.8)",
+    bgCardGradientEnd: "rgba(10, 12, 18, 0.8)"
+  },
+  sunset: {
+    primary: "#f43f5e",
+    secondary: "#fb923c",
+    primaryHover: "#e11d48",
+    secondaryHover: "#f97316",
+    primaryGlow: "rgba(244, 63, 94, 0.15)",
+    borderGlass: "rgba(244, 63, 94, 0.15)",
+    borderFocus: "rgba(244, 63, 94, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #2e0f1a 0%, #080307 100%)",
+    bgSidebar: "#080307",
+    bgCard: "rgba(46, 15, 26, 0.4)",
+    bgCardHover: "rgba(64, 20, 36, 0.6)",
+    bgCardGradientStart: "rgba(46, 15, 26, 0.8)",
+    bgCardGradientEnd: "rgba(18, 8, 12, 0.8)"
+  },
+  oceanic: {
+    primary: "#06b6d4",
+    secondary: "#3b82f6",
+    primaryHover: "#0891b2",
+    secondaryHover: "#2563eb",
+    primaryGlow: "rgba(6, 182, 212, 0.15)",
+    borderGlass: "rgba(6, 182, 212, 0.15)",
+    borderFocus: "rgba(6, 182, 212, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #05202c 0%, #03070b 100%)",
+    bgSidebar: "#03070b",
+    bgCard: "rgba(5, 32, 44, 0.4)",
+    bgCardHover: "rgba(8, 48, 66, 0.6)",
+    bgCardGradientStart: "rgba(5, 32, 44, 0.8)",
+    bgCardGradientEnd: "rgba(2, 12, 18, 0.8)"
+  },
+  aurora: {
+    primary: "#10b981",
+    secondary: "#06b6d4",
+    primaryHover: "#059669",
+    secondaryHover: "#0891b2",
+    primaryGlow: "rgba(16, 185, 129, 0.15)",
+    borderGlass: "rgba(16, 185, 129, 0.15)",
+    borderFocus: "rgba(16, 185, 129, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #062419 0%, #020705 100%)",
+    bgSidebar: "#020705",
+    bgCard: "rgba(6, 36, 25, 0.4)",
+    bgCardHover: "rgba(9, 54, 38, 0.6)",
+    bgCardGradientStart: "rgba(6, 36, 25, 0.8)",
+    bgCardGradientEnd: "rgba(2, 15, 10, 0.8)"
+  },
+  cyberpunk: {
+    primary: "#ff007f",
+    secondary: "#7f00ff",
+    primaryHover: "#e60073",
+    secondaryHover: "#7300e6",
+    primaryGlow: "rgba(255, 0, 127, 0.15)",
+    borderGlass: "rgba(255, 0, 127, 0.15)",
+    borderFocus: "rgba(255, 0, 127, 0.4)",
+    bgApp: "radial-gradient(circle at 50% 0%, #2a0520 0%, #060205 100%)",
+    bgSidebar: "#060205",
+    bgCard: "rgba(42, 5, 32, 0.4)",
+    bgCardHover: "rgba(60, 8, 46, 0.6)",
+    bgCardGradientStart: "rgba(42, 5, 32, 0.8)",
+    bgCardGradientEnd: "rgba(15, 2, 12, 0.8)"
+  }
+};
+
+function applyTheme(themeName) {
+  const theme = THEMES[themeName] || THEMES.teal;
+  const root = document.documentElement;
+  root.style.setProperty('--primary', theme.primary);
+  root.style.setProperty('--secondary', theme.secondary);
+  root.style.setProperty('--primary-hover', theme.primaryHover);
+  root.style.setProperty('--secondary-hover', theme.secondaryHover);
+  root.style.setProperty('--primary-glow', theme.primaryGlow);
+  root.style.setProperty('--border-glass', theme.borderGlass);
+  root.style.setProperty('--border-focus', theme.borderFocus);
+  root.style.setProperty('--bg-app', theme.bgApp);
+  root.style.setProperty('--bg-card', theme.bgCard);
+  
+  // Custom Dynamic Properties
+  root.style.setProperty('--bg-sidebar', theme.bgSidebar);
+  root.style.setProperty('--bg-card-hover', theme.bgCardHover);
+  root.style.setProperty('--bg-card-gradient-start', theme.bgCardGradientStart);
+  root.style.setProperty('--bg-card-gradient-end', theme.bgCardGradientEnd);
+}
+
+let selectedSettingsTheme = 'teal';
+let selectedSettingsAvatarImage = null;
+
+function setupSettingsThemeSelector(currentTheme) {
+  selectedSettingsTheme = currentTheme;
+  const themeSelector = document.getElementById("theme-selector-settings");
+  if (!themeSelector) return;
+  
+  const options = themeSelector.querySelectorAll(".color-option");
+  options.forEach(opt => {
+    const themeName = opt.getAttribute("data-theme");
+    
+    if (themeName === selectedSettingsTheme) {
+      opt.classList.add("selected");
+    } else {
+      opt.classList.remove("selected");
+    }
+    
+    if (!opt.dataset.listenerBound) {
+      opt.dataset.listenerBound = "true";
+      opt.addEventListener("click", () => {
+        options.forEach(o => o.classList.remove("selected"));
+        opt.classList.add("selected");
+        selectedSettingsTheme = themeName;
+        
+        applyTheme(themeName);
+      });
+    }
+  });
+}
+
+function initSettingsModalControls() {
+  const modal = document.getElementById("modal-settings");
+  const btnOpen = document.getElementById("btn-open-settings");
+  const btnClose = document.getElementById("btn-close-settings");
+  const btnSave = document.getElementById("btn-save-settings");
+  
+  const btnUpload = document.getElementById("btn-settings-upload-avatar");
+  const btnRemove = document.getElementById("btn-settings-remove-avatar");
+  const fileInput = document.getElementById("settings-avatar-file-input");
+  
+  const btnExport = document.getElementById("btn-settings-export");
+  const btnImport = document.getElementById("btn-settings-import");
+  const importInput = document.getElementById("settings-import-file-input");
+  
+  if (!modal) return;
+  
+  if (btnOpen) {
+    if (!btnOpen.dataset.listenerBound) {
+      btnOpen.dataset.listenerBound = "true";
+      btnOpen.addEventListener("click", () => {
+        const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+        const profiles = loadProfiles();
+        const activeProfile = profiles.find(p => p.id === activeProfileId);
+        if (activeProfile) {
+          document.getElementById("settings-name").value = activeProfile.name;
+          document.getElementById("settings-semester").value = activeProfile.semester;
+          selectedSettingsTheme = activeProfile.theme || 'teal';
+          selectedSettingsAvatarImage = activeProfile.avatarImage || null;
+          
+          if (selectedSettingsAvatarImage) {
+            btnRemove.style.display = "flex";
+          } else {
+            btnRemove.style.display = "none";
+          }
+          
+          setupSettingsThemeSelector(selectedSettingsTheme);
+          modal.style.display = "flex";
+          lucide.createIcons();
+        }
+      });
+    }
+  }
+  
+  if (btnClose) {
+    if (!btnClose.dataset.listenerBound) {
+      btnClose.dataset.listenerBound = "true";
+      btnClose.addEventListener("click", () => {
+        const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+        const profiles = loadProfiles();
+        const activeProfile = profiles.find(p => p.id === activeProfileId);
+        if (activeProfile && activeProfile.theme) {
+          applyTheme(activeProfile.theme);
+        }
+        modal.style.display = "none";
+      });
+    }
+  }
+  
+  if (btnSave) {
+    if (!btnSave.dataset.listenerBound) {
+      btnSave.dataset.listenerBound = "true";
+      btnSave.addEventListener("click", () => {
+        const name = document.getElementById("settings-name").value.trim();
+        const semester = parseInt(document.getElementById("settings-semester").value);
+        
+        if (!name) {
+          alert("O nome de exibição não pode ficar vazio!");
+          return;
+        }
+        
+        const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+        const profiles = loadProfiles();
+        const activeProfileIndex = profiles.findIndex(p => p.id === activeProfileId);
+        
+        if (activeProfileIndex !== -1) {
+          profiles[activeProfileIndex].name = name;
+          profiles[activeProfileIndex].semester = semester;
+          profiles[activeProfileIndex].theme = selectedSettingsTheme;
+          
+          // Sincroniza a cor do avatar com a cor primária do tema para harmonia visual na seleção de perfis
+          const themeObj = THEMES[selectedSettingsTheme] || THEMES.teal;
+          profiles[activeProfileIndex].avatarColor = themeObj.primary;
+          
+          if (selectedSettingsAvatarImage) {
+            profiles[activeProfileIndex].avatarImage = selectedSettingsAvatarImage;
+          } else {
+            delete profiles[activeProfileIndex].avatarImage;
+          }
+          
+          saveProfiles(profiles);
+          modal.style.display = "none";
+          location.reload();
+        }
+      });
+    }
+  }
+  
+  if (btnUpload && fileInput) {
+    if (!btnUpload.dataset.listenerBound) {
+      btnUpload.dataset.listenerBound = "true";
+      btnUpload.addEventListener("click", () => fileInput.click());
+    }
+    
+    if (!fileInput.dataset.listenerBound) {
+      fileInput.dataset.listenerBound = "true";
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        if (file.size > 1024 * 1024) {
+          alert("A imagem é muito grande! Escolha uma foto menor (máximo 1MB).");
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          selectedSettingsAvatarImage = evt.target.result;
+          btnRemove.style.display = "flex";
+          alert("Foto de perfil carregada! Clique em 'Salvar e Fechar' para confirmar.");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+  
+  if (btnRemove) {
+    if (!btnRemove.dataset.listenerBound) {
+      btnRemove.dataset.listenerBound = "true";
+      btnRemove.addEventListener("click", () => {
+        selectedSettingsAvatarImage = null;
+        btnRemove.style.display = "none";
+        fileInput.value = "";
+        alert("Foto de perfil removida! Clique em 'Salvar e Fechar' para confirmar.");
+      });
+    }
+  }
+  
+  if (btnExport) {
+    if (!btnExport.dataset.listenerBound) {
+      btnExport.dataset.listenerBound = "true";
+      btnExport.addEventListener("click", () => {
+        const backupData = {
+          curriculum: localStorage.getItem(getProfileKey("fisio_curriculum")),
+          flashcards: localStorage.getItem(getProfileKey("fisio_flashcards")),
+          tasks: localStorage.getItem(getProfileKey("fisio_tasks")),
+          shifts: localStorage.getItem(getProfileKey("fisio_shifts")),
+          settings: localStorage.getItem(getProfileKey("fisio_settings")),
+          quizStats: localStorage.getItem(getProfileKey("fisio_quiz_stats"))
+        };
+
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `fisioacademic_backup_${new Date().toISOString().slice(0,10)}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+      });
+    }
+  }
+  
+  if (btnImport && importInput) {
+    if (!btnImport.dataset.listenerBound) {
+      btnImport.dataset.listenerBound = "true";
+      btnImport.addEventListener("click", () => importInput.click());
+    }
+    
+    if (!importInput.dataset.listenerBound) {
+      importInput.dataset.listenerBound = "true";
+      importInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          try {
+            const imported = JSON.parse(evt.target.result);
+            const keys = ["curriculum", "flashcards", "tasks", "shifts", "settings"];
+            const hasKeys = keys.some(key => key in imported);
+            
+            if (!hasKeys) {
+              alert("Erro: O arquivo de backup selecionado não é válido ou está corrompido.");
+              return;
+            }
+
+            if (confirm("Atenção: A importação de dados substituirá todo o seu progresso atual nesta conta. Deseja continuar?")) {
+              if (imported.curriculum) localStorage.setItem(getProfileKey("fisio_curriculum"), imported.curriculum);
+              if (imported.flashcards) localStorage.setItem(getProfileKey("fisio_flashcards"), imported.flashcards);
+              if (imported.tasks) localStorage.setItem(getProfileKey("fisio_tasks"), imported.tasks);
+              if (imported.shifts) localStorage.setItem(getProfileKey("fisio_shifts"), imported.shifts);
+              if (imported.settings) localStorage.setItem(getProfileKey("fisio_settings"), imported.settings);
+              if (imported.quizStats) localStorage.setItem(getProfileKey("fisio_quiz_stats"), imported.quizStats);
+
+              alert("Progresso importado com sucesso! O aplicativo será recarregado.");
+              location.reload();
+            }
+          } catch (err) {
+            alert("Erro ao ler o arquivo de backup: " + err.message);
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+  }
+}
+
+function loadProfiles() {
+  return JSON.parse(localStorage.getItem("fisio_profiles") || "[]");
+}
+
+function saveProfiles(profiles) {
+  localStorage.setItem("fisio_profiles", JSON.stringify(profiles));
+}
+
+function showAuthScreen(screenId) {
+  document.getElementById("auth-screen-login").style.display = "none";
+  document.getElementById("auth-screen-select").style.display = "none";
+  document.getElementById("auth-screen-register").style.display = "none";
+  document.getElementById(`auth-screen-${screenId}`).style.display = "block";
+}
+
+let isManagingProfiles = false;
+
+function renderProfilesList() {
+  const listEl = document.getElementById("auth-profiles-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  
+  const profiles = loadProfiles();
+  
+  profiles.forEach(p => {
+    const initials = p.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+    const card = document.createElement("div");
+    card.className = "profile-card";
+    card.setAttribute("data-id", p.id);
+    
+    let avatarContent = `<div class="profile-avatar-circle" style="background: ${p.avatarColor};">${initials}</div>`;
+    if (p.avatarImage) {
+      avatarContent = `<div class="profile-avatar-circle" style="background: none; overflow: hidden;"><img src="${p.avatarImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>`;
+    }
+    
+    card.innerHTML = `
+      <button class="profile-delete-btn" title="Excluir Perfil">&times;</button>
+      ${avatarContent}
+      <div class="profile-name">${p.name}</div>
+    `;
+    
+    card.addEventListener("click", (e) => {
+      if (e.target.classList.contains("profile-delete-btn")) {
+        e.stopPropagation();
+        deleteProfile(p.id);
+        return;
+      }
+      selectProfileForLogin(p);
+    });
+    
+    listEl.appendChild(card);
+  });
+  
+  const addCard = document.createElement("div");
+  addCard.className = "profile-card add-profile";
+  addCard.innerHTML = `
+    <div class="profile-avatar-circle"><i data-lucide="plus" style="width: 24px; height: 24px;"></i></div>
+    <div class="profile-name">Novo Perfil</div>
+  `;
+  addCard.addEventListener("click", () => {
+    document.getElementById("form-register").reset();
+    document.getElementById("link-register-back").style.display = "block";
+    showAuthScreen("register");
+    lucide.createIcons();
+  });
+  listEl.appendChild(addCard);
+  
+  lucide.createIcons();
+}
+
+function selectProfileForLogin(profile) {
+  document.getElementById("select-user-display-name").textContent = profile.name;
+  document.getElementById("login-select-userid").value = profile.id;
+  document.getElementById("login-select-password").value = profile.rememberPassword && profile.password ? profile.password : "";
+  document.getElementById("login-select-remember").checked = !!profile.rememberPassword;
+  document.getElementById("auth-select-password-area").style.display = "block";
+  document.getElementById("login-select-password").focus();
+}
+
+function deleteProfile(profileId) {
+  const profiles = loadProfiles();
+  const profile = profiles.find(p => p.id === profileId);
+  if (!profile) return;
+  
+  if (confirm(`Deseja realmente excluir o perfil de ${profile.name}? Todos os dados de estudos dele serão apagados permanentemente!`)) {
+    const updated = profiles.filter(p => p.id !== profileId);
+    saveProfiles(updated);
+    
+    const keys = ["fisio_curriculum", "fisio_flashcards", "fisio_tasks", "fisio_shifts", "fisio_settings", "fisio_quiz_stats", "fisio_pomo_study_duration", "fisio_pomo_break_duration"];
+    keys.forEach(k => {
+      localStorage.removeItem(`${profileId}_${k}`);
+    });
+    
+    if (localStorage.getItem("fisio_active_profile_id") === profileId) {
+      localStorage.removeItem("fisio_active_profile_id");
+    }
+    
+    isManagingProfiles = false;
+    document.getElementById("auth-profiles-list").classList.remove("managing-profiles");
+    document.getElementById("link-select-manage").textContent = "Gerenciar Perfis";
+    
+    checkAuthAndStart();
+  }
+}
+
+function checkAuthAndStart() {
+  setupAuthEvents();
+
+  // Reset active profile on new session (app launch) so they are prompted to login/select user
+  if (!sessionStorage.getItem("fisio_session_active")) {
+    localStorage.removeItem("fisio_active_profile_id");
+  }
+
+  const profiles = loadProfiles();
+  const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+  const activeProfile = profiles.find(p => p.id === activeProfileId);
+  
+  if (activeProfileId && activeProfile) {
+    document.getElementById("auth-overlay").style.display = "none";
+    if (activeProfile.theme) {
+      applyTheme(activeProfile.theme);
+    }
+    initApp();
+  } else {
+    document.getElementById("auth-overlay").style.display = "flex";
+    document.getElementById("auth-select-password-area").style.display = "none";
+    
+    if (profiles.length === 0) {
+      document.getElementById("form-register").reset();
+      document.getElementById("link-register-back").style.display = "none";
+      showAuthScreen("register");
+    } else if (profiles.length === 1) {
+      const p = profiles[0];
+      document.getElementById("login-user-display-name").textContent = p.name;
+      document.getElementById("login-simple-userid").value = p.id;
+      document.getElementById("login-simple-password").value = p.rememberPassword && p.password ? p.password : "";
+      document.getElementById("login-simple-remember").checked = !!p.rememberPassword;
+      showAuthScreen("login");
+    } else {
+      isManagingProfiles = false;
+      document.getElementById("auth-profiles-list").classList.remove("managing-profiles");
+      document.getElementById("link-select-manage").textContent = "Gerenciar Perfis";
+      showAuthScreen("select");
+      renderProfilesList();
+    }
+  }
+}
+
+function setupAuthEvents() {
+  if (window.authEventsConfigured) return;
+  window.authEventsConfigured = true;
+  
+  const colorOptions = document.querySelectorAll("#reg-color-selector .color-option");
+  colorOptions.forEach(opt => {
+    opt.addEventListener("click", () => {
+      colorOptions.forEach(o => o.classList.remove("selected"));
+      opt.classList.add("selected");
+      document.getElementById("reg-color").value = opt.getAttribute("data-color");
+    });
+  });
+  
+  // Lógica de Foto de Perfil no Cadastro
+  const btnRegUpload = document.getElementById("btn-reg-upload-avatar");
+  const btnRegRemove = document.getElementById("btn-reg-remove-avatar");
+  const regFileInput = document.getElementById("reg-avatar-file-input");
+  const regAvatarPreview = document.getElementById("reg-avatar-preview");
+  const regAvatarImageHidden = document.getElementById("reg-avatar-image");
+  
+  if (btnRegUpload && regFileInput) {
+    if (!btnRegUpload.dataset.listenerBound) {
+      btnRegUpload.dataset.listenerBound = "true";
+      btnRegUpload.addEventListener("click", () => regFileInput.click());
+    }
+    
+    if (!regFileInput.dataset.listenerBound) {
+      regFileInput.dataset.listenerBound = "true";
+      regFileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        if (file.size > 1024 * 1024) {
+          alert("A imagem é muito grande! Escolha uma foto menor (máximo 1MB).");
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const base64Str = evt.target.result;
+          regAvatarImageHidden.value = base64Str;
+          regAvatarPreview.innerHTML = `<img src="${base64Str}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+          regAvatarPreview.style.background = "none";
+          btnRegRemove.style.display = "flex";
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    
+    if (!btnRegRemove.dataset.listenerBound) {
+      btnRegRemove.dataset.listenerBound = "true";
+      btnRegRemove.addEventListener("click", () => {
+        regAvatarImageHidden.value = "";
+        regAvatarPreview.innerHTML = "+";
+        regAvatarPreview.style.background = "rgba(255,255,255,0.05)";
+        btnRegRemove.style.display = "none";
+        regFileInput.value = "";
+      });
+    }
+  }
+
+  document.getElementById("form-register").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("reg-name").value.trim();
+    const username = document.getElementById("reg-username").value.trim().toLowerCase();
+    const password = document.getElementById("reg-password").value;
+    const semester = document.getElementById("reg-semester").value;
+    const avatarImage = document.getElementById("reg-avatar-image").value;
+    
+    const profiles = loadProfiles();
+    if (profiles.some(p => p.username === username)) {
+      alert("Este nome de usuário já está cadastrado neste computador.");
+      return;
+    }
+    
+    const newProfile = {
+      id: "profile_" + Date.now(),
+      name,
+      username,
+      password,
+      avatarColor: "#2bbab5", // Default avatar color (Teal theme primary)
+      avatarImage: avatarImage || undefined,
+      semester: parseInt(semester),
+      theme: "teal", // Default theme is Teal
+      rememberPassword: true
+    };
+    
+    if (profiles.length === 0) {
+      const hasLegacyData = localStorage.getItem("fisio_curriculum") !== null;
+      if (hasLegacyData) {
+        const legacyKeys = ["fisio_curriculum", "fisio_flashcards", "fisio_tasks", "fisio_shifts", "fisio_settings", "fisio_quiz_stats", "fisio_pomo_study_duration", "fisio_pomo_break_duration"];
+        legacyKeys.forEach(k => {
+          const val = localStorage.getItem(k);
+          if (val !== null) {
+            localStorage.setItem(`${newProfile.id}_${k}`, val);
+            localStorage.removeItem(k);
+          }
+        });
+        alert("Detectamos progresso anterior neste computador! Seus dados foram importados com sucesso para o seu novo perfil.");
+      }
+    }
+    
+    profiles.push(newProfile);
+    saveProfiles(profiles);
+    
+    sessionStorage.setItem("fisio_session_active", "true");
+    localStorage.setItem("fisio_active_profile_id", newProfile.id);
+    location.reload();
+  });
+  
+  document.getElementById("form-login-simple").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userid = document.getElementById("login-simple-userid").value;
+    const pass = document.getElementById("login-simple-password").value;
+    const remember = document.getElementById("login-simple-remember").checked;
+    
+    const profiles = loadProfiles();
+    const p = profiles.find(p => p.id === userid);
+    
+    if (p && p.password === pass) {
+      p.rememberPassword = remember;
+      saveProfiles(profiles);
+      sessionStorage.setItem("fisio_session_active", "true");
+      localStorage.setItem("fisio_active_profile_id", p.id);
+      location.reload();
+    } else {
+      alert("Senha incorreta!");
+    }
+  });
+  
+  document.getElementById("form-login-select").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userid = document.getElementById("login-select-userid").value;
+    const pass = document.getElementById("login-select-password").value;
+    const remember = document.getElementById("login-select-remember").checked;
+    
+    const profiles = loadProfiles();
+    const p = profiles.find(p => p.id === userid);
+    
+    if (p && p.password === pass) {
+      p.rememberPassword = remember;
+      saveProfiles(profiles);
+      sessionStorage.setItem("fisio_session_active", "true");
+      localStorage.setItem("fisio_active_profile_id", p.id);
+      location.reload();
+    } else {
+      alert("Senha incorreta!");
+    }
+  });
+  
+  document.getElementById("link-login-switch").addEventListener("click", (e) => {
+    e.preventDefault();
+    isManagingProfiles = false;
+    document.getElementById("auth-profiles-list").classList.remove("managing-profiles");
+    document.getElementById("link-select-manage").textContent = "Gerenciar Perfis";
+    showAuthScreen("select");
+    renderProfilesList();
+  });
+  
+  document.getElementById("link-register-back").addEventListener("click", (e) => {
+    e.preventDefault();
+    const profiles = loadProfiles();
+    if (profiles.length === 1) {
+      showAuthScreen("login");
+    } else {
+      showAuthScreen("select");
+      renderProfilesList();
+    }
+  });
+  
+  document.getElementById("link-select-add").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("form-register").reset();
+    document.getElementById("link-register-back").style.display = "block";
+    showAuthScreen("register");
+  });
+  
+  document.getElementById("link-select-manage").addEventListener("click", (e) => {
+    e.preventDefault();
+    isManagingProfiles = !isManagingProfiles;
+    const listEl = document.getElementById("auth-profiles-list");
+    const linkEl = document.getElementById("link-select-manage");
+    
+    if (isManagingProfiles) {
+      listEl.classList.add("managing-profiles");
+      linkEl.textContent = "Concluir";
+    } else {
+      listEl.classList.remove("managing-profiles");
+      linkEl.textContent = "Gerenciar Perfis";
+    }
+  });
+  
+  const btnSwitch = document.getElementById("btn-switch-user");
+  if (btnSwitch) {
+    btnSwitch.addEventListener("click", () => {
+      localStorage.removeItem("fisio_active_profile_id");
+      sessionStorage.removeItem("fisio_session_active");
+      location.reload();
+    });
+  }
+  
+  const btnLogout = document.getElementById("btn-logout-user");
+  if (btnLogout) {
+    btnLogout.addEventListener("click", () => {
+      localStorage.removeItem("fisio_active_profile_id");
+      sessionStorage.removeItem("fisio_session_active");
+      location.reload();
+    });
+  }
+}
+
 // 1. ESTADO GLOBAL DO APLICATIVO
 const state = {
   curriculum: [],
@@ -30,11 +792,11 @@ const CLINICAL_TIPS_IMAGES = [
 // 2. INICIALIZAÇÃO E CONTROLE DE ESTADO
 function initApp() {
   // Carregar dados do localStorage ou usar os padrões
-  const localCurriculum = localStorage.getItem("fisio_curriculum");
-  const localFlashcards = localStorage.getItem("fisio_flashcards");
-  const localTasks = localStorage.getItem("fisio_tasks");
-  const localShifts = localStorage.getItem("fisio_shifts");
-  const localSettings = localStorage.getItem("fisio_settings");
+  const localCurriculum = localStorage.getItem(getProfileKey("fisio_curriculum"));
+  const localFlashcards = localStorage.getItem(getProfileKey("fisio_flashcards"));
+  const localTasks = localStorage.getItem(getProfileKey("fisio_tasks"));
+  const localShifts = localStorage.getItem(getProfileKey("fisio_shifts"));
+  const localSettings = localStorage.getItem(getProfileKey("fisio_settings"));
 
   if (localCurriculum) {
     state.curriculum = JSON.parse(localCurriculum);
@@ -75,6 +837,38 @@ function initApp() {
     saveState("settings");
   }
 
+  // Sincronizar dados do perfil na sidebar
+  const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+  const profiles = loadProfiles();
+  const activeProfile = profiles.find(p => p.id === activeProfileId);
+  if (activeProfile) {
+    const sidebarUsername = document.getElementById("sidebar-username");
+    if (sidebarUsername) sidebarUsername.textContent = activeProfile.name;
+    
+    const sidebarSemester = document.getElementById("sidebar-current-semester");
+    if (sidebarSemester) sidebarSemester.textContent = `${activeProfile.semester}º`;
+    
+    const sidebarAvatar = document.getElementById("sidebar-avatar");
+    if (sidebarAvatar) {
+      if (activeProfile.avatarImage) {
+        sidebarAvatar.innerHTML = `<img src="${activeProfile.avatarImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+        sidebarAvatar.style.background = "none";
+      } else {
+        const initials = activeProfile.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+        sidebarAvatar.textContent = initials;
+        sidebarAvatar.style.background = activeProfile.avatarColor;
+      }
+    }
+    
+    // Aplica o tema
+    if (activeProfile.theme) {
+      applyTheme(activeProfile.theme);
+    }
+    
+    // Inicializa os controles do modal de Configurações
+    initSettingsModalControls();
+  }
+
   // Configurar data atual no cabeçalho
   setupHeaderDate();
   
@@ -102,15 +896,15 @@ function initApp() {
 
 function saveState(key) {
   if (key === "curriculum") {
-    localStorage.setItem("fisio_curriculum", JSON.stringify(state.curriculum));
+    localStorage.setItem(getProfileKey("fisio_curriculum"), JSON.stringify(state.curriculum));
   } else if (key === "flashcards") {
-    localStorage.setItem("fisio_flashcards", JSON.stringify(state.flashcards));
+    localStorage.setItem(getProfileKey("fisio_flashcards"), JSON.stringify(state.flashcards));
   } else if (key === "plannerTasks") {
-    localStorage.setItem("fisio_tasks", JSON.stringify(state.plannerTasks));
+    localStorage.setItem(getProfileKey("fisio_tasks"), JSON.stringify(state.plannerTasks));
   } else if (key === "internshipShifts") {
-    localStorage.setItem("fisio_shifts", JSON.stringify(state.internshipShifts));
+    localStorage.setItem(getProfileKey("fisio_shifts"), JSON.stringify(state.internshipShifts));
   } else if (key === "settings") {
-    localStorage.setItem("fisio_settings", JSON.stringify(state.settings));
+    localStorage.setItem(getProfileKey("fisio_settings"), JSON.stringify(state.settings));
   }
 }
 
@@ -371,45 +1165,64 @@ function renderDashboard() {
   const sidebarSemEl = document.getElementById("sidebar-current-semester");
   const sidebarUserEl = document.getElementById("sidebar-username");
   if (sidebarSemEl) {
-    // Encontrar qual o semestre atual do usuário
-    // Semestre atual = o maior semestre que possui pelo menos uma matéria 'in_progress',
-    // ou senão o maior semestre com matérias 'completed', senão 1.
-    let detectedSemester = 1;
-    for (let sem of state.curriculum) {
-      const hasInProgress = sem.subjects.some(sub => sub.status === "in_progress");
-      if (hasInProgress) {
-        detectedSemester = sem.semester;
-      }
-    }
-    
-    // Se não encontrou nenhuma cursando, busca o semestre da última concluída
-    if (detectedSemester === 1) {
+    const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+    const profiles = loadProfiles();
+    const activeProfileIndex = profiles.findIndex(p => p.id === activeProfileId);
+    let activeProfile = activeProfileIndex !== -1 ? profiles[activeProfileIndex] : null;
+
+    if (activeProfile) {
+      let currentSemester = activeProfile.semester || 1;
+
+      // Auto-advancement: check if all subjects of a semester are marked as "completed"
+      let highestCompletedSemester = 0;
       for (let sem of state.curriculum) {
-        const hasCompleted = sem.subjects.some(sub => sub.status === "completed");
-        if (hasCompleted) {
-          detectedSemester = Math.min(sem.semester + 1, 10);
+        if (sem.subjects.length > 0 && sem.subjects.every(sub => sub.status === "completed")) {
+          highestCompletedSemester = sem.semester;
         }
       }
-    }
-    
-    state.settings.currentSemester = detectedSemester;
-    saveState("settings");
-    sidebarSemEl.textContent = `${detectedSemester}º`;
 
-    // Atualizar título do usuário conforme o semestre letivo
-    if (sidebarUserEl) {
-      let title = "Calouro de Fisioterapia";
-      if (detectedSemester >= 3 && detectedSemester <= 4) {
-        title = "Acadêmico de Fisioterapia";
-      } else if (detectedSemester >= 5 && detectedSemester <= 6) {
-        title = "Estagiário de Fisioterapia I";
-      } else if (detectedSemester >= 7 && detectedSemester <= 8) {
-        title = "Estagiário de Fisioterapia II";
-      } else if (detectedSemester >= 9 && detectedSemester <= 10) {
-        title = "Fisioterapeuta Formando";
+      // If they completed semester X, they should be at least in semester X + 1
+      if (highestCompletedSemester > 0 && currentSemester <= highestCompletedSemester) {
+        currentSemester = Math.min(highestCompletedSemester + 1, 10);
+        profiles[activeProfileIndex].semester = currentSemester;
+        saveProfiles(profiles);
       }
-      sidebarUserEl.textContent = title;
-      sidebarUserEl.setAttribute("title", title); // Dica ao passar o mouse
+
+      // Auto-advance if cursando any subject in a higher semester
+      let highestInProgressSemester = 0;
+      for (let sem of state.curriculum) {
+        if (sem.subjects.some(sub => sub.status === "in_progress")) {
+          highestInProgressSemester = sem.semester;
+        }
+      }
+
+      if (highestInProgressSemester > currentSemester) {
+        currentSemester = highestInProgressSemester;
+        profiles[activeProfileIndex].semester = currentSemester;
+        saveProfiles(profiles);
+      }
+
+      state.settings.currentSemester = currentSemester;
+      saveState("settings");
+      
+      sidebarSemEl.textContent = `${currentSemester}º`;
+
+      // Atualizar nome do usuário e título conforme o semestre letivo
+      if (sidebarUserEl) {
+        let title = "Calouro de Fisioterapia";
+        if (currentSemester >= 3 && currentSemester <= 4) {
+          title = "Acadêmico de Fisioterapia";
+        } else if (currentSemester >= 5 && currentSemester <= 6) {
+          title = "Estagiário de Fisioterapia I";
+        } else if (currentSemester >= 7 && currentSemester <= 8) {
+          title = "Estagiário de Fisioterapia II";
+        } else if (currentSemester >= 9 && currentSemester <= 10) {
+          title = "Fisioterapeuta Formando";
+        }
+        
+        sidebarUserEl.textContent = activeProfile.name;
+        sidebarUserEl.setAttribute("title", title); // Dica ao passar o mouse: Calouro, etc.
+      }
     }
   }
 
@@ -824,12 +1637,12 @@ function setupBackupRestore() {
   if (btnExport) {
     btnExport.addEventListener("click", () => {
       const backupData = {
-        curriculum: localStorage.getItem("fisio_curriculum"),
-        flashcards: localStorage.getItem("fisio_flashcards"),
-        tasks: localStorage.getItem("fisio_tasks"),
-        shifts: localStorage.getItem("fisio_shifts"),
-        settings: localStorage.getItem("fisio_settings"),
-        quizStats: localStorage.getItem("fisio_quiz_stats")
+        curriculum: localStorage.getItem(getProfileKey("fisio_curriculum")),
+        flashcards: localStorage.getItem(getProfileKey("fisio_flashcards")),
+        tasks: localStorage.getItem(getProfileKey("fisio_tasks")),
+        shifts: localStorage.getItem(getProfileKey("fisio_shifts")),
+        settings: localStorage.getItem(getProfileKey("fisio_settings")),
+        quizStats: localStorage.getItem(getProfileKey("fisio_quiz_stats"))
       };
 
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
@@ -866,12 +1679,12 @@ function setupBackupRestore() {
           }
 
           if (confirm("Atenção: A importação de dados substituirá todo o seu progresso atual neste computador. Deseja continuar?")) {
-            if (imported.curriculum) localStorage.setItem("fisio_curriculum", imported.curriculum);
-            if (imported.flashcards) localStorage.setItem("fisio_flashcards", imported.flashcards);
-            if (imported.tasks) localStorage.setItem("fisio_tasks", imported.tasks);
-            if (imported.shifts) localStorage.setItem("fisio_shifts", imported.shifts);
-            if (imported.settings) localStorage.setItem("fisio_settings", imported.settings);
-            if (imported.quizStats) localStorage.setItem("fisio_quiz_stats", imported.quizStats);
+            if (imported.curriculum) localStorage.setItem(getProfileKey("fisio_curriculum"), imported.curriculum);
+            if (imported.flashcards) localStorage.setItem(getProfileKey("fisio_flashcards"), imported.flashcards);
+            if (imported.tasks) localStorage.setItem(getProfileKey("fisio_tasks"), imported.tasks);
+            if (imported.shifts) localStorage.setItem(getProfileKey("fisio_shifts"), imported.shifts);
+            if (imported.settings) localStorage.setItem(getProfileKey("fisio_settings"), imported.settings);
+            if (imported.quizStats) localStorage.setItem(getProfileKey("fisio_quiz_stats"), imported.quizStats);
 
             alert("Progresso importado com sucesso! O aplicativo será recarregado.");
             location.reload();
@@ -949,6 +1762,26 @@ function setupStudyPanelEvents() {
       if (e.key === "Enter") performCadernoSearch();
     });
   }
+
+  // Índice Retrátil (Sidebar Collapsible)
+  const btnToggleSidebar = document.getElementById("btn-toggle-sidebar");
+  if (btnToggleSidebar) {
+    btnToggleSidebar.addEventListener("click", () => {
+      const sidebar = document.querySelector(".caderno-sidebar-column");
+      if (sidebar) {
+        if (sidebar.style.display === "none") {
+          sidebar.style.display = "flex";
+          btnToggleSidebar.classList.add("active");
+        } else {
+          sidebar.style.display = "none";
+          btnToggleSidebar.classList.remove("active");
+        }
+      }
+    });
+  }
+
+  // Inicializar Bloco de Notas Estilo OneNote
+  setupNotebookEvents();
 }
 
 function switchReaderTool(tool) {
@@ -1005,7 +1838,6 @@ function openCadernoDigital() {
   const modalCaderno = document.getElementById("modal-caderno");
   const titleEl = document.getElementById("modal-caderno-title");
   const contentEl = document.getElementById("caderno-content-area");
-  const notesInput = document.getElementById("caderno-observation-input");
 
   let subject = null;
   for (let sem of state.curriculum) {
@@ -1016,7 +1848,16 @@ function openCadernoDigital() {
   if (!subject) return;
 
   titleEl.textContent = `Caderno Digital: ${subject.name}`;
-  notesInput.value = subject.studyNotes || "";
+
+  // Reset collapsible sidebar to visible on open
+  const sidebar = document.querySelector(".caderno-sidebar-column");
+  if (sidebar) {
+    sidebar.style.display = "flex";
+  }
+  const btnToggleSidebar = document.getElementById("btn-toggle-sidebar");
+  if (btnToggleSidebar) {
+    btnToggleSidebar.classList.add("active");
+  }
   
   // Limpar conteúdo e mostrar estado de carregamento
   contentEl.innerHTML = `
@@ -1591,21 +2432,7 @@ function setupScrollSpy(toc) {
 }
 
 function saveCadernoNotes() {
-  if (!currentActiveSubjectId) return;
-
-  const notesInput = document.getElementById("caderno-observation-input");
-  
-  let subject = null;
-  for (let sem of state.curriculum) {
-    subject = sem.subjects.find(s => s.id === currentActiveSubjectId);
-    if (subject) break;
-  }
-
-  if (subject) {
-    subject.studyNotes = notesInput.value;
-    saveState("curriculum");
-    alert("Observações salvas com sucesso!");
-  }
+  autoSaveCurrentPage();
 }
 
 function openAnotacoesConsolidado() {
@@ -1834,8 +2661,786 @@ function exportAnotacoesTxt() {
   doc.save(filename);
 }
 
+/* --- ONENOTE NOTEBOOK SYSTEM LOGIC --- */
+let activeNotebookSubject = null;
+let currentActiveSectionId = null;
+let currentActivePageId = null;
+
+// Opens the Notebook modal
+function openNotebook() {
+  if (!currentActiveSubjectId) return;
+  
+  let subject = null;
+  for (let sem of state.curriculum) {
+    subject = sem.subjects.find(s => s.id === currentActiveSubjectId);
+    if (subject) break;
+  }
+  if (!subject) return;
+  
+  activeNotebookSubject = subject;
+  
+  // 1. Check/Migrate data
+  initializeNotebookData(subject);
+  
+  // 2. Open modal
+  const modalNotebook = document.getElementById("modal-notebook");
+  if (modalNotebook) modalNotebook.style.display = "flex";
+  
+  // Set window title
+  const titleEl = document.getElementById("notebook-modal-title");
+  if (titleEl) titleEl.textContent = `Bloco de Notas - ${subject.name}`;
+  
+  // 3. Set default active section & page
+  if (subject.notebook.sections.length > 0) {
+    currentActiveSectionId = subject.notebook.sections[0].id;
+    if (subject.notebook.sections[0].pages.length > 0) {
+      currentActivePageId = subject.notebook.sections[0].pages[0].id;
+    } else {
+      currentActivePageId = null;
+    }
+  } else {
+    currentActiveSectionId = null;
+    currentActivePageId = null;
+  }
+  
+  // 4. Render panels
+  renderNotebookSections();
+  renderNotebookPages();
+  loadNotebookPageContent();
+  
+  // Refresh lucide icons
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function initializeNotebookData(subject) {
+  if (!subject.notebook) {
+    subject.notebook = { sections: [] };
+  }
+  
+  // Migrate from subject.studyNotes if exists and sections are empty
+  if (subject.notebook.sections.length === 0) {
+    const hasLegacyNotes = subject.studyNotes && subject.studyNotes.trim() !== "";
+    const contentHtml = hasLegacyNotes 
+      ? subject.studyNotes.split('\n').map(line => `<div>${escapeHtml(line)}</div>`).join('')
+      : "";
+      
+    subject.notebook.sections.push({
+      id: "sec_" + Date.now(),
+      title: "Geral",
+      color: "#9d7df8",
+      pages: [
+        {
+          id: "page_" + Date.now(),
+          title: "Minhas Observações",
+          date: new Date().toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+          time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+          content: contentHtml
+        }
+      ]
+    });
+  }
+}
+
+function escapeHtml(text) {
+  if (!text) return "";
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderNotebookSections() {
+  const listEl = document.getElementById("notebook-sections-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  
+  if (!activeNotebookSubject || !activeNotebookSubject.notebook) return;
+  
+  activeNotebookSubject.notebook.sections.forEach(sec => {
+    const secItem = document.createElement("div");
+    secItem.className = `notebook-section-item ${sec.id === currentActiveSectionId ? 'active' : ''}`;
+    secItem.style.borderLeft = `4px solid ${sec.color || '#9d7df8'}`;
+    secItem.innerHTML = `
+      <span class="sec-title" style="flex-grow:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtml(sec.title)}">${escapeHtml(sec.title)}</span>
+      <button class="btn-delete-sec" data-id="${sec.id}">&times;</button>
+    `;
+    
+    // Select section
+    secItem.addEventListener("click", (e) => {
+      if (e.target.classList.contains("btn-delete-sec")) return;
+      
+      // Auto-save active page before switching
+      autoSaveCurrentPage();
+      
+      currentActiveSectionId = sec.id;
+      if (sec.pages && sec.pages.length > 0) {
+        currentActivePageId = sec.pages[0].id;
+      } else {
+        currentActivePageId = null;
+      }
+      renderNotebookSections();
+      renderNotebookPages();
+      loadNotebookPageContent();
+    });
+    
+    // Rename section on double click
+    secItem.querySelector(".sec-title").addEventListener("dblclick", () => {
+      const newTitle = prompt("Renomear Seção:", sec.title);
+      if (newTitle && newTitle.trim() !== "") {
+        sec.title = newTitle.trim();
+        renderNotebookSections();
+        autoSaveCurrentPage();
+      }
+    });
+    
+    // Delete section
+    secItem.querySelector(".btn-delete-sec").addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (confirm(`Tem certeza que deseja excluir a seção "${sec.title}" e todas as suas páginas?`)) {
+        activeNotebookSubject.notebook.sections = activeNotebookSubject.notebook.sections.filter(s => s.id !== sec.id);
+        
+        if (currentActiveSectionId === sec.id) {
+          if (activeNotebookSubject.notebook.sections.length > 0) {
+            currentActiveSectionId = activeNotebookSubject.notebook.sections[0].id;
+            if (activeNotebookSubject.notebook.sections[0].pages.length > 0) {
+              currentActivePageId = activeNotebookSubject.notebook.sections[0].pages[0].id;
+            } else {
+              currentActivePageId = null;
+            }
+          } else {
+            currentActiveSectionId = null;
+            currentActivePageId = null;
+          }
+        }
+        renderNotebookSections();
+        renderNotebookPages();
+        loadNotebookPageContent();
+        autoSaveCurrentPage();
+      }
+    });
+    
+    listEl.appendChild(secItem);
+  });
+}
+
+function renderNotebookPages() {
+  const listEl = document.getElementById("notebook-pages-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  
+  if (!activeNotebookSubject || !currentActiveSectionId) return;
+  
+  const sec = activeNotebookSubject.notebook.sections.find(s => s.id === currentActiveSectionId);
+  if (!sec || !sec.pages) return;
+  
+  sec.pages.forEach(page => {
+    const pageItem = document.createElement("div");
+    pageItem.className = `notebook-page-item ${page.id === currentActivePageId ? 'active' : ''}`;
+    pageItem.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="page-title" style="flex-grow:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtml(page.title || 'Sem Título')}">${escapeHtml(page.title || 'Sem Título')}</span>
+        <button class="btn-delete-page" data-id="${page.id}" style="background:none; border:none; color:#ff4d4d; font-size:1.1rem; cursor:pointer; line-height:1; display:none;">&times;</button>
+      </div>
+      <span class="page-meta">${page.date || ''}</span>
+    `;
+    
+    // Show delete button on hover
+    pageItem.addEventListener("mouseenter", () => {
+      pageItem.querySelector(".btn-delete-page").style.display = "block";
+    });
+    pageItem.addEventListener("mouseleave", () => {
+      pageItem.querySelector(".btn-delete-page").style.display = "none";
+    });
+    
+    // Select page
+    pageItem.addEventListener("click", (e) => {
+      if (e.target.classList.contains("btn-delete-page")) return;
+      
+      // Auto-save active page before switching
+      autoSaveCurrentPage();
+      
+      currentActivePageId = page.id;
+      renderNotebookPages();
+      loadNotebookPageContent();
+    });
+    
+    // Delete page
+    pageItem.querySelector(".btn-delete-page").addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (confirm(`Excluir a página "${page.title || 'Sem Título'}"?`)) {
+        sec.pages = sec.pages.filter(p => p.id !== page.id);
+        
+        if (currentActivePageId === page.id) {
+          if (sec.pages.length > 0) {
+            currentActivePageId = sec.pages[0].id;
+          } else {
+            currentActivePageId = null;
+          }
+        }
+        renderNotebookPages();
+        loadNotebookPageContent();
+        autoSaveCurrentPage();
+      }
+    });
+    
+    listEl.appendChild(pageItem);
+  });
+}
+
+function loadNotebookPageContent() {
+  const container = document.getElementById("notebook-pages-container");
+  if (!container) return;
+  
+  container.innerHTML = "";
+  
+  if (!activeNotebookSubject || !currentActiveSectionId || !currentActivePageId) {
+    const emptySheet = createNewSheet(0, true);
+    container.appendChild(emptySheet);
+    return;
+  }
+  
+  const sec = activeNotebookSubject.notebook.sections.find(s => s.id === currentActiveSectionId);
+  if (!sec) {
+    const emptySheet = createNewSheet(0, true);
+    container.appendChild(emptySheet);
+    return;
+  }
+  
+  const page = sec.pages.find(p => p.id === currentActivePageId);
+  if (!page) {
+    const emptySheet = createNewSheet(0, true);
+    container.appendChild(emptySheet);
+    return;
+  }
+  
+  // Create first page (with title and metadata)
+  const firstSheet = createNewSheet(0, false, page);
+  container.appendChild(firstSheet);
+  
+  const firstEditor = firstSheet.querySelector('.notebook-page-content-editor');
+  
+  // Parse page content and split it across sheets if it overflows
+  if (page.content && page.content.trim() !== "") {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = page.content;
+    
+    let currentEditor = firstEditor;
+    let currentSheet = firstSheet;
+    
+    const children = Array.from(tempDiv.childNodes);
+    children.forEach(child => {
+      currentEditor.appendChild(child.cloneNode(true));
+      
+      const isFirst = currentSheet.id === "sheet-1";
+      const maxH = isFirst ? 880 : 970;
+      
+      if (currentEditor.scrollHeight > maxH) {
+        // Create next sheet
+        const nextSheetIndex = container.children.length;
+        const nextSheet = createNewSheet(nextSheetIndex, false);
+        container.appendChild(nextSheet);
+        
+        currentSheet = nextSheet;
+        const nextEditor = nextSheet.querySelector('.notebook-page-content-editor');
+        
+        // Move the child we just added to the new page
+        const lastNode = currentEditor.lastChild;
+        if (lastNode) {
+          nextEditor.appendChild(lastNode);
+        }
+        currentEditor = nextEditor;
+      }
+    });
+  }
+}
+
+function createNewSheet(index, isDisabled = false, pageData = null) {
+  const sheet = document.createElement("div");
+  sheet.className = `notebook-sheet ${index === 0 ? 'first-page' : ''}`;
+  sheet.id = `sheet-${index + 1}`;
+  
+  if (index === 0) {
+    // Title Area (exactly 84px height)
+    const titleArea = document.createElement("div");
+    titleArea.className = "notebook-title-area";
+    
+    const titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.id = "notebook-page-title-input";
+    titleInput.placeholder = "Sem Título";
+    titleInput.maxLength = 60;
+    titleInput.disabled = isDisabled;
+    titleInput.value = pageData ? (pageData.title || "") : "";
+    titleInput.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    titleInput.style.fontSize = "1.75rem";
+    titleInput.style.fontWeight = "700";
+    titleInput.style.border = "none";
+    titleInput.style.outline = "none";
+    titleInput.style.width = "100%";
+    titleInput.style.color = "#333333";
+    titleInput.style.background = "transparent";
+    titleInput.style.padding = "4px 0";
+    
+    const metaDiv = document.createElement("div");
+    metaDiv.style.fontSize = "0.8rem";
+    metaDiv.style.color = "#666666";
+    metaDiv.style.marginTop = "4px";
+    metaDiv.style.display = "flex";
+    metaDiv.style.gap = "12px";
+    metaDiv.style.fontFamily = "var(--font-body)";
+    
+    const dateSpan = document.createElement("span");
+    dateSpan.id = "notebook-page-date";
+    dateSpan.textContent = pageData ? (pageData.date || "") : "";
+    
+    const timeSpan = document.createElement("span");
+    timeSpan.id = "notebook-page-time";
+    timeSpan.textContent = pageData ? (pageData.time || "") : "";
+    
+    metaDiv.appendChild(dateSpan);
+    metaDiv.appendChild(timeSpan);
+    titleArea.appendChild(titleInput);
+    titleArea.appendChild(metaDiv);
+    sheet.appendChild(titleArea);
+  }
+  
+  const editor = document.createElement("div");
+  editor.className = "notebook-page-content-editor";
+  editor.contentEditable = isDisabled ? "false" : "true";
+  editor.setAttribute("placeholder", index === 0 ? "Comece a digitar suas anotações aqui..." : "");
+  
+  sheet.appendChild(editor);
+  return sheet;
+}
+
+function handleOverflow(editor, maxH) {
+  const sheet = editor.closest('.notebook-sheet');
+  const container = document.getElementById("notebook-pages-container");
+  
+  let nextSheet = sheet.nextElementSibling;
+  if (!nextSheet || !nextSheet.classList.contains('notebook-sheet')) {
+    nextSheet = createNewSheet(container.children.length, false);
+    container.appendChild(nextSheet);
+  }
+  
+  const nextEditor = nextSheet.querySelector('.notebook-page-content-editor');
+  
+  const elementsToMove = [];
+  while (editor.scrollHeight > maxH && editor.children.length > 1) {
+    const lastChild = editor.lastElementChild;
+    if (!lastChild) break;
+    elementsToMove.unshift(lastChild);
+    editor.removeChild(lastChild);
+  }
+  
+  if (elementsToMove.length > 0) {
+    // Prepend to next editor
+    elementsToMove.forEach(el => {
+      if (nextEditor.firstChild) {
+        nextEditor.insertBefore(el, nextEditor.firstChild);
+      } else {
+        nextEditor.appendChild(el);
+      }
+    });
+    
+    autoSaveCurrentPage();
+    
+    // Move focus
+    nextEditor.focus();
+    placeCaretAtStart(elementsToMove[0]);
+    
+    // Check overflow recursively
+    const nextMaxH = 970;
+    if (nextEditor.scrollHeight > nextMaxH) {
+      handleOverflow(nextEditor, nextMaxH);
+    }
+  }
+}
+
+function mergePageWithPrevious(sheet) {
+  const prevSheet = sheet.previousElementSibling;
+  if (!prevSheet || !prevSheet.classList.contains('notebook-sheet')) return;
+  
+  const prevEditor = prevSheet.querySelector('.notebook-page-content-editor');
+  const currentEditor = sheet.querySelector('.notebook-page-content-editor');
+  
+  // Create a marker to restore caret position
+  const marker = document.createElement("span");
+  marker.id = "merge-marker";
+  marker.style.display = "inline-block";
+  marker.style.width = "0";
+  marker.style.height = "0";
+  marker.style.overflow = "hidden";
+  
+  // Append current elements to previous editor
+  const children = Array.from(currentEditor.childNodes);
+  if (children.length > 0) {
+    prevEditor.appendChild(marker);
+    children.forEach(child => {
+      prevEditor.appendChild(child);
+    });
+  }
+  
+  sheet.parentNode.removeChild(sheet);
+  
+  prevEditor.focus();
+  
+  const m = document.getElementById("merge-marker");
+  if (m) {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.setStartBefore(m);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    m.parentNode.removeChild(m);
+  }
+  
+  autoSaveCurrentPage();
+}
+
+function placeCaretAtStart(el) {
+  el.focus();
+  try {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(el);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } catch (err) {
+    console.warn("Failed to place caret at start", err);
+  }
+}
+
+function addSection() {
+  if (!activeNotebookSubject) return;
+  
+  const colors = ["#9d7df8", "#fbbf24", "#3b82f6", "#ef4444", "#10b981", "#ec4899", "#f97316"];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  const sectionTitle = prompt("Nome da Seção:", "Nova Seção");
+  if (sectionTitle === null) return; // Cancelled
+  
+  const title = sectionTitle.trim() !== "" ? sectionTitle.trim() : "Nova Seção";
+  
+  const newSec = {
+    id: "sec_" + Date.now(),
+    title: title,
+    color: randomColor,
+    pages: []
+  };
+  
+  // Automatically add one page to the new section
+  newSec.pages.push({
+    id: "page_" + Date.now(),
+    title: "Anotação 1",
+    date: new Date().toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+    time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+    content: ""
+  });
+  
+  // Auto-save current active page content before switching
+  autoSaveCurrentPage();
+  
+  activeNotebookSubject.notebook.sections.push(newSec);
+  currentActiveSectionId = newSec.id;
+  currentActivePageId = newSec.pages[0].id;
+  
+  renderNotebookSections();
+  renderNotebookPages();
+  loadNotebookPageContent();
+  autoSaveCurrentPage();
+}
+
+function addPage() {
+  if (!activeNotebookSubject || !currentActiveSectionId) return;
+  
+  const sec = activeNotebookSubject.notebook.sections.find(s => s.id === currentActiveSectionId);
+  if (!sec) return;
+  
+  // Auto-save current active page content before switching
+  autoSaveCurrentPage();
+  
+  const newPage = {
+    id: "page_" + Date.now(),
+    title: "Sem Título",
+    date: new Date().toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+    time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+    content: ""
+  };
+  
+  sec.pages.push(newPage);
+  currentActivePageId = newPage.id;
+  
+  renderNotebookPages();
+  loadNotebookPageContent();
+  autoSaveCurrentPage();
+  
+  // Focus the title input automatically
+  const titleInput = document.getElementById("notebook-page-title-input");
+  if (titleInput) {
+    titleInput.focus();
+    titleInput.select();
+  }
+}
+
+function autoSaveCurrentPage() {
+  if (!activeNotebookSubject || !currentActiveSectionId || !currentActivePageId) return;
+  
+  const sec = activeNotebookSubject.notebook.sections.find(s => s.id === currentActiveSectionId);
+  if (!sec) return;
+  
+  const page = sec.pages.find(p => p.id === currentActivePageId);
+  if (!page) return;
+  
+  const titleInput = document.getElementById("notebook-page-title-input");
+  
+  if (titleInput) {
+    const val = titleInput.value.trim();
+    const oldTitle = page.title;
+    page.title = val !== "" ? val : "Sem Título";
+    
+    // Update pages list UI in real-time only if the title actually changed
+    if (oldTitle !== page.title) {
+      const activePageItem = document.querySelector(`.notebook-page-item.active .page-title`);
+      if (activePageItem) activePageItem.textContent = page.title;
+    }
+  }
+  
+  // Gather contents from all sheets
+  const editors = document.querySelectorAll('.notebook-page-content-editor');
+  let combinedContent = "";
+  editors.forEach(editor => {
+    combinedContent += editor.innerHTML;
+  });
+  page.content = combinedContent;
+  
+  // Compile to legacy studyNotes field so that other views/PDF exports still function
+  activeNotebookSubject.studyNotes = compileNotebookToStudyNotes(activeNotebookSubject);
+  
+  // Save global curriculum state
+  saveState("curriculum");
+}
+
+function compileNotebookToStudyNotes(subject) {
+  if (!subject.notebook || !subject.notebook.sections) return subject.studyNotes || "";
+  let compiledText = "";
+  subject.notebook.sections.forEach(sec => {
+    compiledText += `=== SEÇÃO: ${sec.title.toUpperCase()} ===\n\n`;
+    sec.pages.forEach(page => {
+      compiledText += `--- PÁGINA: ${page.title} (${page.date} às ${page.time}) ---\n`;
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = page.content;
+      
+      // Replace checkbox input tags with [ ] or [X]
+      tempDiv.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        const checkedStr = cb.checked ? "[X] " : "[ ] ";
+        const textNode = document.createTextNode(checkedStr);
+        cb.parentNode.replaceChild(textNode, cb);
+      });
+      
+      // Clean paragraphs and add linebreaks
+      let text = tempDiv.innerText || tempDiv.textContent || "";
+      compiledText += text;
+      compiledText += "\n\n";
+    });
+    compiledText += "\n";
+  });
+  return compiledText.trim();
+}
+
+function setupNotebookEvents() {
+  const btnOpenNotebook = document.getElementById("btn-open-notebook");
+  const btnCloseNotebook = document.getElementById("btn-close-notebook");
+  const btnAddSection = document.getElementById("btn-notebook-add-section");
+  const btnAddPage = document.getElementById("btn-notebook-add-page");
+  
+  if (btnOpenNotebook) btnOpenNotebook.addEventListener("click", openNotebook);
+  if (btnCloseNotebook) btnCloseNotebook.addEventListener("click", () => {
+    autoSaveCurrentPage();
+    document.getElementById("modal-notebook").style.display = "none";
+    // reopen subject modal to keep normal flow
+    if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
+  });
+  
+  if (btnAddSection) btnAddSection.addEventListener("click", addSection);
+  if (btnAddPage) btnAddPage.addEventListener("click", addPage);
+  
+  // Event Delegation for Notebook dynamic elements
+  const pagesContainer = document.getElementById("notebook-pages-container");
+  if (pagesContainer) {
+    // Handle typing inputs (autosave & overflow pagination)
+    pagesContainer.addEventListener("input", (e) => {
+      if (e.target.id === "notebook-page-title-input") {
+        autoSaveCurrentPage();
+      } else if (e.target.classList.contains("notebook-page-content-editor")) {
+        autoSaveCurrentPage();
+        
+        const editor = e.target;
+        const sheet = editor.closest('.notebook-sheet');
+        const isFirst = sheet.id === 'sheet-1';
+        const maxH = isFirst ? 880 : 970;
+        
+        if (editor.scrollHeight > maxH) {
+          handleOverflow(editor, maxH);
+        }
+      }
+    });
+    
+    // Checkbox click listener
+    pagesContainer.addEventListener("click", (e) => {
+      if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+        if (e.target.checked) {
+          e.target.setAttribute("checked", "checked");
+        } else {
+          e.target.removeAttribute("checked");
+        }
+        autoSaveCurrentPage();
+      }
+    });
+    
+    // Backspace handling for merging pages
+    pagesContainer.addEventListener("keydown", (e) => {
+      if (e.target.classList.contains("notebook-page-content-editor")) {
+        if (e.key === "Backspace") {
+          const editor = e.target;
+          const sheet = editor.closest('.notebook-sheet');
+          const selection = window.getSelection();
+          if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            
+            // Check if caret is at the start of the editor
+            let isAtStart = false;
+            if (range.startOffset === 0 && range.collapsed) {
+              if (range.startContainer === editor) {
+                isAtStart = true;
+              } else {
+                let node = range.startContainer;
+                while (node && node.parentNode !== editor) {
+                  node = node.parentNode;
+                }
+                if (node && node === editor.firstChild) {
+                  isAtStart = true;
+                }
+              }
+            }
+            
+            if (isAtStart && sheet.id !== 'sheet-1') {
+              e.preventDefault();
+              mergePageWithPrevious(sheet);
+            }
+          }
+        }
+      }
+    });
+  }
+  
+  // Ribbon commands
+  document.getElementById("nb-font-family").addEventListener("change", (e) => {
+    document.execCommand("fontName", false, e.target.value);
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-font-size").addEventListener("change", (e) => {
+    document.execCommand("fontSize", false, e.target.value);
+    autoSaveCurrentPage();
+  });
+  
+  document.getElementById("nb-btn-bold").addEventListener("click", () => {
+    document.execCommand("bold");
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-btn-italic").addEventListener("click", () => {
+    document.execCommand("italic");
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-btn-underline").addEventListener("click", () => {
+    document.execCommand("underline");
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-btn-strike").addEventListener("click", () => {
+    document.execCommand("strikeThrough");
+    autoSaveCurrentPage();
+  });
+  
+  document.getElementById("nb-font-color").addEventListener("input", (e) => {
+    document.execCommand("foreColor", false, e.target.value);
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-highlight-color").addEventListener("input", (e) => {
+    document.execCommand("hiliteColor", false, e.target.value);
+    autoSaveCurrentPage();
+  });
+  
+  document.getElementById("nb-btn-bullets").addEventListener("click", () => {
+    document.execCommand("insertUnorderedList");
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-btn-numbers").addEventListener("click", () => {
+    document.execCommand("insertOrderedList");
+    autoSaveCurrentPage();
+  });
+  document.getElementById("nb-btn-todo").addEventListener("click", () => {
+    insertTodoCheckbox();
+    autoSaveCurrentPage();
+  });
+  
+  document.getElementById("nb-heading").addEventListener("change", (e) => {
+    document.execCommand("formatBlock", false, e.target.value);
+    autoSaveCurrentPage();
+  });
+}
+
+function insertTodoCheckbox() {
+  let activeEditor = document.activeElement;
+  if (!activeEditor || !activeEditor.classList.contains('notebook-page-content-editor')) {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      let node = selection.anchorNode;
+      while (node && node !== document.body) {
+        if (node.classList && node.classList.contains('notebook-page-content-editor')) {
+          activeEditor = node;
+          break;
+        }
+        node = node.parentNode;
+      }
+    }
+  }
+  
+  if (!activeEditor) {
+    activeEditor = document.querySelector('.notebook-page-content-editor');
+  }
+  
+  if (!activeEditor) return;
+  activeEditor.focus();
+  
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return;
+  const range = selection.getRangeAt(0);
+  range.deleteContents();
+  
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.style.width = "16px";
+  checkbox.style.height = "16px";
+  checkbox.style.marginRight = "6px";
+  checkbox.style.cursor = "pointer";
+  checkbox.style.accentColor = "#10b981";
+  
+  range.insertNode(checkbox);
+  
+  const spaceNode = document.createTextNode(" ");
+  range.insertNode(spaceNode);
+  
+  range.setStartAfter(spaceNode);
+  range.setEndAfter(spaceNode);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
 // 8. INICIALIZAÇÃO NO CARREGAMENTO DA PÁGINA
-window.addEventListener("DOMContentLoaded", initApp);
+window.addEventListener("DOMContentLoaded", checkAuthAndStart);
 
 // Exportar estado para outros módulos
 window.FisioApp = {

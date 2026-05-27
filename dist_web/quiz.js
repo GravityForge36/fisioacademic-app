@@ -52,7 +52,7 @@
 
   // Carregar estatísticas do localStorage
   function loadStats() {
-    const savedStats = localStorage.getItem("fisio_quiz_stats");
+    const savedStats = localStorage.getItem(window.getProfileKey ? window.getProfileKey("fisio_quiz_stats") : "fisio_quiz_stats");
     if (savedStats) {
       stats = JSON.parse(savedStats);
     } else {
@@ -76,7 +76,7 @@
 
   // Salvar estatísticas no localStorage
   function saveStats() {
-    localStorage.setItem("fisio_quiz_stats", JSON.stringify(stats));
+    localStorage.setItem(window.getProfileKey ? window.getProfileKey("fisio_quiz_stats") : "fisio_quiz_stats", JSON.stringify(stats));
     updateStatsUI();
   }
 

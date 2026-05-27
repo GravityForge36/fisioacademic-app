@@ -5,12 +5,12 @@ import sys
 
 # Paths
 project_dir = r"C:\Users\Robson Silva\.gemini\antigravity\scratch\fisioterapia-study-app"
-dist_exe = os.path.join(project_dir, "dist", "Fisio Uniasselve.exe")
+dist_exe = os.path.join(project_dir, "dist", "FisioAcademic.exe")
 
 print("--- STEP 1: TERMINATING RUNNING INSTANCES ---")
 try:
     # Attempt to kill any running instance of the app
-    result = subprocess.run(["taskkill", "/F", "/IM", "Fisio Uniasselve.exe"], capture_output=True, text=True)
+    result = subprocess.run(["taskkill", "/F", "/IM", "FisioAcademic.exe"], capture_output=True, text=True)
     print("Taskkill stdout:", result.stdout.strip())
     print("Taskkill stderr:", result.stderr.strip())
 except Exception as e:
@@ -38,7 +38,7 @@ else:
     print("No old executable found in dist/. Good.")
 
 print("\n--- STEP 3: RUNNING PYINSTALLER COMPILATION ---")
-spec_path = os.path.join(project_dir, "Fisio Uniasselve.spec")
+spec_path = os.path.join(project_dir, "FisioAcademic.spec")
 cmd = [r"C:\Python314\python.exe", "-m", "PyInstaller", "--clean", spec_path]
 
 print(f"Running command: {' '.join(cmd)}")

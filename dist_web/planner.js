@@ -2,8 +2,8 @@
 
 (function () {
   // Configurações do Pomodoro
-  let studyDuration = parseInt(localStorage.getItem("fisio_pomo_study_duration") || "25") * 60;
-  let breakDuration = parseInt(localStorage.getItem("fisio_pomo_break_duration") || "5") * 60;
+  let studyDuration = parseInt(localStorage.getItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_study_duration") : "fisio_pomo_study_duration") || "25") * 60;
+  let breakDuration = parseInt(localStorage.getItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_break_duration") : "fisio_pomo_break_duration") || "5") * 60;
   let timeLeft = studyDuration;
   let timerInterval = null;
   let currentMode = "study"; // "study" ou "break"
@@ -415,11 +415,11 @@
           
           if (currentMode === "study") {
             studyDuration = val * 60;
-            localStorage.setItem("fisio_pomo_study_duration", val);
+            localStorage.setItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_study_duration") : "fisio_pomo_study_duration", val);
             timeLeft = studyDuration;
           } else {
             breakDuration = val * 60;
-            localStorage.setItem("fisio_pomo_break_duration", val);
+            localStorage.setItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_break_duration") : "fisio_pomo_break_duration", val);
             timeLeft = breakDuration;
           }
           

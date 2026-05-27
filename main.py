@@ -103,7 +103,7 @@ class ConsolePage(QWebEnginePage):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Fisio Uniasselve - Gestor de Estudos de Fisioterapia")
+        self.setWindowTitle("FisioAcademic - Gestor de Estudos de Fisioterapia")
         self.resize(1280, 800)
         self.setMinimumSize(1024, 768)
         
