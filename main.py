@@ -62,11 +62,11 @@ def check_for_updates(persist_dir, persist_web):
                     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                         zip_ref.extractall(extract_dir)
                     
-                    # Procura a pasta dist_web extraída
+                    # Procura a pasta app extraída
                     extracted_web_src = None
                     for root, dirs, files in os.walk(extract_dir):
-                        if 'dist_web' in dirs:
-                            extracted_web_src = os.path.join(root, 'dist_web')
+                        if 'app' in dirs:
+                            extracted_web_src = os.path.join(root, 'app')
                             break
                     
                     if extracted_web_src and os.path.exists(extracted_web_src):
@@ -111,8 +111,8 @@ class MainWindow(QMainWindow):
         if getattr(sys, 'frozen', False):
             base_path = sys._MEIPASS
             persist_dir = os.path.join(os.path.expanduser('~'), '.fisio_uniasselve_app')
-            persist_web = os.path.join(persist_dir, 'dist_web')
-            src_web = os.path.join(base_path, 'dist_web')
+            persist_web = os.path.join(persist_dir, 'app')
+            src_web = os.path.join(base_path, 'app')
             
             # 1. Carrega versão embutida no executável (bundle)
             bundle_version = 1
@@ -162,7 +162,7 @@ class MainWindow(QMainWindow):
             entry_path = os.path.join(persist_web, 'index.html')
         else:
             base_path = os.path.dirname(os.path.abspath(__file__))
-            entry_path = os.path.join(base_path, 'dist_web', 'index.html')
+            entry_path = os.path.join(base_path, 'app', 'index.html')
             persist_dir = os.path.join(base_path, '.dev_storage')
             
         profile_path = os.path.join(persist_dir, 'profile')

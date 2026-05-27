@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script>
+    // Limpeza de Service Worker e Caches do Root para evitar conflitos com a versão antiga do App
+    if ('serviceWorker' in navigator && !sessionStorage.getItem('sw_cleared')) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        let cleared = false;
+        for(let registration of registrations) {
+          if (registration.scope === window.location.origin + '/' || registration.scope === window.location.origin + '/index.html') {
+            registration.unregister();
+            cleared = true;
+          }
+        }
+        if (cleared) {
+          sessionStorage.setItem('sw_cleared', '1');
+          if ('caches' in window) {
+            caches.keys().then(function(names) {
+              for (let name of names) caches.delete(name);
+            }).then(function() {
+              window.location.reload();
+            });
+          } else {
+            window.location.reload();
+          }
+        }
+      });
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FisioAcademic - Gestor de Estudos de Fisioterapia</title>
@@ -27,7 +53,7 @@
       <img src="logo.png" alt="Logo FisioAcademic" class="logo-img">
       <span class="logo-title">FisioAcademic</span>
     </div>
-    <a href="./dist_web/index.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">
+    <a href="./app/index.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">
       Acessar Web <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
     </a>
   </header>
@@ -44,7 +70,7 @@
       <a href="https://github.com/RobsonSilva31/fisioacademic-app/raw/main/dist/FisioAcademic.exe" class="btn btn-primary">
         <i data-lucide="download"></i> Baixar para Computador (Windows)
       </a>
-      <a href="./dist_web/index.html?install=true" class="btn btn-secondary" id="btn-mobile-install-main">
+      <a href="./app/index.html?install=true" class="btn btn-secondary" id="btn-mobile-install-main">
         <i data-lucide="smartphone"></i> Instalar no Celular
       </a>
     </div>
@@ -167,14 +193,14 @@
         
         <!-- QR Code para escaneamento pelo computador -->
         <div class="qr-code-wrapper">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://RobsonSilva31.github.io/fisioacademic-app/dist_web/index.html?install=true" alt="QR Code para Celular" class="qr-code-img">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://RobsonSilva31.github.io/fisioacademic-app/app/index.html?install=true" alt="QR Code para Celular" class="qr-code-img">
           <div class="qr-code-info">
             <h4 class="qr-code-title">Escanear com o Celular</h4>
             <p class="qr-code-desc">Aponte a câmera do seu celular para o código ao lado para abrir e instalar o aplicativo diretamente no seu dispositivo.</p>
           </div>
         </div>
 
-        <a href="./dist_web/index.html?install=true" class="btn btn-primary" id="btn-mobile-install-card">
+        <a href="./app/index.html?install=true" class="btn btn-primary" id="btn-mobile-install-card">
           Instalar no Celular
         </a>
       </div>

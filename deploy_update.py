@@ -7,14 +7,14 @@ import time
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 version_path = os.path.join(project_dir, "version.json")
-dist_version_path = os.path.join(project_dir, "dist_web", "version.json")
+dist_version_path = os.path.join(project_dir, "app", "version.json")
 
 print("==================================================")
 print("     INICIANDO DEPLOY AUTOMATICO DE ATUALIZACAO   ")
 print("==================================================")
 
-# 0. Sincronizar arquivos da raiz com a pasta dist_web
-print("[0/3] Sincronizando arquivos locais da raiz para dist_web...")
+# 0. Sincronizar arquivos da raiz com a pasta app
+print("[0/3] Sincronizando arquivos locais da raiz para app...")
 files_to_sync = {
     "app_source.html": "index.html",
     "app.js": "app.js",
@@ -32,7 +32,7 @@ files_to_sync = {
     "jspdf.umd.min.js": "jspdf.umd.min.js"
 }
 
-dist_web_dir = os.path.join(project_dir, "dist_web")
+dist_web_dir = os.path.join(project_dir, "app")
 os.makedirs(dist_web_dir, exist_ok=True)
 
 import shutil
@@ -42,7 +42,7 @@ for src_name, dest_name in files_to_sync.items():
     if os.path.exists(src_file):
         try:
             shutil.copy2(src_file, dest_file)
-            print(f"  Sincronizado: {src_name} -> dist_web/{dest_name}")
+            print(f"  Sincronizado: {src_name} -> app/{dest_name}")
         except Exception as e:
             print(f"  Erro ao sincronizar {src_name}: {e}")
 
@@ -54,7 +54,7 @@ if os.path.exists(materials_src):
         if os.path.exists(materials_dest):
             shutil.rmtree(materials_dest)
         shutil.copytree(materials_src, materials_dest)
-        print("  Pasta materials/ sincronizada com dist_web/materials/")
+        print("  Pasta materials/ sincronizada com app/materials/")
     except Exception as e:
         print(f"  Erro ao sincronizar pasta materials: {e}")
 
