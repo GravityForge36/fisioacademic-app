@@ -2943,8 +2943,7 @@ function loadNotebookPageContent() {
     children.forEach(child => {
       currentEditor.appendChild(child.cloneNode(true));
       
-      const isFirst = currentSheet.id === "sheet-1";
-      const maxH = isFirst ? 880 : 970;
+      const maxH = getEditorMaxH(currentEditor);
       
       if (currentEditor.scrollHeight > maxH) {
         // Create next sheet
@@ -3045,6 +3044,43 @@ function handleOverflow(editor, maxH) {
     editor.removeChild(lastChild);
   }
   
+  // Se ainda assim ultrapassar o limite de altura e só restar 1 nó, vamos quebrá-lo por palavras (caso seja texto longo)
+  if (editor.scrollHeight > maxH && editor.childNodes.length === 1) {
+    const singleChild = editor.firstChild;
+    if (singleChild.nodeType === Node.ELEMENT_NODE) {
+      let text = singleChild.textContent || "";
+      if (text.length > 0) {
+        const words = text.split(" ");
+        const wordsToMove = [];
+        while (editor.scrollHeight > maxH && words.length > 1) {
+          const lastWord = words.pop();
+          wordsToMove.unshift(lastWord);
+          singleChild.textContent = words.join(" ");
+        }
+        if (wordsToMove.length > 0) {
+          const newDiv = document.createElement("div");
+          newDiv.textContent = wordsToMove.join(" ");
+          nodesToMove.unshift(newDiv);
+        }
+      }
+    } else if (singleChild.nodeType === Node.TEXT_NODE) {
+      let text = singleChild.textContent || "";
+      if (text.length > 0) {
+        const words = text.split(" ");
+        const wordsToMove = [];
+        while (editor.scrollHeight > maxH && words.length > 1) {
+          const lastWord = words.pop();
+          wordsToMove.unshift(lastWord);
+          singleChild.textContent = words.join(" ");
+        }
+        if (wordsToMove.length > 0) {
+          const newTextNode = document.createTextNode(wordsToMove.join(" "));
+          nodesToMove.unshift(newTextNode);
+        }
+      }
+    }
+  }
+  
   if (nodesToMove.length > 0) {
     // Prepend to next editor
     nodesToMove.forEach(node => {
@@ -3062,7 +3098,7 @@ function handleOverflow(editor, maxH) {
     placeCaretAtStart(nodesToMove[0]);
     
     // Check overflow recursively
-    const nextMaxH = 970;
+    const nextMaxH = getEditorMaxH(nextEditor);
     if (nextEditor.scrollHeight > nextMaxH) {
       handleOverflow(nextEditor, nextMaxH);
     }
@@ -3266,6 +3302,42 @@ function compileNotebookToStudyNotes(subject) {
   return compiledText.trim();
 }
 
+let isAllSelectedMode = false;
+
+function getEditorMaxH(editor) {
+  const sheet = editor.closest('.notebook-sheet');
+  if (!sheet) return 960;
+  const isFirst = sheet.id === 'sheet-1';
+  if (isFirst) {
+    const titleArea = sheet.querySelector('.notebook-title-area');
+    const titleH = titleArea ? titleArea.offsetHeight : 84;
+    return 970 - titleH - 10;
+  }
+  return 960;
+}
+
+function restoreAllEditable() {
+  if (!isAllSelectedMode) return;
+  isAllSelectedMode = false;
+  document.querySelectorAll(".notebook-page-content-editor").forEach(ed => {
+    ed.contentEditable = "true";
+  });
+}
+
+// Global listeners for Ctrl+A selection mode
+window.addEventListener("mousedown", restoreAllEditable, true);
+window.addEventListener("keydown", (e) => {
+  if (isAllSelectedMode) {
+    const isCopyOrCutOrSelectAll = (e.ctrlKey || e.metaKey) && 
+      (e.key.toLowerCase() === 'c' || e.key.toLowerCase() === 'x' || e.key.toLowerCase() === 'a');
+    const isModifierOnly = ["Control", "Shift", "Alt", "Meta"].includes(e.key);
+    
+    if (!isCopyOrCutOrSelectAll && !isModifierOnly) {
+      restoreAllEditable();
+    }
+  }
+}, true);
+
 function setupNotebookEvents() {
   const btnOpenNotebook = document.getElementById("btn-open-notebook");
   const btnCloseNotebook = document.getElementById("btn-close-notebook");
@@ -3294,9 +3366,7 @@ function setupNotebookEvents() {
         autoSaveCurrentPage();
         
         const editor = e.target;
-        const sheet = editor.closest('.notebook-sheet');
-        const isFirst = sheet.id === 'sheet-1';
-        const maxH = isFirst ? 880 : 970;
+        const maxH = getEditorMaxH(editor);
         
         if (editor.scrollHeight > maxH) {
           handleOverflow(editor, maxH);
@@ -3316,6 +3386,41 @@ function setupNotebookEvents() {
       }
     });
     
+    // Click on empty lines to type directly there
+    pagesContainer.addEventListener("mousedown", (e) => {
+      if (e.target.classList.contains("notebook-page-content-editor")) {
+        const editor = e.target;
+        const rect = editor.getBoundingClientRect();
+        const clickY = e.clientY - rect.top;
+        
+        const sheet = editor.closest('.notebook-sheet');
+        const isFirst = sheet.id === 'sheet-1';
+        const maxLines = isFirst ? 30 : 33;
+        const lineNum = Math.max(0, Math.min(Math.floor(clickY / 28), maxLines));
+        
+        let childrenCount = editor.children.length;
+        if (childrenCount === 0 && editor.innerHTML.trim() !== "") {
+          const content = editor.innerHTML;
+          editor.innerHTML = `<div>${content}</div>`;
+          childrenCount = 1;
+        }
+        
+        if (lineNum >= childrenCount) {
+          e.preventDefault();
+          
+          while (editor.children.length <= lineNum) {
+            const emptyLine = document.createElement("div");
+            emptyLine.innerHTML = "<br>";
+            editor.appendChild(emptyLine);
+          }
+          
+          const targetLine = editor.children[lineNum];
+          placeCaretAtStart(targetLine);
+          autoSaveCurrentPage();
+        }
+      }
+    });
+
     // Backspace, Enter, and Ctrl+A handling for merging pages/overflow/selection
     pagesContainer.addEventListener("keydown", (e) => {
       if (e.target.classList.contains("notebook-page-content-editor")) {
@@ -3327,6 +3432,9 @@ function setupNotebookEvents() {
           e.preventDefault();
           const editors = document.querySelectorAll(".notebook-page-content-editor");
           if (editors.length > 0) {
+            editors.forEach(ed => ed.contentEditable = "false");
+            isAllSelectedMode = true;
+            
             const range = document.createRange();
             const selection = window.getSelection();
             
@@ -3334,7 +3442,11 @@ function setupNotebookEvents() {
             const lastEditor = editors[editors.length - 1];
             
             range.setStart(firstEditor, 0);
-            range.setEnd(lastEditor, lastEditor.childNodes.length);
+            if (lastEditor.childNodes.length > 0) {
+              range.setEnd(lastEditor, lastEditor.childNodes.length);
+            } else {
+              range.setEnd(lastEditor, 0);
+            }
             
             selection.removeAllRanges();
             selection.addRange(range);
@@ -3344,8 +3456,7 @@ function setupNotebookEvents() {
         
         // 2. Enter key - trigger overflow check instantly
         if (e.key === "Enter") {
-          const isFirst = sheet.id === 'sheet-1';
-          const maxH = isFirst ? 880 : 970;
+          const maxH = getEditorMaxH(editor);
           setTimeout(() => {
             if (editor.scrollHeight > maxH) {
               handleOverflow(editor, maxH);
