@@ -13,7 +13,7 @@ from PySide6.QtWebEngineCore import QWebEngineDownloadRequest, QWebEngineProfile
 
 # Configuração do GitHub para o Auto-Updater
 # (O usuário deve criar este repositório no GitHub para que o auto-update funcione)
-GITHUB_OWNER = "RobsonSilva31"
+GITHUB_OWNER = "GravityForge36"
 GITHUB_REPO = "fisioacademic-app"
 
 def check_for_updates(persist_dir, persist_web):
