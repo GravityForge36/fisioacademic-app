@@ -726,6 +726,9 @@
                   <span class="label">Taxa de Acertos</span>
                   <span class="value text-emerald" id="quiz-success-rate">0%</span>
                 </div>
+                <button type="button" class="btn btn-secondary btn-sm w-full" id="btn-view-quiz-history" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <i data-lucide="history"></i> Ver Histórico Detalhado
+                </button>
                 <button class="btn btn-secondary btn-sm w-full" id="btn-reset-quiz-stats">
                   <i data-lucide="trash-2"></i> Limpar Estatísticas
                 </button>
@@ -779,9 +782,14 @@
 
                 <div class="flex-row justify-between align-center mt-4 pt-3" style="border-top: 1px solid var(--border-glass);">
                   <button class="btn btn-secondary" id="btn-quit-quiz">Desistir</button>
-                  <button class="btn btn-primary" id="btn-next-question" style="display: none;">
-                    Próxima Questão <i data-lucide="arrow-right"></i>
-                  </button>
+                  <div class="flex-row gap-2">
+                    <button class="btn btn-primary" id="btn-confirm-answer" style="display: none;" disabled>
+                      Confirmar Resposta <i data-lucide="check-circle"></i>
+                    </button>
+                    <button class="btn btn-primary" id="btn-next-question" style="display: none;">
+                      Próxima Questão <i data-lucide="arrow-right"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -793,6 +801,19 @@
                 <p class="quiz-results-text" id="quiz-performance-feedback">Ótimo desempenho! Você está bem preparado.</p>
                 <div class="flex-row justify-center gap-4">
                   <button class="btn btn-primary" id="btn-restart-quiz">Tentar Novamente</button>
+                </div>
+              </div>
+
+              <!-- Tela de Histórico de Simulados -->
+              <div class="card-body" id="quiz-history-screen" style="display: none; padding: 20px;">
+                <div class="flex-row justify-between align-center mb-4 pb-2" style="border-bottom: 1px solid var(--border-glass);">
+                  <h2 style="font-family: var(--font-title); font-size: 1.25rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 8px; color: #fff;">
+                    <i data-lucide="history" style="color: var(--primary);"></i> Histórico de Simulados
+                  </h2>
+                  <button class="btn btn-secondary btn-sm" id="btn-back-to-quiz-welcome">Voltar</button>
+                </div>
+                <div id="quiz-history-list" style="max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding-right: 4px;">
+                  <!-- Simulados realizados carregados dinamicamente -->
                 </div>
               </div>
             </div>

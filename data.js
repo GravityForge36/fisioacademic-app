@@ -363,6 +363,158 @@ const DEFAULT_FLASHCARDS = [
     answer: "É terminantemente proibido expor a identidade, imagem ou dados de evolução do paciente sem autorização explícita e desrespeitando o sigilo profissional.",
     box: 1,
     nextReview: 0
+  },
+  {
+    id: "fc_new_1",
+    category: "Anatomia",
+    question: "Qual é o maior e mais longo osso do corpo humano e quais articulações ele ajuda a formar?",
+    answer: "O Fêmur. Ele articula-se proximalmente com o osso do quadril (articulação coxofemoral) e distalmente com a tíbia e a patela (articulação do joelho).",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_2",
+    category: "Anatomia",
+    question: "Quais são as 3 porções do músculo Deltoide e suas respectivas ações principais?",
+    answer: "• Anterior: Flexão e rotação interna do braço.\n• Lateral: Abdução do braço (principal abdutor após os primeiros 15°).\n• Posterior: Extensão e rotação externa do braço.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_3",
+    category: "Anatomia",
+    question: "Onde se origina e onde se insere o músculo Bíceps Braquial?",
+    answer: "• Origem: Cabeça longa no tubérculo supraglenoidal da escápula; cabeça curta no processo coracoide da escápula.\n• Inserção: Tuberosidade do rádio e aponeurose do bíceps braquial.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_4",
+    category: "Anatomia",
+    question: "Qual nervo passa pelo Túnel do Carpo e pode sofrer compressão?",
+    answer: "O Nervo Mediano. A compressão crônica desse nervo no punho leva à Síndrome do Túnel do Carpo, cursando com dor e parestesia na mão lateral.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_5",
+    category: "Anatomia",
+    question: "O que são as vértebras cervicais C1 e C2 e quais seus nomes próprios?",
+    answer: "• C1 chama-se Atlas (sustenta o crânio e não possui corpo vertebral).\n• C2 chama-se Áxis (possui o processo odontoide, que serve como pivô de rotação para C1).",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_6",
+    category: "Anatomia",
+    question: "Quais ossos compõem a articulação do cotovelo?",
+    answer: "O Úmero (extremidade distal), o Rádio (cabeça do rádio) e a Ulna (incisura troclear). É uma articulação em gínglimo (dobradiça).",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_7",
+    category: "Anatomia",
+    question: "Qual músculo é conhecido como o principal extensor do quadril e é ativado fortemente no agachamento profundo?",
+    answer: "O Músculo Glúteo Máximo. É o maior músculo do quadril e atua na extensão e rotação lateral da coxa.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_8",
+    category: "Cinesiologia",
+    question: "O que é o torque em cinesiologia e como ele é calculado?",
+    answer: "É a força rotacional gerada ao redor de um eixo articular. É calculado multiplicando a força aplicada pela distância perpendicular do eixo ao vetor de força (braço de momento).",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_9",
+    category: "Cinesiologia",
+    question: "O que diz a Lei de Starling aplicada ao comprimento-tensão muscular?",
+    answer: "A força da contração muscular depende do comprimento inicial da fibra. Há um comprimento ideal onde a sobreposição dos filamentos de actina e miosina é máxima, gerando maior força.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_10",
+    category: "Cinesiologia",
+    question: "Qual é a função cinesiológica do Músculo Serrátil Anterior na escápula?",
+    answer: "Ele realiza a abdução (protração) e rotação superior da escápula, mantendo-a firme contra a grade costal para evitar a 'escápula alada'.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_11",
+    category: "Cinesiologia",
+    question: "O que é o movimento de pronação e supinação do antebraço cinesiologicamente?",
+    answer: "• Supinação: Rotação lateral do antebraço, voltando a palma da mão para cima/frente.\n• Pronação: Rotação medial do antebraço, voltando a palma da mão para baixo/trás.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_12",
+    category: "Cinesiologia",
+    question: "Qual a diferença entre agonista, antagonista e sinergista em um movimento?",
+    answer: "• Agonista: Músculo principal que realiza o movimento.\n• Antagonista: Músculo que se opõe ao movimento do agonista (se alonga ou contrai excentricamente).\n• Sinergista: Auxilia o agonista ou estabiliza a articulação.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_13",
+    category: "Cinesiologia",
+    question: "O que é o ritmo escapuloumeral no movimento de abdução do ombro?",
+    answer: "É a relação de movimento coordenada entre a articulação glenoumeral e escapulotorácica. Para cada 2° de abdução do ombro, a escápula rotaciona superiormente 1° (proporção de 2:1).",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_14",
+    category: "Avaliação",
+    question: "O que é o Teste de Lachman e qual ligamento ele avalia?",
+    answer: "É considerado o teste manual mais sensível para avaliar a integridade do Ligamento Cruzado Anterior (LCA). É realizado com o joelho flexionado a 20°-30°.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_15",
+    category: "Avaliação",
+    question: "Para que serve o Teste de Finkelstein e qual patologia ele diagnostica?",
+    answer: "Diagnostica a Tenossinovite de De Quervain. Consiste em desviar o punho ulnarmente com o polegar fletido sob os outros dedos. Dor na bainha tendínea lateral é positiva.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_16",
+    category: "Avaliação",
+    question: "O que avalia o Teste de Thomas e como ele é executado?",
+    answer: "Avalia o encurtamento dos flexores do quadril (principalmente Iliopsoas e Reto Femoral). Paciente abraça um joelho contra o peito na maca; se a outra coxa se elevar da maca, o teste é positivo.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_17",
+    category: "Avaliação",
+    question: "O que é o Teste de Patrick-Fabere e qual região ele estressa?",
+    answer: "Estressa a articulação sacroilíaca e o quadril. O paciente posiciona o pé do lado avaliado sobre o joelho oposto (formando um '4') e o examinador pressiona o joelho para baixo.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_18",
+    category: "Avaliação",
+    question: "O que indica o Sinal de Trendelenburg e qual músculo apresenta fraqueza?",
+    answer: "Indica fraqueza do Músculo Glúteo Médio do lado de apoio. Ao ficar em apoio unipodal, a pelve do lado suspenso cai devido à incapacidade do glúteo médio de estabilizar o quadril.",
+    box: 1,
+    nextReview: 0
+  },
+  {
+    id: "fc_new_19",
+    category: "Avaliação",
+    question: "Qual a utilidade do Teste de Cozen na avaliação clínica do cotovelo?",
+    answer: "Avalia a presença de Epicondilite Lateral (cotovelo de tenista). O teste é positivo se o paciente referir dor no epicôndilo lateral ao estender o punho contra a resistência do examinador.",
+    box: 1,
+    nextReview: 0
   }
 ];
 

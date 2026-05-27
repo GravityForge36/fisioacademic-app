@@ -250,8 +250,20 @@
     }
   }
 
+  // Função para exibir a aba sem reiniciar o estudo se já houver um baralho ativo
+  function showFlashcardsTab() {
+    updateCategoryCounts();
+    if (activeDeck.length === 0) {
+      initFlashcardSession();
+    } else if (currentIndex >= activeDeck.length) {
+      showDeckCompletedState();
+    } else {
+      renderActiveCard();
+    }
+  }
+
   // Registrar módulo globalmente e na inicialização da página
-  window.initFlashcardsModule = initFlashcardSession;
+  window.initFlashcardsModule = showFlashcardsTab;
   window.addEventListener("DOMContentLoaded", initFlashcardsModule);
 
 })();

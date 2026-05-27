@@ -807,6 +807,16 @@ function initApp() {
 
   if (localFlashcards) {
     state.flashcards = JSON.parse(localFlashcards);
+    // Se a base de dados local tiver menos flashcards que o padrão (50), mescla os novos defaults
+    const defaults = window.FisioData.DEFAULT_FLASHCARDS;
+    if (state.flashcards.length < defaults.length) {
+      defaults.forEach(df => {
+        if (!state.flashcards.some(fc => fc.id === df.id)) {
+          state.flashcards.push(JSON.parse(JSON.stringify(df)));
+        }
+      });
+      saveState("flashcards");
+    }
   } else {
     state.flashcards = JSON.parse(JSON.stringify(window.FisioData.DEFAULT_FLASHCARDS));
     saveState("flashcards");
@@ -3027,21 +3037,21 @@ function handleOverflow(editor, maxH) {
   
   const nextEditor = nextSheet.querySelector('.notebook-page-content-editor');
   
-  const elementsToMove = [];
-  while (editor.scrollHeight > maxH && editor.children.length > 1) {
-    const lastChild = editor.lastElementChild;
+  const nodesToMove = [];
+  while (editor.scrollHeight > maxH && editor.childNodes.length > 1) {
+    const lastChild = editor.lastChild;
     if (!lastChild) break;
-    elementsToMove.unshift(lastChild);
+    nodesToMove.unshift(lastChild);
     editor.removeChild(lastChild);
   }
   
-  if (elementsToMove.length > 0) {
+  if (nodesToMove.length > 0) {
     // Prepend to next editor
-    elementsToMove.forEach(el => {
+    nodesToMove.forEach(node => {
       if (nextEditor.firstChild) {
-        nextEditor.insertBefore(el, nextEditor.firstChild);
+        nextEditor.insertBefore(node, nextEditor.firstChild);
       } else {
-        nextEditor.appendChild(el);
+        nextEditor.appendChild(node);
       }
     });
     
@@ -3049,13 +3059,18 @@ function handleOverflow(editor, maxH) {
     
     // Move focus
     nextEditor.focus();
-    placeCaretAtStart(elementsToMove[0]);
+    placeCaretAtStart(nodesToMove[0]);
     
     // Check overflow recursively
     const nextMaxH = 970;
     if (nextEditor.scrollHeight > nextMaxH) {
       handleOverflow(nextEditor, nextMaxH);
     }
+  } else {
+    // If scrollHeight still exceeds maxH but we only have 1 node left,
+    // focus the next editor to let user keep typing there
+    nextEditor.focus();
+    autoSaveCurrentPage();
   }
 }
 
@@ -3301,12 +3316,45 @@ function setupNotebookEvents() {
       }
     });
     
-    // Backspace handling for merging pages
+    // Backspace, Enter, and Ctrl+A handling for merging pages/overflow/selection
     pagesContainer.addEventListener("keydown", (e) => {
       if (e.target.classList.contains("notebook-page-content-editor")) {
+        const editor = e.target;
+        const sheet = editor.closest('.notebook-sheet');
+        
+        // 1. Ctrl+A / Cmd+A - Select all pages
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "a") {
+          e.preventDefault();
+          const editors = document.querySelectorAll(".notebook-page-content-editor");
+          if (editors.length > 0) {
+            const range = document.createRange();
+            const selection = window.getSelection();
+            
+            const firstEditor = editors[0];
+            const lastEditor = editors[editors.length - 1];
+            
+            range.setStart(firstEditor, 0);
+            range.setEnd(lastEditor, lastEditor.childNodes.length);
+            
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+          return;
+        }
+        
+        // 2. Enter key - trigger overflow check instantly
+        if (e.key === "Enter") {
+          const isFirst = sheet.id === 'sheet-1';
+          const maxH = isFirst ? 880 : 970;
+          setTimeout(() => {
+            if (editor.scrollHeight > maxH) {
+              handleOverflow(editor, maxH);
+            }
+          }, 0);
+        }
+        
+        // 3. Backspace key - merge with previous sheet if caret is at the start
         if (e.key === "Backspace") {
-          const editor = e.target;
-          const sheet = editor.closest('.notebook-sheet');
           const selection = window.getSelection();
           if (selection.rangeCount > 0) {
             const range = selection.getRangeAt(0);
