@@ -13,6 +13,51 @@ print("==================================================")
 print("     INICIANDO DEPLOY AUTOMATICO DE ATUALIZACAO   ")
 print("==================================================")
 
+# 0. Sincronizar arquivos da raiz com a pasta dist_web
+print("[0/3] Sincronizando arquivos locais da raiz para dist_web...")
+files_to_sync = {
+    "app_source.html": "index.html",
+    "app.js": "app.js",
+    "data.js": "data.js",
+    "flashcards.js": "flashcards.js",
+    "planner.js": "planner.js",
+    "quiz.js": "quiz.js",
+    "reference.js": "reference.js",
+    "style.css": "style.css",
+    "tracker.js": "tracker.js",
+    "manifest.json": "manifest.json",
+    "sw.js": "sw.js",
+    "logo.png": "logo.png",
+    "lucide.min.js": "lucide.min.js",
+    "jspdf.umd.min.js": "jspdf.umd.min.js"
+}
+
+dist_web_dir = os.path.join(project_dir, "dist_web")
+os.makedirs(dist_web_dir, exist_ok=True)
+
+import shutil
+for src_name, dest_name in files_to_sync.items():
+    src_file = os.path.join(project_dir, src_name)
+    dest_file = os.path.join(dist_web_dir, dest_name)
+    if os.path.exists(src_file):
+        try:
+            shutil.copy2(src_file, dest_file)
+            print(f"  Sincronizado: {src_name} -> dist_web/{dest_name}")
+        except Exception as e:
+            print(f"  Erro ao sincronizar {src_name}: {e}")
+
+# Sincronizar pasta materials/ se existir
+materials_src = os.path.join(project_dir, "materials")
+materials_dest = os.path.join(dist_web_dir, "materials")
+if os.path.exists(materials_src):
+    try:
+        if os.path.exists(materials_dest):
+            shutil.rmtree(materials_dest)
+        shutil.copytree(materials_src, materials_dest)
+        print("  Pasta materials/ sincronizada com dist_web/materials/")
+    except Exception as e:
+        print(f"  Erro ao sincronizar pasta materials: {e}")
+
 # 1. Incrementar versao
 if os.path.exists(version_path):
     try:

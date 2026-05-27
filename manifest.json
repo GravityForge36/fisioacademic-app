@@ -1,0 +1,18 @@
+{
+  "name": "FisioAcademic",
+  "short_name": "FisioAcademic",
+  "description": "Gestor de Estudos e Prática Clínica de Fisioterapia",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0c0f16",
+  "theme_color": "#0c0f16",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
