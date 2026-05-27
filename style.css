@@ -1673,14 +1673,343 @@ label {
     justify-content: center;
   }
   
+  /* --- SUB-ABAS MÓVEIS (Cronograma) --- */
+  .planner-mobile-tabs {
+    display: flex !important;
+  }
   .planner-layout {
     flex-direction: column;
+  }
+  .planner-layout.show-tasks-only .planner-column:nth-child(2) {
+    display: none !important;
+  }
+  .planner-layout.show-tasks-only .planner-column:nth-child(1) {
+    display: block !important;
+  }
+  .planner-layout.show-pomo-only .planner-column:nth-child(1) {
+    display: none !important;
+  }
+  .planner-layout.show-pomo-only .planner-column:nth-child(2) {
+    display: block !important;
+  }
+  /* Estado inicial: esconde pomo, mostra tarefas */
+  .planner-layout:not(.show-tasks-only):not(.show-pomo-only) .planner-column:nth-child(2) {
+    display: none !important;
   }
   .pomodoro-deep-card {
     position: static;
   }
-  .dashboard-row {
+  
+  /* --- SUB-ABAS MÓVEIS (Estágio Clínico) --- */
+  .internship-mobile-tabs {
+    display: flex !important;
+  }
+  .internship-layout {
+    display: flex;
     flex-direction: column;
+  }
+  .internship-layout.show-progress-only .internship-form-column {
+    display: none !important;
+  }
+  .internship-layout.show-progress-only .internship-main-column {
+    display: block !important;
+  }
+  .internship-layout.show-form-only .internship-main-column {
+    display: none !important;
+  }
+  .internship-layout.show-form-only .internship-form-column {
+    display: block !important;
+  }
+  /* Estado inicial: esconde formulário, mostra progresso */
+  .internship-layout:not(.show-progress-only):not(.show-form-only) .internship-form-column {
+    display: none !important;
+  }
+  
+  /* --- TABELA DE ESTÁGIO CONVERTIDA EM CARDS NO MÓVEL --- */
+  .data-table thead {
+    display: none !important;
+  }
+  .data-table, .data-table tbody, .data-table tr, .data-table td {
+    display: block !important;
+    width: 100% !important;
+  }
+  .data-table tr {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 16px !important;
+    padding: 12px 16px !important;
+    box-shadow: var(--shadow-lg) !important;
+  }
+  .data-table td {
+    border: none !important;
+    padding: 8px 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: right !important;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.04) !important;
+  }
+  .data-table td:last-child {
+    border-bottom: none !important;
+    justify-content: flex-end !important;
+  }
+  .data-table td::before {
+    content: attr(data-label) !important;
+    font-size: 0.75rem !important;
+    color: var(--text-muted) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+    margin-right: 12px !important;
+  }
+  .conduta-cell {
+    max-width: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: block !important;
+    text-align: left !important;
+  }
+  .conduta-cell::before {
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+  
+  /* --- FLASHCARDS CHIPS HORIZONTAIS MÓVEIS --- */
+  .flashcards-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .flashcards-sidebar {
+    width: 100% !important;
+  }
+  .flashcards-sidebar .card:nth-child(2) {
+    display: none !important; /* Esconde formulário de criação no mobile */
+  }
+  .flashcards-sidebar .card:nth-child(1) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 8px !important;
+  }
+  .flashcards-sidebar .card-header {
+    display: none !important;
+  }
+  .flashcards-sidebar .card-body {
+    padding: 0 !important;
+  }
+  .deck-list {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding: 8px 0 !important;
+    border: none !important;
+    scrollbar-width: none;
+  }
+  .deck-list::-webkit-scrollbar {
+    display: none;
+  }
+  .deck-item {
+    flex-shrink: 0 !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: 20px !important;
+    padding: 8px 16px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.8rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    border-bottom: 1px solid var(--border-glass) !important; /* Sobrescreve reset */
+  }
+  .deck-item i {
+    margin-right: 0 !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .deck-item.active {
+    background: var(--primary-glow) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+  }
+  .flashcard-scene {
+    height: 320px !important;
+  }
+  .flashcard-face {
+    padding: 20px !important;
+  }
+  .flashcard-question-text {
+    font-size: 1.2rem !important;
+  }
+  .flashcard-answer-text {
+    font-size: 0.95rem !important;
+    max-height: 160px !important;
+  }
+  
+  /* --- SIMULADOS (QUIZ) RESPONSIVO --- */
+  .quiz-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .quiz-sidebar {
+    width: 100% !important;
+  }
+  /* Oculta sidebar (configuração e histórico) se o simulado estiver rodando/concluído */
+  .quiz-layout.quiz-active .quiz-sidebar {
+    display: none !important;
+  }
+  
+  /* --- CADERNO DIGITAL MOBILE TABS --- */
+  .caderno-mobile-tabs {
+    display: flex !important;
+  }
+  .caderno-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .caderno-toolbar > div {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+  .caderno-toolbar > div:nth-child(2) {
+    max-width: none !important;
+  }
+  #modal-caderno .modal-body {
+    flex-direction: column !important;
+    height: calc(100% - 170px) !important;
+  }
+  /* Esconde colunas por padrão */
+  .caderno-sidebar-column,
+  .caderno-notes-column,
+  .caderno-text-column {
+    display: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+  }
+  /* Mostra apenas a aba selecionada no celular */
+  #modal-caderno .modal-body.show-toc-only .caderno-sidebar-column {
+    display: flex !important;
+  }
+  #modal-caderno .modal-body.show-notes-only .caderno-notes-column {
+    display: flex !important;
+  }
+  #modal-caderno .modal-body:not(.show-toc-only):not(.show-notes-only) .caderno-text-column,
+  #modal-caderno .modal-body.show-text-only .caderno-text-column {
+    display: block !important;
+  }
+  .caderno-mobile-tab-btn {
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+  }
+  .caderno-mobile-tab-btn.active {
+    color: var(--primary) !important;
+    border-bottom-color: var(--primary) !important;
+  }
+  
+  /* --- BLOCO DE NOTAS AVANÇADO (ONENOTE) MÓVEL --- */
+  #modal-notebook .notebook-ribbon {
+    display: none !important; /* Esconde ribbon complexo no celular */
+  }
+  #modal-notebook .notebook-mobile-editor-nav {
+    display: flex !important; /* Exibe nav header móvel no editor */
+  }
+  #modal-notebook .modal-card {
+    width: 100% !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  #modal-notebook .modal-card > div:nth-child(2) {
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+  /* Modo padrão (Visualização de seções e páginas) */
+  #modal-notebook .modal-card > div:nth-child(2) > div:nth-child(1) {
+    width: 100% !important;
+    height: 45% !important;
+    display: flex !important;
+    border-right: none !important;
+    border-bottom: 1px solid #3c3c3c !important;
+  }
+  #modal-notebook .modal-card > div:nth-child(2) > div:nth-child(2) {
+    width: 100% !important;
+    height: 55% !important;
+    display: flex !important;
+    border-right: none !important;
+  }
+  #modal-notebook #notebook-editor-scroll-container {
+    display: none !important;
+  }
+  
+  /* Modo Edição Ativo (Esconde as listas e mostra apenas o editor) */
+  #modal-notebook.show-editor-only .modal-card > div:nth-child(2) > div:nth-child(1),
+  #modal-notebook.show-editor-only .modal-card > div:nth-child(2) > div:nth-child(2) {
+    display: none !important;
+  }
+  #modal-notebook.show-editor-only #notebook-editor-scroll-container {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 8px 0 !important;
+  }
+  
+  /* Ajuste responsivo das folhas pautadas */
+  .notebook-sheet {
+    padding: 20px 16px 20px 48px !important;
+    box-shadow: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    min-height: 800px !important;
+    
+    background-image: 
+      linear-gradient(to right, transparent 40px, rgba(239, 68, 68, 0.3) 40px, rgba(239, 68, 68, 0.3) 41px, transparent 41px),
+      repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(0, 0, 0, 0.06) 27px, rgba(0, 0, 0, 0.06) 28px) !important;
+    background-size: 100% 100%, 100% 28px !important;
+    background-position: 0 0, 0 20px !important;
+  }
+  .notebook-sheet.first-page {
+    background-position: 0 0, 0 104px !important;
+  }
+  
+  /* --- ABA MAIS CONFIGURAÇÕES MÓVEIS --- */
+  .more-menu-container {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .more-menu-card:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-card-hover) !important;
+    border-color: rgba(43, 186, 181, 0.3) !important;
+  }
+  
+  /* Grid do dashboard e outros cards */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .subjects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .semester-summary-banner {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+  .dashboard-row {
+    flex-direction: column !important;
   }
 }
 

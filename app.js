@@ -847,26 +847,47 @@ function initApp() {
     saveState("settings");
   }
 
-  // Sincronizar dados do perfil na sidebar
+  // Sincronizar dados do perfil na sidebar e na aba Mais mobile
   const activeProfileId = localStorage.getItem("fisio_active_profile_id");
   const profiles = loadProfiles();
   const activeProfile = profiles.find(p => p.id === activeProfileId);
   if (activeProfile) {
+    // Sincroniza Sidebar (Desktop)
     const sidebarUsername = document.getElementById("sidebar-username");
     if (sidebarUsername) sidebarUsername.textContent = activeProfile.name;
-    
     const sidebarSemester = document.getElementById("sidebar-current-semester");
     if (sidebarSemester) sidebarSemester.textContent = `${activeProfile.semester}º`;
     
+    // Sincroniza Card Móvel (Mobile)
+    const mobileUsername = document.getElementById("mobile-username");
+    if (mobileUsername) mobileUsername.textContent = activeProfile.name;
+    const mobileSemester = document.getElementById("mobile-current-semester");
+    if (mobileSemester) mobileSemester.textContent = `${activeProfile.semester}º`;
+
     const sidebarAvatar = document.getElementById("sidebar-avatar");
-    if (sidebarAvatar) {
-      if (activeProfile.avatarImage) {
-        sidebarAvatar.innerHTML = `<img src="${activeProfile.avatarImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+    const mobileAvatar = document.getElementById("mobile-avatar");
+    
+    if (activeProfile.avatarImage) {
+      const imgHtml = `<img src="${activeProfile.avatarImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+      if (sidebarAvatar) {
+        sidebarAvatar.innerHTML = imgHtml;
         sidebarAvatar.style.background = "none";
-      } else {
-        const initials = activeProfile.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+      }
+      if (mobileAvatar) {
+        mobileAvatar.innerHTML = imgHtml;
+        mobileAvatar.style.background = "none";
+      }
+    } else {
+      const initials = activeProfile.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+      if (sidebarAvatar) {
+        sidebarAvatar.innerHTML = "";
         sidebarAvatar.textContent = initials;
         sidebarAvatar.style.background = activeProfile.avatarColor;
+      }
+      if (mobileAvatar) {
+        mobileAvatar.innerHTML = "";
+        mobileAvatar.textContent = initials;
+        mobileAvatar.style.background = activeProfile.avatarColor;
       }
     }
     
@@ -919,7 +940,19 @@ function saveState(key) {
 }
 
 // 3. ROTEAMENTO SPA (ABAS)
-function setupRouting() {
+function updateMobileBackButton(tabName) {
+  const backBtn = document.getElementById("btn-mobile-back");
+  if (!backBtn) return;
+  const isMobile = window.innerWidth <= 768;
+  const isSecondaryTab = ["planner", "reference", "internship"].includes(tabName);
+  if (isMobile && isSecondaryTab) {
+    backBtn.style.display = "flex";
+  } else {
+    backBtn.style.display = "none";
+  }
+}
+
+function switchTab(targetTab) {
   const navItems = document.querySelectorAll(".nav-item, .mobile-nav-item");
   const tabPanels = document.querySelectorAll(".tab-panel");
   const viewTitle = document.getElementById("view-title");
@@ -932,38 +965,163 @@ function setupRouting() {
     flashcards: { title: "Flashcards de Memorização", subtitle: "Treine sua memória em anatomia, cinesiologia e testes." },
     reference: { title: "Pocket Fisio", subtitle: "Manual rápido de consulta clínica de bolso para goniometria, testes e força." },
     internship: { title: "Estágio Clínico", subtitle: "Registre suas horas de estágio clínico supervisionado obrigatório." },
-    quiz: { title: "Simulados Clínicos", subtitle: "Teste seus conhecimentos teóricos e práticos com o banco de questões." }
+    quiz: { title: "Simulados Clínicos", subtitle: "Teste seus conhecimentos teóricos e práticos com o banco de questões." },
+    more: { title: "Mais Opções", subtitle: "Acesse recursos adicionais de estudo e configurações do perfil." }
   };
 
+  // Remover classe active de todos os nav items
+  navItems.forEach(nav => nav.classList.remove("active"));
+  
+  // Adicionar active aos botões clicados (tanto no desktop quanto no mobile)
+  document.querySelectorAll(`[data-tab="${targetTab}"]`).forEach(btn => btn.classList.add("active"));
+
+  // Exibir o painel correspondente
+  tabPanels.forEach(panel => panel.classList.remove("active"));
+  const activePanel = document.getElementById(`tab-${targetTab}`);
+  if (activePanel) {
+    activePanel.classList.add("active");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Atualizar títulos
+  if (tabTitles[targetTab]) {
+    viewTitle.textContent = tabTitles[targetTab].title;
+    viewSubtitle.textContent = tabTitles[targetTab].subtitle;
+  }
+
+  // Atualizar visibilidade do botão Voltar móvel
+  updateMobileBackButton(targetTab);
+
+  // Disparar atualizações específicas de tela
+  triggerTabUpdates(targetTab);
+}
+window.FisioAppSwitchTab = switchTab; // Tornar acessível globalmente
+
+function setupRouting() {
+  const navItems = document.querySelectorAll(".nav-item, .mobile-nav-item");
+  
   navItems.forEach(item => {
     item.addEventListener("click", (e) => {
       e.preventDefault();
       const targetTab = item.getAttribute("data-tab");
-
-      // Remover classe active de todos os nav items
-      navItems.forEach(nav => nav.classList.remove("active"));
-      
-      // Adicionar active aos botões clicados (tanto no desktop quanto no mobile)
-      document.querySelectorAll(`[data-tab="${targetTab}"]`).forEach(btn => btn.classList.add("active"));
-
-      // Exibir o painel correspondente
-      tabPanels.forEach(panel => panel.classList.remove("active"));
-      const activePanel = document.getElementById(`tab-${targetTab}`);
-      if (activePanel) {
-        activePanel.classList.add("active");
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      // Atualizar títulos
-      if (tabTitles[targetTab]) {
-        viewTitle.textContent = tabTitles[targetTab].title;
-        viewSubtitle.textContent = tabTitles[targetTab].subtitle;
-      }
-
-      // Disparar atualizações específicas de tela
-      triggerTabUpdates(targetTab);
+      switchTab(targetTab);
     });
   });
+
+  // Listener para o botão de voltar no celular
+  const mobileBackBtn = document.getElementById("btn-mobile-back");
+  if (mobileBackBtn) {
+    mobileBackBtn.addEventListener("click", () => {
+      switchTab("more");
+    });
+  }
+
+  // Lógica dos cards da aba "Mais"
+  document.querySelectorAll(".more-menu-card[data-subtab]").forEach(card => {
+    card.addEventListener("click", () => {
+      const subtab = card.getAttribute("data-subtab");
+      switchTab(subtab);
+    });
+  });
+
+  // Configurações do perfil na aba "Mais"
+  const settingsBtn = document.getElementById("mobile-btn-open-settings");
+  if (settingsBtn) {
+    settingsBtn.addEventListener("click", () => {
+      document.getElementById("btn-open-settings")?.click();
+    });
+  }
+  const switchBtn = document.getElementById("mobile-btn-switch-user");
+  if (switchBtn) {
+    switchBtn.addEventListener("click", () => {
+      document.getElementById("btn-switch-user")?.click();
+    });
+  }
+  const logoutBtn = document.getElementById("mobile-btn-logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      document.getElementById("btn-logout-user")?.click();
+    });
+  }
+
+  // Lógica das Sub-abas de Cronograma (Tarefas vs Pomodoro)
+  const plannerTasksBtn = document.getElementById("btn-mobile-planner-tasks");
+  const plannerPomoBtn = document.getElementById("btn-mobile-planner-pomo");
+  if (plannerTasksBtn && plannerPomoBtn) {
+    plannerTasksBtn.addEventListener("click", () => {
+      plannerTasksBtn.classList.add("active");
+      plannerPomoBtn.classList.remove("active");
+      const layout = document.querySelector(".planner-layout");
+      if (layout) {
+        layout.classList.remove("show-pomo-only");
+        layout.classList.add("show-tasks-only");
+      }
+    });
+    plannerPomoBtn.addEventListener("click", () => {
+      plannerPomoBtn.classList.add("active");
+      plannerTasksBtn.classList.remove("active");
+      const layout = document.querySelector(".planner-layout");
+      if (layout) {
+        layout.classList.remove("show-tasks-only");
+        layout.classList.add("show-pomo-only");
+      }
+    });
+  }
+
+  // Lógica das Sub-abas de Estágio (Progresso vs Registrar)
+  const internProgressBtn = document.getElementById("btn-mobile-internship-progress");
+  const internFormBtn = document.getElementById("btn-mobile-internship-form");
+  if (internProgressBtn && internFormBtn) {
+    internProgressBtn.addEventListener("click", () => {
+      internProgressBtn.classList.add("active");
+      internFormBtn.classList.remove("active");
+      const layout = document.querySelector(".internship-layout");
+      if (layout) {
+        layout.classList.remove("show-form-only");
+        layout.classList.add("show-progress-only");
+      }
+    });
+    internFormBtn.addEventListener("click", () => {
+      internFormBtn.classList.add("active");
+      internProgressBtn.classList.remove("active");
+      const layout = document.querySelector(".internship-layout");
+      if (layout) {
+        layout.classList.remove("show-progress-only");
+        layout.classList.add("show-form-only");
+      }
+    });
+  }
+
+  // Lógica das abas móveis no Caderno Digital
+  const mobileCadernoTextBtn = document.getElementById("btn-mobile-caderno-text");
+  const mobileCadernoTocBtn = document.getElementById("btn-mobile-caderno-toc");
+  const mobileCadernoNotesBtn = document.getElementById("btn-mobile-caderno-notes");
+  if (mobileCadernoTextBtn && mobileCadernoTocBtn && mobileCadernoNotesBtn) {
+    const cuadernoModalBody = document.querySelector("#modal-caderno .modal-body");
+    const tabBtns = [mobileCadernoTextBtn, mobileCadernoTocBtn, mobileCadernoNotesBtn];
+    
+    function setCadernoView(viewName) {
+      tabBtns.forEach(btn => btn.classList.remove("active"));
+      if (cuadernoModalBody) {
+        cuadernoModalBody.classList.remove("show-text-only", "show-toc-only", "show-notes-only");
+      }
+      
+      if (viewName === "text") {
+        mobileCadernoTextBtn.classList.add("active");
+        if (cuadernoModalBody) cuadernoModalBody.classList.add("show-text-only");
+      } else if (viewName === "toc") {
+        mobileCadernoTocBtn.classList.add("active");
+        if (cuadernoModalBody) cuadernoModalBody.classList.add("show-toc-only");
+      } else if (viewName === "notes") {
+        mobileCadernoNotesBtn.classList.add("active");
+        if (cuadernoModalBody) cuadernoModalBody.classList.add("show-notes-only");
+      }
+    }
+    
+    mobileCadernoTextBtn.addEventListener("click", () => setCadernoView("text"));
+    mobileCadernoTocBtn.addEventListener("click", () => setCadernoView("toc"));
+    mobileCadernoNotesBtn.addEventListener("click", () => setCadernoView("notes"));
+  }
 }
 
 function triggerTabUpdates(tabName) {
@@ -2874,6 +3032,12 @@ function renderNotebookPages() {
       currentActivePageId = page.id;
       renderNotebookPages();
       loadNotebookPageContent();
+
+      // No mobile, exibe automaticamente a folha do editor
+      if (window.innerWidth <= 768) {
+        const nbModal = document.getElementById("modal-notebook");
+        if (nbModal) nbModal.classList.add("show-editor-only");
+      }
     });
     
     // Delete page
@@ -2928,6 +3092,12 @@ function loadNotebookPageContent() {
   // Create first page (with title and metadata)
   const firstSheet = createNewSheet(0, false, page);
   container.appendChild(firstSheet);
+  
+  // Atualizar título móvel no editor
+  const mobileActiveTitleEl = document.getElementById("notebook-mobile-active-page-title");
+  if (mobileActiveTitleEl) {
+    mobileActiveTitleEl.textContent = page ? (page.title || "Sem Título") : "Sem Título";
+  }
   
   const firstEditor = firstSheet.querySelector('.notebook-page-content-editor');
   
@@ -3203,6 +3373,12 @@ function addSection() {
   renderNotebookPages();
   loadNotebookPageContent();
   autoSaveCurrentPage();
+
+  // No mobile, exibe automaticamente a folha do editor ao criar seção
+  if (window.innerWidth <= 768) {
+    const nbModal = document.getElementById("modal-notebook");
+    if (nbModal) nbModal.classList.add("show-editor-only");
+  }
 }
 
 function addPage() {
@@ -3228,6 +3404,12 @@ function addPage() {
   renderNotebookPages();
   loadNotebookPageContent();
   autoSaveCurrentPage();
+
+  // No mobile, exibe automaticamente a folha do editor ao criar página
+  if (window.innerWidth <= 768) {
+    const nbModal = document.getElementById("modal-notebook");
+    if (nbModal) nbModal.classList.add("show-editor-only");
+  }
   
   // Focus the title input automatically
   const titleInput = document.getElementById("notebook-page-title-input");
@@ -3390,6 +3572,14 @@ function setupNotebookEvents() {
   
   if (btnAddSection) btnAddSection.addEventListener("click", addSection);
   if (btnAddPage) btnAddPage.addEventListener("click", addPage);
+
+  const btnMobileNotebookBackToList = document.getElementById("btn-mobile-notebook-back-to-list");
+  if (btnMobileNotebookBackToList) {
+    btnMobileNotebookBackToList.addEventListener("click", () => {
+      const nbModal = document.getElementById("modal-notebook");
+      if (nbModal) nbModal.classList.remove("show-editor-only");
+    });
+  }
   
   // Event Delegation for Notebook dynamic elements
   const pagesContainer = document.getElementById("notebook-pages-container");

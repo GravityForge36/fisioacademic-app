@@ -136,6 +136,9 @@
 
   // Resetar a interface para a tela inicial
   function resetToWelcome() {
+    const layout = document.querySelector(".quiz-layout");
+    if (layout) layout.classList.remove("quiz-active");
+    
     if (welcomeScreen) welcomeScreen.style.display = "block";
     if (activeBody) activeBody.style.display = "none";
     if (activeHeader) activeHeader.style.display = "none";
@@ -183,7 +186,10 @@
     if (historyScreen) historyScreen.style.display = "none";
     if (activeHeader) activeHeader.style.display = "flex";
     if (activeBody) activeBody.style.display = "block";
-
+    
+    const layout = document.querySelector(".quiz-layout");
+    if (layout) layout.classList.add("quiz-active");
+ 
     displayQuestion();
   }
 
@@ -357,6 +363,9 @@
     if (activeBody) activeBody.style.display = "none";
     if (activeHeader) activeHeader.style.display = "none";
     if (resultsScreen) resultsScreen.style.display = "block";
+    
+    const layout = document.querySelector(".quiz-layout");
+    if (layout) layout.classList.add("quiz-active");
 
     if (progressBarEl) {
       progressBarEl.style.width = "100%";
@@ -425,6 +434,9 @@
     
     const historyScreen = document.getElementById("quiz-history-screen");
     if (historyScreen) historyScreen.style.display = "block";
+    
+    const layout = document.querySelector(".quiz-layout");
+    if (layout) layout.classList.add("quiz-active");
     
     renderQuizHistory();
   }

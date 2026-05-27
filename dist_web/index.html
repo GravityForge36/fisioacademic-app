@@ -93,25 +93,17 @@
         <i data-lucide="book-open"></i>
         <span>Grade</span>
       </a>
-      <a href="#" class="mobile-nav-item" data-tab="planner">
-        <i data-lucide="calendar"></i>
-        <span>Estudos</span>
-      </a>
       <a href="#" class="mobile-nav-item" data-tab="flashcards">
         <i data-lucide="copy"></i>
         <span>Cards</span>
       </a>
-      <a href="#" class="mobile-nav-item" data-tab="reference">
-        <i data-lucide="search"></i>
-        <span>Pocket</span>
-      </a>
-      <a href="#" class="mobile-nav-item" data-tab="internship">
-        <i data-lucide="award"></i>
-        <span>Estágio</span>
-      </a>
       <a href="#" class="mobile-nav-item" data-tab="quiz">
         <i data-lucide="graduation-cap"></i>
         <span>Simulados</span>
+      </a>
+      <a href="#" class="mobile-nav-item" data-tab="more">
+        <i data-lucide="menu"></i>
+        <span>Mais</span>
       </a>
     </nav>
 
@@ -120,6 +112,9 @@
       
       <!-- Cabeçalho Principal -->
       <header class="app-header">
+        <button id="btn-mobile-back" class="btn-mobile-back" style="display: none; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); padding: 8px 12px; border-radius: var(--radius-sm); color: var(--text-main); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: var(--transition); margin-bottom: 12px; width: fit-content; text-transform: uppercase; letter-spacing: 0.5px;">
+          <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Voltar para Menu
+        </button>
         <div class="header-search">
           <h1 id="view-title">Dashboard</h1>
           <p id="view-subtitle" class="text-muted">Acompanhe seu desempenho no curso de Fisioterapia.</p>
@@ -356,6 +351,15 @@
 
       <!-- SEÇÃO 3: CRONOGRAMA & POMODORO -->
       <section id="tab-planner" class="tab-panel">
+        <!-- Sub-Abas Mobile (Visível apenas em Mobile) -->
+        <div class="planner-mobile-tabs" style="display: none; width: 100%; border-bottom: 1px solid var(--border-glass); margin-bottom: 16px; gap: 8px;">
+          <button type="button" class="planner-mobile-tab-btn active" id="btn-mobile-planner-tasks" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--primary); text-align: center; border-bottom: 2px solid var(--primary); outline: none;">
+            <i data-lucide="calendar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Tarefas
+          </button>
+          <button type="button" class="planner-mobile-tab-btn" id="btn-mobile-planner-pomo" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-muted); text-align: center; border-bottom: 2px solid transparent; outline: none;">
+            <i data-lucide="timer" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Pomodoro
+          </button>
+        </div>
         <div class="planner-layout">
           <!-- Coluna 1: Planejamento Híbrido -->
           <div class="planner-column flex-2">
@@ -558,6 +562,15 @@
 
       <!-- SEÇÃO 6: ESTÁGIO CLÍNICO -->
       <section id="tab-internship" class="tab-panel">
+        <!-- Sub-Abas Mobile (Visível apenas em Mobile) -->
+        <div class="internship-mobile-tabs" style="display: none; width: 100%; border-bottom: 1px solid var(--border-glass); margin-bottom: 16px; gap: 8px;">
+          <button type="button" class="internship-mobile-tab-btn active" id="btn-mobile-internship-progress" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--primary); text-align: center; border-bottom: 2px solid var(--primary); outline: none;">
+            <i data-lucide="award" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Progresso
+          </button>
+          <button type="button" class="internship-mobile-tab-btn" id="btn-mobile-internship-form" style="flex: 1; padding: 10px; background: none; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-muted); text-align: center; border-bottom: 2px solid transparent; outline: none;">
+            <i data-lucide="plus-circle" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Registrar
+          </button>
+        </div>
         <div class="internship-layout">
           <!-- Coluna Lateral: Formulário de Registro -->
           <div class="internship-form-column">
@@ -821,6 +834,89 @@
         </div>
       </section>
 
+      <!-- SEÇÃO 8: MAIS (MOBILE ONLY) -->
+      <section id="tab-more" class="tab-panel">
+        <div class="more-menu-container">
+          <div class="card glass-card user-profile-card-mobile" style="margin-bottom: 20px;">
+            <div class="card-body" style="display: flex; align-items: center; gap: 16px; padding: 16px;">
+              <div class="avatar" id="mobile-avatar" style="width: 50px; height: 50px; font-size: 1.15rem;">FR</div>
+              <div style="display: flex; flex-direction: column; overflow: hidden; flex-grow: 1;">
+                <span id="mobile-username" style="font-weight: 700; font-size: 1.05rem; color: #fff; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Fisioterapeuta</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Semestre Atual: <strong id="mobile-current-semester">1º</strong></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="more-menu-grid" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="more-menu-card" data-subtab="planner" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0;">Cronograma & Pomodoro</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Planeje suas tarefas de estudo e use o timer.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--text-muted); width: 18px; height: 18px;"></i>
+            </div>
+            
+            <div class="more-menu-card" data-subtab="reference" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="search" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0;">Pocket Fisio</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Termos técnicos, referências e goniometria.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--text-muted); width: 18px; height: 18px;"></i>
+            </div>
+            
+            <div class="more-menu-card" data-subtab="internship" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="award" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0;">Estágio Clínico</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Horas de prática clínica e diário de pacientes.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--text-muted); width: 18px; height: 18px;"></i>
+            </div>
+            
+            <div class="more-menu-card" id="mobile-btn-open-settings" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="settings" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0;">Configurações</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Ajustar dados do perfil e do curso.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--text-muted); width: 18px; height: 18px;"></i>
+            </div>
+            
+            <div class="more-menu-card" id="mobile-btn-switch-user" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="users" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0;">Alternar Perfil</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Mudar para outro estudante cadastrado.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--text-muted); width: 18px; height: 18px;"></i>
+            </div>
+            
+            <div class="more-menu-card btn-logout-mobile" id="mobile-btn-logout" style="display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(239, 68, 68, 0.15); padding: 14px 16px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition);">
+              <div class="more-card-icon-wrapper" style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: rgba(239, 68, 68, 0.1); color: var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="log-out" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="more-card-info" style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+                <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--red); margin: 0;">Sair</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Efetuar logout deste usuário.</p>
+              </div>
+              <i data-lucide="chevron-right" class="arrow" style="color: var(--red); width: 18px; height: 18px;"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
   </div>
@@ -935,6 +1031,19 @@
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <h3 id="modal-caderno-title" style="margin: 0; font-family: var(--font-title); font-size: 1.25rem;">Caderno Digital - Carregando...</h3>
           <button class="btn-close" id="btn-close-caderno" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+        </div>
+        
+        <!-- Barra de Abas Mobile (Visível apenas em Mobile) -->
+        <div class="caderno-mobile-tabs" style="display: none; width: 100%; border-bottom: 1px solid var(--border-glass); margin-bottom: 4px; gap: 4px;">
+          <button type="button" class="caderno-mobile-tab-btn active" id="btn-mobile-caderno-text" style="flex: 1; padding: 10px 6px; background: none; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--primary); text-align: center; border-bottom: 2px solid var(--primary); outline: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> <span>Livro</span>
+          </button>
+          <button type="button" class="caderno-mobile-tab-btn" id="btn-mobile-caderno-toc" style="flex: 1; padding: 10px 6px; background: none; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text-muted); text-align: center; border-bottom: 2px solid transparent; outline: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <i data-lucide="list" style="width: 14px; height: 14px;"></i> <span>Índice</span>
+          </button>
+          <button type="button" class="caderno-mobile-tab-btn" id="btn-mobile-caderno-notes" style="flex: 1; padding: 10px 6px; background: none; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text-muted); text-align: center; border-bottom: 2px solid transparent; outline: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <i data-lucide="edit-3" style="width: 14px; height: 14px;"></i> <span>Notas</span>
+          </button>
         </div>
         
         <!-- Barra de Ferramentas: Busca, Marca-texto, Borracha, Controles -->
@@ -1424,7 +1533,14 @@
         </div>
         
         <!-- Coluna 3: Editor (Folha Pautada estilo Word/OneNote) -->
-        <div id="notebook-editor-scroll-container" style="flex-grow: 1; background: #f3f4f6; padding: 24px 0; overflow-y: auto; height: 100%; display: block; box-sizing: border-box;">
+        <div id="notebook-editor-scroll-container" style="flex-grow: 1; background: #f3f4f6; padding: 24px 0; overflow-y: auto; height: 100%; display: block; box-sizing: border-box; position: relative;">
+          <!-- Barra Superior Mobile do Editor -->
+          <div class="notebook-mobile-editor-nav" style="display: none; padding: 8px 16px; background: #252526; border-bottom: 1px solid #3c3c3c; align-items: center; justify-content: space-between; color: #fff; margin-top: -24px; margin-bottom: 24px;">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-mobile-notebook-back-to-list" style="padding: 4px 10px; font-size: 0.8rem; background: #2d2d2d; border: 1px solid #3c3c3c; display: flex; align-items: center; gap: 4px; color: #fff;">
+              <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Seções / Páginas
+            </button>
+            <span id="notebook-mobile-active-page-title" style="font-size: 0.85rem; font-weight: 600; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Nenhuma Página</span>
+          </div>
           <!-- Lined Paper Sheets Container -->
           <div id="notebook-pages-container" style="display: flex; flex-direction: column; gap: 24px; width: 100%; align-items: center; min-height: 100%;">
             <!-- Rendered dynamically as notebook-sheet elements -->

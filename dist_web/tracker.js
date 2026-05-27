@@ -83,12 +83,12 @@
       const areaName = SPECIALTY_NAMES[shift.specialty] || shift.specialty;
 
       row.innerHTML = `
-        <td><strong>${formattedDate}</strong></td>
-        <td><span class="subject-badge status-in_progress" style="background-color: rgba(139, 92, 246, 0.08); color: var(--purple);">${areaName}</span></td>
-        <td class="font-bold text-primary">${shift.hours}h</td>
-        <td>${shift.supervisor}</td>
-        <td class="conduta-cell" title="${shift.notes || "Sem anotações"}">${shift.notes || "-"}</td>
-        <td>
+        <td data-label="Data"><strong>${formattedDate}</strong></td>
+        <td data-label="Área"><span class="subject-badge status-in_progress" style="background-color: rgba(139, 92, 246, 0.08); color: var(--purple);">${areaName}</span></td>
+        <td data-label="Horas" class="font-bold text-primary">${shift.hours}h</td>
+        <td data-label="Supervisor">${shift.supervisor}</td>
+        <td data-label="Conduta" class="conduta-cell" title="${shift.notes || "Sem anotações"}">${shift.notes || "-"}</td>
+        <td data-label="Ações">
           <button class="btn-card-action btn-delete-shift" data-shift-id="${shift.id}" title="Excluir Registro">
             <i data-lucide="trash-2"></i>
           </button>
