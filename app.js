@@ -2945,7 +2945,7 @@ function loadNotebookPageContent() {
       
       const maxH = getEditorMaxH(currentEditor);
       
-      if (currentEditor.scrollHeight > maxH) {
+      if (getEditorContentHeight(currentEditor) > maxH) {
         // Create next sheet
         const nextSheetIndex = container.children.length;
         const nextSheet = createNewSheet(nextSheetIndex, false);
@@ -3037,7 +3037,7 @@ function handleOverflow(editor, maxH) {
   const nextEditor = nextSheet.querySelector('.notebook-page-content-editor');
   
   const nodesToMove = [];
-  while (editor.scrollHeight > maxH && editor.childNodes.length > 1) {
+  while (getEditorContentHeight(editor) > maxH && editor.childNodes.length > 1) {
     const lastChild = editor.lastChild;
     if (!lastChild) break;
     nodesToMove.unshift(lastChild);
@@ -3045,14 +3045,14 @@ function handleOverflow(editor, maxH) {
   }
   
   // Se ainda assim ultrapassar o limite de altura e só restar 1 nó, vamos quebrá-lo por palavras (caso seja texto longo)
-  if (editor.scrollHeight > maxH && editor.childNodes.length === 1) {
+  if (getEditorContentHeight(editor) > maxH && editor.childNodes.length === 1) {
     const singleChild = editor.firstChild;
     if (singleChild.nodeType === Node.ELEMENT_NODE) {
       let text = singleChild.textContent || "";
       if (text.length > 0) {
         const words = text.split(" ");
         const wordsToMove = [];
-        while (editor.scrollHeight > maxH && words.length > 1) {
+        while (getEditorContentHeight(editor) > maxH && words.length > 1) {
           const lastWord = words.pop();
           wordsToMove.unshift(lastWord);
           singleChild.textContent = words.join(" ");
@@ -3068,7 +3068,7 @@ function handleOverflow(editor, maxH) {
       if (text.length > 0) {
         const words = text.split(" ");
         const wordsToMove = [];
-        while (editor.scrollHeight > maxH && words.length > 1) {
+        while (getEditorContentHeight(editor) > maxH && words.length > 1) {
           const lastWord = words.pop();
           wordsToMove.unshift(lastWord);
           singleChild.textContent = words.join(" ");
@@ -3099,11 +3099,11 @@ function handleOverflow(editor, maxH) {
     
     // Check overflow recursively
     const nextMaxH = getEditorMaxH(nextEditor);
-    if (nextEditor.scrollHeight > nextMaxH) {
+    if (getEditorContentHeight(nextEditor) > nextMaxH) {
       handleOverflow(nextEditor, nextMaxH);
     }
   } else {
-    // If scrollHeight still exceeds maxH but we only have 1 node left,
+    // If content height still exceeds maxH but we only have 1 node left,
     // focus the next editor to let user keep typing there
     nextEditor.focus();
     autoSaveCurrentPage();
@@ -3307,13 +3307,29 @@ let isAllSelectedMode = false;
 function getEditorMaxH(editor) {
   const sheet = editor.closest('.notebook-sheet');
   if (!sheet) return 960;
-  const isFirst = sheet.id === 'sheet-1';
+  const isFirst = sheet.classList.contains('first-page') || sheet.id === 'sheet-1';
   if (isFirst) {
     const titleArea = sheet.querySelector('.notebook-title-area');
     const titleH = titleArea ? titleArea.offsetHeight : 84;
     return 970 - titleH - 10;
   }
   return 960;
+}
+
+function getEditorContentHeight(editor) {
+  if (editor.childNodes.length === 0) return 0;
+  
+  const lastChild = editor.lastElementChild;
+  if (!lastChild) {
+    const range = document.createRange();
+    range.selectNodeContents(editor);
+    const rect = range.getBoundingClientRect();
+    return rect.height;
+  }
+  
+  const rect = lastChild.getBoundingClientRect();
+  const editorRect = editor.getBoundingClientRect();
+  return rect.bottom - editorRect.top;
 }
 
 function restoreAllEditable() {
@@ -3388,7 +3404,7 @@ function setupNotebookEvents() {
         const editor = e.target;
         const maxH = getEditorMaxH(editor);
         
-        if (editor.scrollHeight > maxH) {
+        if (getEditorContentHeight(editor) > maxH) {
           handleOverflow(editor, maxH);
         }
       }
@@ -3478,7 +3494,7 @@ function setupNotebookEvents() {
         if (e.key === "Enter") {
           const maxH = getEditorMaxH(editor);
           setTimeout(() => {
-            if (editor.scrollHeight > maxH) {
+            if (getEditorContentHeight(editor) > maxH) {
               handleOverflow(editor, maxH);
             }
           }, 0);
