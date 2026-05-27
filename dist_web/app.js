@@ -3333,7 +3333,27 @@ window.addEventListener("keydown", (e) => {
     const isModifierOnly = ["Control", "Shift", "Alt", "Meta"].includes(e.key);
     
     if (!isCopyOrCutOrSelectAll && !isModifierOnly) {
-      restoreAllEditable();
+      const isDeleteKey = e.key === "Backspace" || e.key === "Delete";
+      const isEnter = e.key === "Enter";
+      const isChar = e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey;
+      
+      if (isDeleteKey || isEnter || isChar) {
+        e.preventDefault();
+        restoreAllEditable();
+        
+        const selection = window.getSelection();
+        selection.deleteFromDocument();
+        
+        if (isChar) {
+          document.execCommand("insertText", false, e.key);
+        } else if (isEnter) {
+          document.execCommand("insertParagraph");
+        }
+        
+        autoSaveCurrentPage();
+      } else {
+        restoreAllEditable();
+      }
     }
   }
 }, true);
