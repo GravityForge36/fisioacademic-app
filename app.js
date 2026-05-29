@@ -508,8 +508,60 @@ function deleteProfile(profileId) {
   }
 }
 
+function isAppRunningAsStandalone() {
+  const isPySide = window.location.protocol === 'file:';
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  return isPySide || isStandalone || isLocalhost;
+}
+
 function checkAuthAndStart() {
   setupAuthEvents();
+
+  // Se não estiver rodando no PC (PySide6), como app instalado (standalone) ou localmente para testes,
+  // exibe apenas o painel de instalação e impede o cadastro/login direto na web
+  if (!isAppRunningAsStandalone()) {
+    document.getElementById("auth-overlay").style.display = "none";
+    const pwaOverlay = document.getElementById("pwa-installer-overlay");
+    if (pwaOverlay) {
+      pwaOverlay.style.display = "flex";
+      
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const installActionBtn = document.getElementById("btn-pwa-install-action");
+      const iosInstructions = document.getElementById("pwa-ios-instructions-area");
+      
+      if (isIOS) {
+        if (installActionBtn) installActionBtn.style.display = "none";
+        if (iosInstructions) iosInstructions.style.display = "block";
+      } else {
+        if (installActionBtn) {
+          installActionBtn.style.display = "flex";
+          if (!installActionBtn.dataset.listenerBound) {
+            installActionBtn.dataset.listenerBound = "true";
+            installActionBtn.addEventListener("click", () => {
+              if (window.deferredInstallPrompt) {
+                window.deferredInstallPrompt.prompt();
+                window.deferredInstallPrompt.userChoice.then((choiceResult) => {
+                  if (choiceResult.outcome === 'accepted') {
+                    console.log('PWA: Usuário aceitou instalar.');
+                  }
+                  window.deferredInstallPrompt = null;
+                });
+              } else {
+                alert('A instalação direta não pôde ser iniciada. Se você estiver no Android, toque no menu de 3 pontinhos do Chrome e selecione "Instalar aplicativo".');
+              }
+            });
+          }
+        }
+        if (iosInstructions) iosInstructions.style.display = "none";
+      }
+    }
+    return;
+  }
+
+  // Se estiver no ambiente correto, esconde o painel de instalação
+  const pwaOverlay = document.getElementById("pwa-installer-overlay");
+  if (pwaOverlay) pwaOverlay.style.display = "none";
 
   // Reset active profile on new session (app launch) so they are prompted to login/select user
   if (!sessionStorage.getItem("fisio_session_active")) {

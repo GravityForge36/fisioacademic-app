@@ -1193,6 +1193,34 @@
     </div>
   </div>
 
+  <!-- TELA DE INSTALAÇÃO DO APLICATIVO (PWA) -->
+  <div class="pwa-installer-overlay" id="pwa-installer-overlay" style="display: none;">
+    <div class="pwa-installer-card">
+      <div class="pwa-installer-logo">
+        <img src="logo.png" alt="Logo FisioAcademic">
+      </div>
+      <h2 class="pwa-installer-title">Instalar o FisioAcademic</h2>
+      <p class="pwa-installer-subtitle">Para criar seu perfil de estudos, salvar seu progresso offline e estudar com foco total, você precisa instalar o aplicativo no seu aparelho.</p>
+      
+      <!-- Botão para Android/Chrome/PC -->
+      <button type="button" class="pwa-install-btn" id="btn-pwa-install-action">
+        <i data-lucide="download"></i> Instalar Aplicativo
+      </button>
+
+      <!-- Instruções detalhadas para iOS (Safari) -->
+      <div class="pwa-ios-instructions" id="pwa-ios-instructions-area">
+        <div style="display: flex; align-items: center; gap: 8px; font-weight: bold; color: var(--primary); margin-bottom: 8px;">
+          <i data-lucide="smartphone"></i> Como instalar no iPhone (Safari):
+        </div>
+        <ol style="margin-left: 20px; text-align: left; color: var(--text-muted);">
+          <li style="margin-bottom: 6px;">Toque no botão de <strong>Compartilhar</strong> (o ícone <i data-lucide="share" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin: 0 2px;"></i> na barra inferior do Safari).</li>
+          <li style="margin-bottom: 6px;">Role a lista para baixo e toque em <strong>"Adicionar à Tela de Início"</strong>.</li>
+          <li style="margin-bottom: 6px;">Toque em <strong>"Adicionar"</strong> no canto superior direito para confirmar.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
   <!-- TELA DE AUTENTICAÇÃO E SELEÇÃO DE PERFIS -->
   <div class="auth-overlay" id="auth-overlay" style="display: flex;">
     
