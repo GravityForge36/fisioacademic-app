@@ -211,7 +211,7 @@
     }
 
     if (questionCategoryEl) {
-      questionCategoryEl.textContent = currentQuestion.category;
+      questionCategoryEl.textContent = (window.FisioData && window.FisioData.SUBJECT_PRETTY_NAMES && window.FisioData.SUBJECT_PRETTY_NAMES[currentQuestion.category]) || currentQuestion.category;
     }
     if (questionTextEl) {
       questionTextEl.textContent = currentQuestion.question;
