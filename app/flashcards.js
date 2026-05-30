@@ -5,19 +5,122 @@
   let activeDeck = [];
   let currentIndex = 0;
 
-  // 1. ATUALIZAR CONTADORES DE ABAS/CATEGORIAS
+  function getCategoryIcon(cat) {
+    const mapping = {
+      "all": "layers",
+      "Anatomia": "box",
+      "s2_anatomofisio_1": "box",
+      "Cinesiologia": "shuffle",
+      "s4_cinesio": "shuffle",
+      "Avaliação": "check-square",
+      "s4_avaliacao": "check-square",
+      "s1_perspectivas": "compass",
+      "s1_biosseguranca": "shield-alert",
+      "s1_saude_coletiva": "users",
+      "s1_epidemiologia": "activity",
+      "s1_exp_prof": "award",
+      "s2_prod_conhecimento": "file-text",
+      "s2_bioquimica": "droplets",
+      "s2_anatomofisio_2": "heart",
+      "s3_empreendedorismo": "zap",
+      "s3_movimento": "repeat",
+      "s3_fundamentos_etica": "bookmark",
+      "s3_fisiopatologia": "skull",
+      "s4_farmaco": "pill",
+      "s4_eletro": "zap",
+      "s5_recursos_manuais": "hand",
+      "s5_fisiologia_ex": "activity",
+      "s5_aquatica": "droplet",
+      "s5_idoso": "smile",
+      "s6_traumato": "bone",
+      "s6_neuro": "brain",
+      "s6_crianca": "baby",
+      "s6_mulher": "venus",
+      "s7_protese": "accessibility",
+      "s7_respiratoria": "wind",
+      "s8_dermatofunc": "sparkles",
+      "s9_cardio": "heart-pulse",
+      "s10_trabalhador": "briefcase",
+      "s10_evidencias": "check-circle",
+      "s10_topicos": "star"
+    };
+    return mapping[cat] || "book-open";
+  }
+
+  // 1. ATUALIZAR CONTADORES DE ABAS/CATEGORIAS DINAMICAMENTE
   function updateCategoryCounts() {
-    const flashcards = window.FisioApp.state.flashcards;
+    const flashcards = window.FisioApp.state.flashcards || [];
+    const container = document.getElementById("categories-list");
+    if (!container) return;
 
-    const countAll = document.getElementById("count-all-cards");
-    const countAnatomy = document.getElementById("count-anatomy-cards");
-    const countCinesio = document.getElementById("count-cinesio-cards");
-    const countAssessment = document.getElementById("count-assessment-cards");
+    const currentActive = activeCategory;
+    container.innerHTML = "";
 
-    if (countAll) countAll.textContent = flashcards.length;
-    if (countAnatomy) countAnatomy.textContent = flashcards.filter(fc => fc.category === "Anatomia").length;
-    if (countCinesio) countCinesio.textContent = flashcards.filter(fc => fc.category === "Cinesiologia").length;
-    if (countAssessment) countAssessment.textContent = flashcards.filter(fc => fc.category === "Avaliação").length;
+    // Botão "Todos os Cards"
+    const btnAll = document.createElement("button");
+    btnAll.className = `deck-item ${currentActive === "all" ? "active" : ""}`;
+    btnAll.setAttribute("data-category", "all");
+    btnAll.innerHTML = `<i data-lucide="layers"></i> Todos os Cards (<span>${flashcards.length}</span>)`;
+    container.appendChild(btnAll);
+
+    // Obter todas as categorias únicas que possuem cards, ordenadas de forma lógica
+    const uniqueCategories = [];
+    flashcards.forEach(fc => {
+      if (fc.category && !uniqueCategories.includes(fc.category)) {
+        uniqueCategories.push(fc.category);
+      }
+    });
+
+    uniqueCategories.sort((a, b) => {
+      const getOrder = (cat) => {
+        if (cat === "Anatomia" || cat === "Cinesiologia" || cat === "Avaliação" || cat === "Fisiologia" || cat === "Neurologia" || cat === "Cardiovascular" || cat === "Casos Clínicos" || cat === "Eletroterapia" || cat === "Pediatria" || cat === "Especialidades") {
+          return 0; // Geral primeiro
+        }
+        const m = cat.match(/^s(\d+)_/);
+        if (m) {
+          return parseInt(m[1]); // Semestres 1 a 10
+        }
+        return 99; // Outros
+      };
+      const orderA = getOrder(a);
+      const orderB = getOrder(b);
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+      return a.localeCompare(b);
+    });
+
+    // Adicionar botões para cada categoria ativa
+    uniqueCategories.forEach(cat => {
+      const count = flashcards.filter(fc => fc.category === cat).length;
+      if (count === 0) return;
+
+      const prettyName = (window.FisioData && window.FisioData.SUBJECT_PRETTY_NAMES && window.FisioData.SUBJECT_PRETTY_NAMES[cat]) || cat;
+      const icon = getCategoryIcon(cat);
+
+      const btn = document.createElement("button");
+      btn.className = `deck-item ${currentActive === cat ? "active" : ""}`;
+      btn.setAttribute("data-category", cat);
+      btn.innerHTML = `<i data-lucide="${icon}"></i> ${prettyName} (<span>${count}</span>)`;
+      container.appendChild(btn);
+    });
+
+    // Recriar os ícones Lucide
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+
+    // Vincular cliques de evento para todas as categorias
+    const deckButtons = container.querySelectorAll(".deck-item");
+    deckButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        deckButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        
+        activeCategory = btn.getAttribute("data-category");
+        initFlashcardSession();
+      });
+    });
   }
 
   // 2. INICIAR UMA SESSÃO DE ESTUDO
@@ -87,8 +190,9 @@
     // Carregar dados da carta atual
     const cardData = activeDeck[currentIndex];
     
-    if (fcCategoryFront) fcCategoryFront.textContent = cardData.category;
-    if (fcCategoryBack) fcCategoryBack.textContent = cardData.category;
+    const prettyName = (window.FisioData && window.FisioData.SUBJECT_PRETTY_NAMES && window.FisioData.SUBJECT_PRETTY_NAMES[cardData.category]) || cardData.category;
+    if (fcCategoryFront) fcCategoryFront.textContent = prettyName;
+    if (fcCategoryBack) fcCategoryBack.textContent = prettyName;
     if (fcQuestion) fcQuestion.textContent = cardData.question;
     if (fcAnswer.tagName === "TEXTAREA" || fcAnswer.tagName === "INPUT") {
       fcAnswer.value = cardData.answer;
@@ -210,17 +314,7 @@
       });
     }
 
-    // Seletores de Abas/Categorias de Baralhos
-    const deckButtons = document.querySelectorAll(".deck-item");
-    deckButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        deckButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        
-        activeCategory = btn.getAttribute("data-category");
-        initFlashcardSession();
-      });
-    });
+    // Os botões de categorias do baralho agora são vinculados dinamicamente em updateCategoryCounts()
 
     // Botões de Desempenho (Errei, Médio, Fácil)
     const btnHard = document.getElementById("btn-fc-hard");
