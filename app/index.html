@@ -1389,7 +1389,17 @@
       </div>
       <form class="auth-form" id="form-login-simple">
         <input type="hidden" id="login-simple-userid">
-         <div class="auth-footer-links" style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <div class="auth-field">
+          <label for="login-simple-password">Senha</label>
+          <input type="password" id="login-simple-password" class="auth-input" placeholder="Sua senha" required autocomplete="current-password">
+        </div>
+        <div class="auth-checkbox-container">
+          <input type="checkbox" id="login-simple-remember" checked>
+          <label for="login-simple-remember">Lembrar senha neste computador</label>
+        </div>
+        <button type="submit" class="auth-btn">Entrar</button>
+      </form>
+      <div class="auth-footer-links" style="display: flex; flex-direction: column; gap: 8px; align-items: center; margin-top: 14px;">
         <a class="auth-link" id="link-login-switch">Entrar com outro usuário</a>
         <a class="auth-link" id="link-login-connect" style="font-weight: 700; color: var(--primary);">Conectar Conta da Nuvem</a>
       </div>
