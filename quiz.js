@@ -181,8 +181,8 @@
       return;
     }
 
-    // Embaralhar as questões e pegar 10
-    activeQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    // Embaralhar as questões e pegar 20
+    activeQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 20);
     
     currentQuestionIndex = 0;
     score = 0;
