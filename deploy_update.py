@@ -75,6 +75,24 @@ with open(version_path, "w", encoding="utf-8") as f:
 with open(dist_version_path, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2)
 
+# Atualiza a versão exibida na interface em app_source.html
+html_src_path = os.path.join(project_dir, "app_source.html")
+if os.path.exists(html_src_path):
+    try:
+        with open(html_src_path, "r", encoding="utf-8") as f:
+            html_content = f.read()
+        import re
+        html_content = re.sub(
+            r'id="sidebar-app-version">Versão \d+<',
+            f'id="sidebar-app-version">Versão {version}<',
+            html_content
+        )
+        with open(html_src_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+        print(f"  Interface: app_source.html atualizado para Versão {version}")
+    except Exception as e:
+        print(f"  Erro ao atualizar versão em app_source.html: {e}")
+
 print(f"[1/3] Versao incrementada com sucesso para: {version}")
 
 # 2. Rodar compilação local (build_and_deploy.py)
