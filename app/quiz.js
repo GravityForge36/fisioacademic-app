@@ -181,8 +181,37 @@
       return;
     }
 
-    // Embaralhar as questões e pegar 20
-    activeQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 20);
+    // Algoritmo anti-repetição para simulados seguidos
+    const profileKey = window.FisioApp?.getProfileKey ? window.FisioApp.getProfileKey(`fisio_recent_q_${category}`) : (window.getProfileKey ? window.getProfileKey(`fisio_recent_q_${category}`) : `fisio_recent_q_${category}`);
+    let recentlyUsedIds = [];
+    try {
+      const saved = localStorage.getItem(profileKey);
+      if (saved) {
+        recentlyUsedIds = JSON.parse(saved);
+      }
+    } catch (e) {
+      recentlyUsedIds = [];
+    }
+
+    // Dividir as questões em não usadas e usadas na rodada anterior
+    const unusedQuestions = allQuestions.filter(q => !recentlyUsedIds.includes(q.id || q.question));
+    const usedQuestions = allQuestions.filter(q => recentlyUsedIds.includes(q.id || q.question));
+
+    // Embaralhar as duas listas de forma independente
+    const shuffle = (array) => [...array].sort(() => 0.5 - Math.random());
+    const shuffledUnused = shuffle(unusedQuestions);
+    const shuffledUsed = shuffle(usedQuestions);
+
+    // Priorizar as não usadas e preencher o restante (se necessário) com as usadas
+    activeQuestions = [...shuffledUnused, ...shuffledUsed].slice(0, 20);
+
+    // Salvar os IDs das questões escolhidas nesta rodada para evitar repetição na próxima
+    const selectedIds = activeQuestions.map(q => q.id || q.question);
+    try {
+      localStorage.setItem(profileKey, JSON.stringify(selectedIds));
+    } catch (e) {
+      console.error("Erro ao salvar histórico de questões recentes:", e);
+    }
     
     currentQuestionIndex = 0;
     score = 0;
