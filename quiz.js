@@ -203,7 +203,7 @@
     const shuffledUsed = shuffle(usedQuestions);
 
     // Priorizar as não usadas e preencher o restante (se necessário) com as usadas
-    activeQuestions = [...shuffledUnused, ...shuffledUsed].slice(0, 20);
+    activeQuestions = [...shuffledUnused, ...shuffledUsed].slice(0, 15);
 
     // Salvar os IDs das questões escolhidas nesta rodada para evitar repetição na próxima
     const selectedIds = activeQuestions.map(q => q.id || q.question);
