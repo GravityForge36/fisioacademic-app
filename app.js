@@ -8,6 +8,298 @@ function getProfileKey(baseKey) {
 }
 window.getProfileKey = getProfileKey; // Tornar disponível para outros scripts
 
+// A1. SISTEMA DE SINCRONIZAÇÃO EM NUVEM (CLOUD SYNC)
+const BUCKET_ID = "s7G9yP2mW1K5b4xT8dZ3qV";
+const CLOUD_API_BASE = `https://kvdb.io/${BUCKET_ID}`;
+
+// Helper de Hashing SHA-256 para as senhas
+async function hashPassword(password) {
+  try {
+    const msgBuffer = new TextEncoder().encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (e) {
+    let hash = 0;
+    for (let i = 0; i < password.length; i++) {
+      hash = (hash << 5) - hash + password.charCodeAt(i);
+      hash |= 0;
+    }
+    return "fallback_" + Math.abs(hash);
+  }
+}
+
+const FisioCloudSync = {
+  activeSyncs: 0,
+  syncQueue: {},
+  syncTimeout: null,
+  isOnline: navigator.onLine,
+
+  updateIndicator(status, message) {
+    const headerDot = document.getElementById("header-sync-dot");
+    const headerText = document.getElementById("header-sync-text");
+    const settingsTime = document.getElementById("settings-sync-time");
+
+    if (headerDot && headerText) {
+      headerDot.className = "status-dot " + status;
+      headerText.textContent = message;
+    }
+    if (settingsTime && status === "synced") {
+      const timeStr = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      settingsTime.textContent = `Última sincronização: hoje às ${timeStr}`;
+    } else if (settingsTime && status === "syncing") {
+      settingsTime.textContent = "Sincronizando dados com a nuvem...";
+    } else if (settingsTime && status === "error") {
+      settingsTime.textContent = "Erro na sincronização - salvo localmente.";
+    }
+  },
+
+  async checkUserExists(username) {
+    try {
+      const response = await fetch(`${CLOUD_API_BASE}/profile_${username}`, { method: 'GET' });
+      if (response.status === 200) {
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.warn("Erro ao checar usuário na nuvem:", err);
+      return false; 
+    }
+  },
+
+  async uploadProfile(profile) {
+    try {
+      const pCopy = { ...profile };
+      // Hash a senha para salvar na nuvem se for texto plano
+      if (profile.password) {
+        pCopy.passwordHash = await hashPassword(profile.password);
+        delete pCopy.password; 
+      }
+      
+      const response = await fetch(`${CLOUD_API_BASE}/profile_${profile.username}`, {
+        method: 'POST',
+        body: JSON.stringify(pCopy)
+      });
+      return response.status === 200 || response.status === 201;
+    } catch (err) {
+      console.error("Erro ao subir perfil para a nuvem:", err);
+      return false;
+    }
+  },
+
+  async pushData(username, key, value) {
+    try {
+      const response = await fetch(`${CLOUD_API_BASE}/data_${username}_${key}`, {
+        method: 'POST',
+        body: value
+      });
+      return response.status === 200 || response.status === 201;
+    } catch (err) {
+      console.error(`Erro ao sincronizar chave ${key} na nuvem:`, err);
+      return false;
+    }
+  },
+
+  async pullData(username, key) {
+    try {
+      const response = await fetch(`${CLOUD_API_BASE}/data_${username}_${key}`, { method: 'GET' });
+      if (response.status === 200) {
+        return await response.text();
+      }
+      return null;
+    } catch (err) {
+      console.error(`Erro ao baixar chave ${key} da nuvem:`, err);
+      return null;
+    }
+  },
+
+  // Enfileira a sincronização de uma chave com debounce de 5 segundos
+  queueSync(key, value) {
+    const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+    if (!activeProfileId) return;
+    
+    const profiles = loadProfiles();
+    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    if (!activeProfile || !activeProfile.username) return;
+
+    this.syncQueue[key] = {
+      username: activeProfile.username,
+      value: value
+    };
+    
+    this.updateIndicator("syncing", "Alterações locais...");
+
+    if (this.syncTimeout) {
+      clearTimeout(this.syncTimeout);
+    }
+
+    this.syncTimeout = setTimeout(() => {
+      this.processQueue();
+    }, 5000);
+  },
+
+  async processQueue() {
+    const keys = Object.keys(this.syncQueue);
+    if (keys.length === 0) return;
+
+    this.updateIndicator("syncing", "Sincronizando...");
+    let hasError = false;
+
+    for (let key of keys) {
+      const item = this.syncQueue[key];
+      const success = await this.pushData(item.username, key, item.value);
+      if (success) {
+        delete this.syncQueue[key];
+      } else {
+        hasError = true;
+      }
+    }
+
+    if (hasError) {
+      this.updateIndicator("error", "Erro ao sincronizar");
+    } else {
+      this.updateIndicator("synced", "Nuvem Sincronizada");
+    }
+  },
+
+  async forceSyncNow() {
+    const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+    if (!activeProfileId) return alert("Nenhum perfil ativo para sincronizar.");
+
+    const profiles = loadProfiles();
+    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    if (!activeProfile || !activeProfile.username) return alert("Erro no perfil ativo.");
+
+    this.updateIndicator("syncing", "Forçando sincronização...");
+    
+    const keysMap = {
+      curriculum: "curriculum",
+      flashcards: "flashcards",
+      tasks: "plannerTasks",
+      shifts: "internshipShifts",
+      settings: "settings",
+      quiz_stats: "quiz_stats",
+      quiz_history: "quiz_history",
+      pomo_study: "pomo_study_duration",
+      pomo_break: "pomo_break_duration"
+    };
+
+    let hasError = false;
+    for (let cloudKey in keysMap) {
+      const stateKey = keysMap[cloudKey];
+      let val = null;
+      if (stateKey === "curriculum") val = JSON.stringify(state.curriculum);
+      else if (stateKey === "flashcards") val = JSON.stringify(state.flashcards);
+      else if (stateKey === "plannerTasks") val = JSON.stringify(state.plannerTasks);
+      else if (stateKey === "internshipShifts") val = JSON.stringify(state.internshipShifts);
+      else if (stateKey === "settings") val = JSON.stringify(state.settings);
+      else if (stateKey === "quiz_stats") val = localStorage.getItem(getProfileKey("fisio_quiz_stats"));
+      else if (stateKey === "quiz_history") val = localStorage.getItem(getProfileKey("fisio_quiz_history"));
+      else if (stateKey === "pomo_study_duration") val = localStorage.getItem(getProfileKey("fisio_pomo_study_duration"));
+      else if (stateKey === "pomo_break_duration") val = localStorage.getItem(getProfileKey("fisio_pomo_break_duration"));
+
+      if (val !== null) {
+        const success = await this.pushData(activeProfile.username, cloudKey, val);
+        if (!success) hasError = true;
+      }
+    }
+
+    const profileSuccess = await this.uploadProfile(activeProfile);
+    if (!profileSuccess) hasError = true;
+
+    if (hasError) {
+      this.updateIndicator("error", "Erro ao sincronizar");
+      alert("Houve uma falha ao sincronizar alguns dados. Verifique sua conexão.");
+    } else {
+      this.updateIndicator("synced", "Nuvem Sincronizada");
+      alert("Todos os seus dados foram sincronizados com a nuvem!");
+    }
+  },
+
+  async pullAllAndSync(profile) {
+    const keysMap = {
+      curriculum: "fisio_curriculum",
+      flashcards: "fisio_flashcards",
+      tasks: "fisio_tasks",
+      shifts: "fisio_shifts",
+      settings: "fisio_settings",
+      quiz_stats: "fisio_quiz_stats",
+      quiz_history: "fisio_quiz_history",
+      pomo_study: "fisio_pomo_study_duration",
+      pomo_break: "fisio_pomo_break_duration"
+    };
+
+    let countFetched = 0;
+    for (let cloudKey in keysMap) {
+      const localBaseKey = keysMap[cloudKey];
+      const localKey = `${profile.id}_${localBaseKey}`;
+      const cloudVal = await this.pullData(profile.username, cloudKey);
+      if (cloudVal !== null) {
+        localStorage.setItem(localKey, cloudVal);
+        countFetched++;
+      }
+    }
+    return countFetched > 0;
+  }
+};
+
+window.FisioCloudSync = FisioCloudSync; // expor globalmente
+
+window.addEventListener("online", () => {
+  FisioCloudSync.isOnline = true;
+  FisioCloudSync.processQueue();
+});
+
+window.addEventListener("offline", () => {
+  FisioCloudSync.isOnline = false;
+  FisioCloudSync.updateIndicator("offline", "Modo Offline");
+});
+
+async function startupSync() {
+  const activeProfileId = localStorage.getItem("fisio_active_profile_id");
+  if (!activeProfileId) return;
+
+  const profiles = loadProfiles();
+  const activeProfile = profiles.find(p => p.id === activeProfileId);
+  if (!activeProfile || !activeProfile.username) return;
+
+  FisioCloudSync.updateIndicator("syncing", "Buscando atualizações...");
+
+  try {
+    const pulled = await FisioCloudSync.pullAllAndSync(activeProfile);
+    if (pulled) {
+      // Recarregar os dados na memória (estado local) a partir do localStorage
+      const localCurriculum = localStorage.getItem(getProfileKey("fisio_curriculum"));
+      const localFlashcards = localStorage.getItem(getProfileKey("fisio_flashcards"));
+      const localTasks = localStorage.getItem(getProfileKey("fisio_tasks"));
+      const localShifts = localStorage.getItem(getProfileKey("fisio_shifts"));
+      const localSettings = localStorage.getItem(getProfileKey("fisio_settings"));
+
+      if (localCurriculum) state.curriculum = JSON.parse(localCurriculum);
+      if (localFlashcards) state.flashcards = JSON.parse(localFlashcards);
+      if (localTasks) state.plannerTasks = JSON.parse(localTasks);
+      if (localShifts) state.internshipShifts = JSON.parse(localShifts);
+      if (localSettings) state.settings = JSON.parse(localSettings);
+
+      // Atualizar as exibições
+      setupCurriculumView();
+      renderDashboard();
+      if (window.renderPlannerList) window.renderPlannerList();
+      if (window.renderFlashcardTopicSelector) window.renderFlashcardTopicSelector();
+      if (window.renderQuizHistory) window.renderQuizHistory();
+      if (window.loadQuizStats) window.loadQuizStats();
+      if (window.reloadPomoDurations) window.reloadPomoDurations();
+      
+      FisioCloudSync.updateIndicator("synced", "Nuvem Sincronizada");
+    } else {
+      FisioCloudSync.updateIndicator("synced", "Nuvem Sincronizada");
+    }
+  } catch (err) {
+    console.error("Erro no startupSync:", err);
+    FisioCloudSync.updateIndicator("error", "Erro ao sincronizar");
+  }
+}
+
 const THEMES = {
   teal: {
     primary: "#2bbab5",
@@ -401,6 +693,16 @@ function initSettingsModalControls() {
       });
     }
   }
+
+  const btnSyncNow = document.getElementById("btn-settings-sync-now");
+  if (btnSyncNow) {
+    if (!btnSyncNow.dataset.listenerBound) {
+      btnSyncNow.dataset.listenerBound = "true";
+      btnSyncNow.addEventListener("click", () => {
+        FisioCloudSync.forceSyncNow();
+      });
+    }
+  }
 }
 
 function loadProfiles() {
@@ -415,6 +717,8 @@ function showAuthScreen(screenId) {
   document.getElementById("auth-screen-login").style.display = "none";
   document.getElementById("auth-screen-select").style.display = "none";
   document.getElementById("auth-screen-register").style.display = "none";
+  const connectScreen = document.getElementById("auth-screen-connect");
+  if (connectScreen) connectScreen.style.display = "none";
   document.getElementById(`auth-screen-${screenId}`).style.display = "block";
 }
 
@@ -664,7 +968,7 @@ function setupAuthEvents() {
     }
   }
 
-  document.getElementById("form-register").addEventListener("submit", (e) => {
+  document.getElementById("form-register").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("reg-name").value.trim();
     const username = document.getElementById("reg-username").value.trim().toLowerCase();
@@ -678,11 +982,27 @@ function setupAuthEvents() {
       return;
     }
     
+    const submitBtn = e.target.querySelector("button[type='submit']");
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Verificando disponibilidade online...";
+
+    // Verificar na nuvem se usuário já existe
+    const existsOnline = await FisioCloudSync.checkUserExists(username);
+    if (existsOnline) {
+      alert("Este nome de usuário já está sendo usado na nuvem por outra pessoa. Se esta conta for sua, use a opção 'Conectar Conta da Nuvem' na tela de login.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      return;
+    }
+
+    submitBtn.textContent = "Criando perfil na nuvem...";
+
     const newProfile = {
       id: "profile_" + Date.now(),
       name,
       username,
-      password,
+      password, // Salva texto plano localmente para conveniência
       avatarColor: "#2bbab5", // Default avatar color (Teal theme primary)
       avatarImage: avatarImage || undefined,
       semester: parseInt(semester),
@@ -702,6 +1022,31 @@ function setupAuthEvents() {
           }
         });
         alert("Detectamos progresso anterior neste computador! Seus dados foram importados com sucesso para o seu novo perfil.");
+      }
+    }
+
+    // Subir perfil para a nuvem
+    const uploadSuccess = await FisioCloudSync.uploadProfile(newProfile);
+    if (!uploadSuccess) {
+      if (!confirm("Não conseguimos registrar sua conta na nuvem devido a problemas de conexão. Deseja criar o perfil apenas localmente? (Você poderá sincronizar mais tarde)")) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        return;
+      }
+    } else {
+      // Sincronizar o progresso inicial com a nuvem (vazio ou importado)
+      const keysMap = {
+        curriculum: "fisio_curriculum",
+        flashcards: "fisio_flashcards",
+        tasks: "fisio_tasks",
+        shifts: "fisio_shifts",
+        settings: "fisio_settings"
+      };
+      for (let cloudKey in keysMap) {
+        const localVal = localStorage.getItem(`${newProfile.id}_${keysMap[cloudKey]}`);
+        if (localVal) {
+          await FisioCloudSync.pushData(newProfile.username, cloudKey, localVal);
+        }
       }
     }
     
@@ -795,6 +1140,140 @@ function setupAuthEvents() {
     }
   });
   
+  // Eventos de Navegação da Tela de Conexão em Nuvem
+  const linkLoginConnect = document.getElementById("link-login-connect");
+  if (linkLoginConnect) {
+    linkLoginConnect.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthScreen("connect");
+    });
+  }
+
+  const linkSelectConnect = document.getElementById("link-select-connect");
+  if (linkSelectConnect) {
+    linkSelectConnect.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthScreen("connect");
+    });
+  }
+
+  const linkRegisterConnect = document.getElementById("link-register-connect");
+  if (linkRegisterConnect) {
+    linkRegisterConnect.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthScreen("connect");
+    });
+  }
+
+  const linkConnectBack = document.getElementById("link-connect-back");
+  if (linkConnectBack) {
+    linkConnectBack.addEventListener("click", (e) => {
+      e.preventDefault();
+      const profiles = loadProfiles();
+      if (profiles.length === 0) {
+        showAuthScreen("register");
+      } else if (profiles.length === 1) {
+        showAuthScreen("login");
+      } else {
+        showAuthScreen("select");
+        renderProfilesList();
+      }
+    });
+  }
+
+  // Formulário de Conexão à Nuvem
+  const formConnectCloud = document.getElementById("form-connect-cloud");
+  if (formConnectCloud) {
+    formConnectCloud.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("connect-username").value.trim().toLowerCase();
+      const password = document.getElementById("connect-password").value;
+      const remember = document.getElementById("connect-remember").checked;
+      const submitBtn = document.getElementById("btn-submit-connect");
+      
+      const originalText = submitBtn ? submitBtn.textContent : "Conectar e Sincronizar";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Conectando à nuvem...";
+      }
+
+      try {
+        const exists = await FisioCloudSync.checkUserExists(username);
+        if (!exists) {
+          alert("Nome de usuário não encontrado na nuvem! Verifique o nome digitado ou crie uma nova conta.");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+          return;
+        }
+
+        // Buscar perfil na nuvem
+        const response = await fetch(`${CLOUD_API_BASE}/profile_${username}`);
+        if (response.status !== 200) {
+          throw new Error("Não foi possível acessar a nuvem no momento.");
+        }
+
+        const cloudProfile = await response.json();
+        const inputHash = await hashPassword(password);
+
+        if (cloudProfile.passwordHash !== inputHash) {
+          alert("Senha incorreta!");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+          return;
+        }
+
+        // Criar ou atualizar perfil localmente
+        const profiles = loadProfiles();
+        const existingIdx = profiles.findIndex(p => p.username === username);
+
+        const localProfile = {
+          id: cloudProfile.id || "profile_" + Date.now(),
+          name: cloudProfile.name,
+          username: cloudProfile.username,
+          password: password, // Salva senha localmente para conveniência
+          avatarColor: cloudProfile.avatarColor || "#2bbab5",
+          avatarImage: cloudProfile.avatarImage || undefined,
+          semester: parseInt(cloudProfile.semester) || 1,
+          theme: cloudProfile.theme || "teal",
+          rememberPassword: remember
+        };
+
+        if (existingIdx !== -1) {
+          profiles[existingIdx] = localProfile;
+        } else {
+          profiles.push(localProfile);
+        }
+
+        saveProfiles(profiles);
+
+        if (submitBtn) {
+          submitBtn.textContent = "Baixando histórico de estudos...";
+        }
+
+        // Puxar todos os dados e salvar no localStorage
+        await FisioCloudSync.pullAllAndSync(localProfile);
+
+        localStorage.setItem("fisio_active_profile_id", localProfile.id);
+        sessionStorage.setItem("fisio_session_active", "true");
+
+        alert("Conta conectada e progresso sincronizado com sucesso!");
+        location.reload();
+
+      } catch (err) {
+        console.error("Erro na conexão à nuvem:", err);
+        alert("Erro na conexão com o servidor de sincronização: " + err.message);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      }
+    });
+  }
+
   const btnSwitch = document.getElementById("btn-switch-user");
   if (btnSwitch) {
     btnSwitch.addEventListener("click", () => {
@@ -975,19 +1454,43 @@ function initApp() {
 
   // Inicializar ícones do Lucide
   lucide.createIcons();
+
+  // Sincronização automática na inicialização (Startup Pull)
+  if (navigator.onLine) {
+    startupSync();
+  } else {
+    FisioCloudSync.updateIndicator("offline", "Modo Offline");
+  }
 }
 
 function saveState(key) {
+  let val = null;
+  let cloudKey = null;
+  
   if (key === "curriculum") {
-    localStorage.setItem(getProfileKey("fisio_curriculum"), JSON.stringify(state.curriculum));
+    val = JSON.stringify(state.curriculum);
+    localStorage.setItem(getProfileKey("fisio_curriculum"), val);
+    cloudKey = "curriculum";
   } else if (key === "flashcards") {
-    localStorage.setItem(getProfileKey("fisio_flashcards"), JSON.stringify(state.flashcards));
+    val = JSON.stringify(state.flashcards);
+    localStorage.setItem(getProfileKey("fisio_flashcards"), val);
+    cloudKey = "flashcards";
   } else if (key === "plannerTasks") {
-    localStorage.setItem(getProfileKey("fisio_tasks"), JSON.stringify(state.plannerTasks));
+    val = JSON.stringify(state.plannerTasks);
+    localStorage.setItem(getProfileKey("fisio_tasks"), val);
+    cloudKey = "tasks";
   } else if (key === "internshipShifts") {
-    localStorage.setItem(getProfileKey("fisio_shifts"), JSON.stringify(state.internshipShifts));
+    val = JSON.stringify(state.internshipShifts);
+    localStorage.setItem(getProfileKey("fisio_shifts"), val);
+    cloudKey = "shifts";
   } else if (key === "settings") {
-    localStorage.setItem(getProfileKey("fisio_settings"), JSON.stringify(state.settings));
+    val = JSON.stringify(state.settings);
+    localStorage.setItem(getProfileKey("fisio_settings"), val);
+    cloudKey = "settings";
+  }
+  
+  if (cloudKey && val && window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+    window.FisioCloudSync.queueSync(cloudKey, val);
   }
 }
 
@@ -3883,5 +4386,6 @@ window.addEventListener("DOMContentLoaded", checkAuthAndStart);
 window.FisioApp = {
   state,
   saveState,
-  renderDashboard
+  renderDashboard,
+  getProfileKey
 };

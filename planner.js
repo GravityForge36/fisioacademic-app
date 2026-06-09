@@ -417,10 +417,16 @@
             studyDuration = val * 60;
             localStorage.setItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_study_duration") : "fisio_pomo_study_duration", val);
             timeLeft = studyDuration;
+            if (window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+              window.FisioCloudSync.queueSync("pomo_study", val.toString());
+            }
           } else {
             breakDuration = val * 60;
             localStorage.setItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_break_duration") : "fisio_pomo_break_duration", val);
             timeLeft = breakDuration;
+            if (window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+              window.FisioCloudSync.queueSync("pomo_break", val.toString());
+            }
           }
           
           updateTimerDisplays();
@@ -450,6 +456,14 @@
 
   // Registrar as funções de renderização para o roteador global
   window.renderPlannerList = renderPlannerList;
+
+  function reloadPomoDurations() {
+    studyDuration = parseInt(localStorage.getItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_study_duration") : "fisio_pomo_study_duration") || "25") * 60;
+    breakDuration = parseInt(localStorage.getItem(window.getProfileKey ? window.getProfileKey("fisio_pomo_break_duration") : "fisio_pomo_break_duration") || "5") * 60;
+    timeLeft = currentMode === "study" ? studyDuration : breakDuration;
+    updateTimerDisplays();
+  }
+  window.reloadPomoDurations = reloadPomoDurations;
 
   // Rodar ao iniciar página
   window.addEventListener("DOMContentLoaded", initPlannerModule);

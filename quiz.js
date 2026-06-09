@@ -92,8 +92,12 @@
 
   // Salvar estatísticas no localStorage
   function saveStats() {
-    localStorage.setItem(window.FisioApp?.getProfileKey ? window.FisioApp.getProfileKey("fisio_quiz_stats") : "fisio_quiz_stats", JSON.stringify(stats));
+    const val = JSON.stringify(stats);
+    localStorage.setItem(window.FisioApp?.getProfileKey ? window.FisioApp.getProfileKey("fisio_quiz_stats") : "fisio_quiz_stats", val);
     updateStatsUI();
+    if (window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+      window.FisioCloudSync.queueSync("quiz_stats", val);
+    }
   }
 
   // Configurar listeners
@@ -154,6 +158,9 @@
       
       const profileKey = window.FisioApp?.getProfileKey ? window.FisioApp.getProfileKey("fisio_quiz_history") : "fisio_quiz_history";
       localStorage.removeItem(profileKey);
+      if (window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+        window.FisioCloudSync.queueSync("quiz_history", "[]");
+      }
       
       const listEl = document.getElementById("quiz-history-list");
       if (listEl) listEl.innerHTML = "";
@@ -422,7 +429,11 @@
       history = history.slice(0, 20);
     }
     
-    localStorage.setItem(profileKey, JSON.stringify(history));
+    const val = JSON.stringify(history);
+    localStorage.setItem(profileKey, val);
+    if (window.FisioCloudSync && window.FisioCloudSync.queueSync) {
+      window.FisioCloudSync.queueSync("quiz_history", val);
+    }
   }
 
   // Exibir a tela de histórico
@@ -590,4 +601,5 @@
   });
 
   window.initQuizModule = initQuizModule;
+  window.loadQuizStats = loadStats;
 })();

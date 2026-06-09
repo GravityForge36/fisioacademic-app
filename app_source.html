@@ -122,7 +122,11 @@
           <h1 id="view-title">Dashboard</h1>
           <p id="view-subtitle" class="text-muted">Acompanhe seu desempenho no curso de Fisioterapia.</p>
         </div>
-        <div class="header-actions">
+        <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+          <div class="sync-status-indicator" id="header-sync-status" style="display: flex;" title="Status de sincronização com a nuvem">
+            <span class="status-dot synced" id="header-sync-dot"></span>
+            <span class="sync-text" id="header-sync-text">Conectando...</span>
+          </div>
           <div class="current-date">
             <i data-lucide="calendar-days"></i>
             <span id="header-date">22 de Maio de 2026</span>
@@ -1385,18 +1389,9 @@
       </div>
       <form class="auth-form" id="form-login-simple">
         <input type="hidden" id="login-simple-userid">
-        <div class="auth-field">
-          <label for="login-simple-password">Senha</label>
-          <input type="password" id="login-simple-password" class="auth-input" placeholder="Sua senha" required autocomplete="current-password">
-        </div>
-        <div class="auth-checkbox-container">
-          <input type="checkbox" id="login-simple-remember" checked>
-          <label for="login-simple-remember">Lembrar senha neste computador</label>
-        </div>
-        <button type="submit" class="auth-btn">Entrar</button>
-      </form>
-      <div class="auth-footer-links">
+         <div class="auth-footer-links" style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
         <a class="auth-link" id="link-login-switch">Entrar com outro usuário</a>
+        <a class="auth-link" id="link-login-connect" style="font-weight: 700; color: var(--primary);">Conectar Conta da Nuvem</a>
       </div>
     </div>
 
@@ -1432,9 +1427,12 @@
         </form>
       </div>
 
-      <div class="auth-footer-links" style="margin-top: 24px; border-top: 1px dashed rgba(43, 186, 181, 0.15); padding-top: 16px; flex-direction: row; justify-content: space-between; align-items: center;">
-        <a class="auth-link" id="link-select-manage" style="color: var(--text-muted);">Gerenciar Perfis</a>
-        <a class="auth-link" id="link-select-add" style="font-weight: 700; color: var(--primary);">+ Novo Estudante</a>
+      <div class="auth-footer-links" style="margin-top: 24px; border-top: 1px dashed rgba(43, 186, 181, 0.15); padding-top: 16px; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <a class="auth-link" id="link-select-manage" style="color: var(--text-muted);">Gerenciar Perfis</a>
+          <a class="auth-link" id="link-select-add" style="font-weight: 700; color: var(--primary);">+ Novo Estudante</a>
+        </div>
+        <a class="auth-link" id="link-select-connect" style="font-weight: 700; color: var(--primary);">Conectar Conta da Nuvem</a>
       </div>
     </div>
 
@@ -1488,11 +1486,40 @@
         </div>
         <button type="submit" class="auth-btn">Registrar e Entrar</button>
       </form>
-      <div class="auth-footer-links">
-        <a class="auth-link" id="link-register-back" style="display: none;">Voltar para o Login</a>
+      <div class="auth-footer-links" style="display: flex; flex-direction: column; gap: 8px; align-items: center; margin-top: 14px;">
+        <a class="auth-link" id="link-register-connect" style="font-weight: 700; color: var(--primary);">Já tem uma conta? Conectar Conta da Nuvem</a>
+        <a class="auth-link" id="link-register-back" style="display: none;">Voltar para o Login / Perfis</a>
       </div>
     </div>
 
+    <!-- Tela 4: Conectar Conta Existente (Nuvem) -->
+    <div class="auth-card" id="auth-screen-connect" style="display: none;">
+      <div class="auth-header">
+        <div class="auth-logo-container">
+          <img src="logo.png" alt="Logo">
+        </div>
+        <h2 class="auth-title">Conectar Conta da Nuvem</h2>
+        <p class="auth-subtitle">Acesse seus estudos e sincronize de qualquer aparelho</p>
+      </div>
+      <form class="auth-form" id="form-connect-cloud">
+        <div class="auth-field">
+          <label for="connect-username">Nome de Usuário (Login)</label>
+          <input type="text" id="connect-username" class="auth-input" placeholder="Ex: mariasilva" required autocomplete="username">
+        </div>
+        <div class="auth-field">
+          <label for="connect-password">Senha de Acesso</label>
+          <input type="password" id="connect-password" class="auth-input" placeholder="Sua senha de cadastro" required autocomplete="current-password">
+        </div>
+        <div class="auth-checkbox-container">
+          <input type="checkbox" id="connect-remember" checked>
+          <label for="connect-remember">Lembrar senha neste dispositivo</label>
+        </div>
+        <button type="submit" class="auth-btn" id="btn-submit-connect">Conectar e Sincronizar</button>
+      </form>
+      <div class="auth-footer-links">
+        <a class="auth-link" id="link-connect-back">Voltar para o Login / Perfis</a>
+      </div>
+    </div>
   </div>
 
   <!-- MODAL: CONFIGURAÇÕES DO ESTUDANTE -->
@@ -1572,7 +1599,21 @@
           </div>
         </div>
 
-        <!-- Bloco 3: Dados & Backup -->
+        <!-- Bloco 3: Sincronização em Nuvem -->
+        <div style="border-bottom: 1px solid var(--border-glass); padding-bottom: 16px;">
+          <h4 style="font-family: var(--font-title); font-size: 1rem; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i data-lucide="cloud" style="width: 16px; height: 16px;"></i> Sincronização em Nuvem
+          </h4>
+          <p class="text-muted" style="font-size: 0.75rem; margin-bottom: 12px; line-height: 1.3;">Seu progresso é salvo na nuvem automaticamente. Se desejar, force a sincronização manual dos dados agora:</p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button type="button" class="btn-sync-cloud" id="btn-settings-sync-now" style="font-size: 0.75rem;">
+              <i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizar Agora
+            </button>
+            <span id="settings-sync-time" style="font-size: 0.75rem; color: var(--text-muted);">Última sincronização: aguardando...</span>
+          </div>
+        </div>
+
+        <!-- Bloco 4: Dados & Backup -->
         <div>
           <h4 style="font-family: var(--font-title); font-size: 1rem; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
             <i data-lucide="database" style="width: 16px; height: 16px;"></i> Dados & Backup de Progresso
