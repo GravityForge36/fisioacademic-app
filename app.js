@@ -9,7 +9,7 @@ function getProfileKey(baseKey) {
 window.getProfileKey = getProfileKey; // Tornar disponível para outros scripts
 
 // A1. SISTEMA DE SINCRONIZAÇÃO EM NUVEM (CLOUD SYNC)
-const BUCKET_ID = "s7G9yP2mW1K5b4xT8dZ3qV";
+const BUCKET_ID = "StQDmdMowP935XBv33Phwf";
 const CLOUD_API_BASE = `https://kvdb.io/${BUCKET_ID}`;
 
 // Helper de Hashing SHA-256 para as senhas
