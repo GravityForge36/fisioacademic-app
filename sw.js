@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fisioacademic-v2';
+const CACHE_NAME = 'fisioacademic-v32';
 const ASSETS = [
   './index.html',
   './style.css',
@@ -42,29 +42,34 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// Intercept requests and return cached version if offline
+// Intercept requests and return cached version if offline (Network-First Strategy)
 self.addEventListener('fetch', (e) => {
-  // Ignorar chamadas de APIs externas (como gsheets ou google fonts) se der erro
-  if (e.request.url.startsWith('http')) {
+  // Apenas interceptar requisições locais do app e ignorar chamadas de APIs externas (como kvdb.io ou google fonts)
+  if (e.request.url.startsWith(self.location.origin) && e.request.method === 'GET') {
     e.respondWith(
-      caches.match(e.request).then((cachedResponse) => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(e.request).then((response) => {
-          // Se for um arquivo local de sucesso, cacheia dinamicamente
-          if (response.status === 200 && response.type === 'basic') {
+      fetch(e.request)
+        .then((response) => {
+          // Se obteve com sucesso, clona e atualiza o cache
+          if (response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(e.request, responseClone);
             });
           }
           return response;
-        }).catch(() => {
-          // Fallback se estiver offline
-          return caches.match('./index.html');
-        });
-      })
+        })
+        .catch(() => {
+          // Em caso de falha de rede (offline), busca no cache
+          return caches.match(e.request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // Se for navegação de página e não estiver no cache, retorna a página inicial
+            if (e.request.mode === 'navigate') {
+              return caches.match('./index.html');
+            }
+          });
+        })
     );
   }
 });
