@@ -93,9 +93,13 @@ const FisioCloudSync = {
         method: 'POST',
         body: value
       });
-      return response.status === 200 || response.status === 201;
+      if (response.status === 200 || response.status === 201) {
+        return true;
+      }
+      console.error(`Erro ao sincronizar chave ${key} na nuvem: Status ${response.status} - ${response.statusText}`);
+      return false;
     } catch (err) {
-      console.error(`Erro ao sincronizar chave ${key} na nuvem:`, err);
+      console.error(`Erro ao sincronizar chave ${key} na nuvem (Exception):`, err);
       return false;
     }
   },
@@ -106,9 +110,12 @@ const FisioCloudSync = {
       if (response.status === 200) {
         return await response.text();
       }
+      if (response.status !== 404) {
+        console.error(`Erro ao baixar chave ${key} da nuvem: Status ${response.status} - ${response.statusText}`);
+      }
       return null;
     } catch (err) {
-      console.error(`Erro ao baixar chave ${key} da nuvem:`, err);
+      console.error(`Erro ao baixar chave ${key} da nuvem (Exception):`, err);
       return null;
     }
   },

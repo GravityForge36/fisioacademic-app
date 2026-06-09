@@ -180,8 +180,10 @@ class MainWindow(QMainWindow):
         self.profile.setHttpCacheType(QWebEngineProfile.HttpCacheType.NoCache)
         self.profile.clearHttpCache()
         
-        # Garante suporte a localStorage ativo
+        # Garante suporte a localStorage ativo e requisições para servidores externos (CORS/fetch)
         self.profile.settings().setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        self.profile.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
+
         
         # Cria a página com o perfil configurado e console capture
         self.page = ConsolePage(self.profile, self)
