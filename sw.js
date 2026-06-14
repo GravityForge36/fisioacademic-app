@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fisioacademic-v36';
+const CACHE_NAME = 'fisioacademic-v37';
 const ASSETS = [
   './index.html',
   './style.css',
