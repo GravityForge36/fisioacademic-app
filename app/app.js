@@ -656,6 +656,16 @@ function initSettingsModalControls() {
       });
     }
   }
+
+  const btnExportCredentials = document.getElementById("btn-settings-export-credentials");
+  if (btnExportCredentials) {
+    if (!btnExportCredentials.dataset.listenerBound) {
+      btnExportCredentials.dataset.listenerBound = "true";
+      btnExportCredentials.addEventListener("click", () => {
+        exportCredentialsToNotepad();
+      });
+    }
+  }
   
   if (btnImport && importInput) {
     if (!btnImport.dataset.listenerBound) {
@@ -718,6 +728,40 @@ function loadProfiles() {
 
 function saveProfiles(profiles) {
   localStorage.setItem("fisio_profiles", JSON.stringify(profiles));
+}
+
+function exportCredentialsToNotepad() {
+  const profiles = loadProfiles();
+  if (profiles.length === 0) {
+    alert("Nenhum perfil cadastrado neste dispositivo.");
+    return;
+  }
+  
+  let content = "==================================================\r\n";
+  content += "      FISIOACADEMIC - CREDENCIAIS DE ACESSO       \r\n";
+  content += "==================================================\r\n";
+  content += "Gerado em: " + new Date().toLocaleString('pt-BR') + "\r\n\r\n";
+  content += "Use estas credenciais para fazer login no aplicativo.\r\n";
+  content += "Guarde este arquivo em local seguro.\r\n\r\n";
+  
+  profiles.forEach((p, index) => {
+    content += "[Perfil #" + (index + 1) + "]\r\n";
+    content += "Nome de Exibição: " + (p.name || 'Sem nome') + "\r\n";
+    content += "Nome de Usuário:  " + (p.username || 'Sem usuário') + "\r\n";
+    content += "Senha:            " + (p.password || 'Sem senha') + "\r\n";
+    content += "Semestre:         " + (p.semester || 1) + "º Semestre\r\n";
+    content += "--------------------------------------------------\r\n";
+  });
+  
+  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "credenciais_fisioacademic.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 function showAuthScreen(screenId) {
@@ -1296,6 +1340,22 @@ function setupAuthEvents() {
       localStorage.removeItem("fisio_active_profile_id");
       sessionStorage.removeItem("fisio_session_active");
       location.reload();
+    });
+  }
+
+  const linkLoginExport = document.getElementById("link-login-export-credentials");
+  if (linkLoginExport) {
+    linkLoginExport.addEventListener("click", (e) => {
+      e.preventDefault();
+      exportCredentialsToNotepad();
+    });
+  }
+
+  const linkSelectExport = document.getElementById("link-select-export-credentials");
+  if (linkSelectExport) {
+    linkSelectExport.addEventListener("click", (e) => {
+      e.preventDefault();
+      exportCredentialsToNotepad();
     });
   }
 }

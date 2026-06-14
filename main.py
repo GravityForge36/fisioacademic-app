@@ -213,12 +213,24 @@ class MainWindow(QMainWindow):
         downloads_path = os.path.join(os.path.expanduser('~'), 'Downloads')
         suggested_file = download.suggestedFileName()
         
+        # Determina o filtro e o título com base na extensão sugerida
+        ext = os.path.splitext(suggested_file)[1].lower()
+        if ext == '.txt':
+            filter_str = "Arquivos de Texto (*.txt);;Todos os Arquivos (*)"
+            dialog_title = "Salvar Credenciais"
+        elif ext == '.pdf':
+            filter_str = "Arquivos PDF (*.pdf);;Todos os Arquivos (*)"
+            dialog_title = "Salvar Resumo em PDF"
+        else:
+            filter_str = "Todos os Arquivos (*)"
+            dialog_title = "Salvar Arquivo"
+        
         # Abre uma caixa de diálogo para salvar o arquivo de forma interativa
         file_path, _ = QFileDialog.getSaveFileName(
             self,
-            "Salvar Resumo em PDF",
+            dialog_title,
             os.path.join(downloads_path, suggested_file),
-            "Arquivos PDF (*.pdf);;Todos os Arquivos (*)"
+            filter_str
         )
         
         if file_path:
