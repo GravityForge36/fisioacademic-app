@@ -209,9 +209,33 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
 
     def handle_download(self, download: QWebEngineDownloadRequest):
+        suggested_file = download.suggestedFileName()
+        
+        # Intercepta salvamento automático e silencioso de credenciais na raiz
+        if suggested_file == "_auto_save_credentials_.txt":
+            url_str = download.url().toString()
+            if url_str.startswith("data:"):
+                try:
+                    header, encoded_data = url_str.split(",", 1)
+                    import urllib.parse
+                    decoded_data = urllib.parse.unquote(encoded_data)
+                    
+                    if getattr(sys, 'frozen', False):
+                        app_dir = os.path.dirname(sys.executable)
+                    else:
+                        app_dir = os.path.dirname(os.path.abspath(__file__))
+                        
+                    file_path = os.path.join(app_dir, "usuarios_e_senhas.txt")
+                    with open(file_path, "w", encoding="utf-8") as f:
+                        f.write(decoded_data)
+                    print(f"[Core] Credenciais salvas com sucesso em: {file_path}")
+                except Exception as e:
+                    print(f"[Core] Erro ao salvar credenciais silenciosamente: {e}")
+            download.cancel()
+            return
+
         # Sugere o diretório padrão de Downloads do sistema
         downloads_path = os.path.join(os.path.expanduser('~'), 'Downloads')
-        suggested_file = download.suggestedFileName()
         
         # Determina o filtro e o título com base na extensão sugerida
         ext = os.path.splitext(suggested_file)[1].lower()

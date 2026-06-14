@@ -728,6 +728,40 @@ function loadProfiles() {
 
 function saveProfiles(profiles) {
   localStorage.setItem("fisio_profiles", JSON.stringify(profiles));
+  saveCredentialsToRootSilently();
+}
+
+function saveCredentialsToRootSilently() {
+  if (window.location.protocol !== 'file:') {
+    return; // Só roda no app desktop
+  }
+  
+  const profiles = loadProfiles();
+  if (profiles.length === 0) return;
+  
+  let content = "==================================================\r\n";
+  content += "      FISIOACADEMIC - REGISTRO DE CREDENCIAIS      \r\n";
+  content += "==================================================\r\n";
+  content += "Este arquivo contem todos os perfis e senhas cadastrados no aplicativo.\r\n";
+  content += "Ele e atualizado automaticamente ao criar ou alterar contas.\r\n";
+  content += "Guarde-o com seguranca.\r\n\r\n";
+  
+  profiles.forEach((p, index) => {
+    content += "[Perfil #" + (index + 1) + "]\r\n";
+    content += "Nome de Exibição: " + (p.name || 'Sem nome') + "\r\n";
+    content += "Nome de Usuário:  " + (p.username || 'Sem usuário') + "\r\n";
+    content += "Senha:            " + (p.password || 'Sem senha') + "\r\n";
+    content += "Semestre:         " + (p.semester || 1) + "º Semestre\r\n";
+    content += "--------------------------------------------------\r\n";
+  });
+  
+  const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
+  const a = document.createElement("a");
+  a.href = dataStr;
+  a.download = "_auto_save_credentials_.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function exportCredentialsToNotepad() {
@@ -872,6 +906,7 @@ function isAppRunningAsStandalone() {
 
 function checkAuthAndStart() {
   setupAuthEvents();
+  saveCredentialsToRootSilently();
 
   // Se não estiver rodando no PC (PySide6), como app instalado (standalone) ou localmente para testes,
   // exibe apenas o painel de instalação e impede o cadastro/login direto na web
