@@ -145,7 +145,8 @@ for item in os.listdir(matriz_dir):
         dest_file = os.path.join(dest_out, f"{matched_subject_id}.js")
         
         extracted = False
-        if os.path.exists(primary_file):
+        # Forçamos a re-extração para gerar os blocos e as imagens
+        if False: # os.path.exists(primary_file):
             print(f" -> Arquivo já existe em materials/. Pulando extração.")
             extracted = True
         else:

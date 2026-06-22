@@ -2829,17 +2829,55 @@ function renderCadernoBook(subjectId) {
     `;
     pageDiv.appendChild(pageHeader);
 
-    // Corpo de texto
+    // Corpo de texto e imagens por blocos
     const textContainer = document.createElement("div");
     textContainer.className = "page-text-container";
     
-    // Dividir em parágrafos para renderização
-    if (page.text && page.text.trim()) {
+    if (page.blocks && page.blocks.length > 0) {
+      page.blocks.forEach(block => {
+        if (block.type === "text") {
+          const cleanText = block.text.trim();
+          if (cleanText) {
+            const p = document.createElement("p");
+            p.style.whiteSpace = "pre-wrap";
+            p.textContent = cleanText;
+            textContainer.appendChild(p);
+          }
+        } else if (block.type === "image") {
+          const imgWrapper = document.createElement("div");
+          imgWrapper.style.textAlign = "center";
+          imgWrapper.style.margin = "20px 0";
+          imgWrapper.style.userSelect = "none";
+          
+          const img = document.createElement("img");
+          img.src = block.src;
+          img.alt = "Ilustração do Livro";
+          img.style.maxWidth = "100%";
+          img.style.maxHeight = "400px";
+          img.style.borderRadius = "var(--radius-md)";
+          img.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
+          img.style.border = "1px solid var(--border-glass)";
+          img.style.display = "inline-block";
+          img.style.transition = "transform 0.3s ease";
+          
+          img.addEventListener("mouseenter", () => {
+            img.style.transform = "scale(1.02)";
+          });
+          img.addEventListener("mouseleave", () => {
+            img.style.transform = "scale(1)";
+          });
+          
+          imgWrapper.appendChild(img);
+          textContainer.appendChild(imgWrapper);
+        }
+      });
+    } else if (page.text && page.text.trim()) {
       const paras = page.text.split("\n\n");
       paras.forEach(pText => {
         const cleanP = pText.trim();
         if (cleanP) {
           const p = document.createElement("p");
+          p.style.whiteSpace = "pre-wrap";
           p.textContent = cleanP;
           textContainer.appendChild(p);
         }
@@ -3020,12 +3058,51 @@ function rebuildPageTextAndHighlights(pageNum, textContainer) {
   if (!page) return;
 
   textContainer.innerHTML = "";
-  if (page.text && page.text.trim()) {
+  if (page.blocks && page.blocks.length > 0) {
+    page.blocks.forEach(block => {
+      if (block.type === "text") {
+        const cleanText = block.text.trim();
+        if (cleanText) {
+          const p = document.createElement("p");
+          p.style.whiteSpace = "pre-wrap";
+          p.textContent = cleanText;
+          textContainer.appendChild(p);
+        }
+      } else if (block.type === "image") {
+        const imgWrapper = document.createElement("div");
+        imgWrapper.style.textAlign = "center";
+        imgWrapper.style.margin = "20px 0";
+        imgWrapper.style.userSelect = "none";
+        
+        const img = document.createElement("img");
+        img.src = block.src;
+        img.alt = "Ilustração do Livro";
+        img.style.maxWidth = "100%";
+        img.style.maxHeight = "400px";
+        img.style.borderRadius = "var(--radius-md)";
+        img.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
+        img.style.border = "1px solid var(--border-glass)";
+        img.style.display = "inline-block";
+        img.style.transition = "transform 0.3s ease";
+        
+        img.addEventListener("mouseenter", () => {
+          img.style.transform = "scale(1.02)";
+        });
+        img.addEventListener("mouseleave", () => {
+          img.style.transform = "scale(1)";
+        });
+        
+        imgWrapper.appendChild(img);
+        textContainer.appendChild(imgWrapper);
+      }
+    });
+  } else if (page.text && page.text.trim()) {
     const paras = page.text.split("\n\n");
     paras.forEach(pText => {
       const cleanP = pText.trim();
       if (cleanP) {
         const p = document.createElement("p");
+        p.style.whiteSpace = "pre-wrap";
         p.textContent = cleanP;
         textContainer.appendChild(p);
       }

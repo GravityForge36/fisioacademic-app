@@ -4,13 +4,14 @@ import json
 import re
 import subprocess
 
-# Instalar pypdf se necessário
+# PyMuPDF (fitz) is required
 try:
-    import pypdf
+    import fitz
 except ImportError:
-    print("pypdf não encontrado, instalando...")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "pypdf"])
-    import pypdf
+    print("PyMuPDF (fitz) não encontrado, instalando...")
+    # Em ambientes desktop, o pip pode ser executado a partir do sys.executable
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pymupdf"])
+    import fitz
 
 def clean_text(text):
     if not text:
@@ -21,46 +22,41 @@ def clean_text(text):
     text = re.sub(r'-\n\s*', '', text)
     return text.strip()
 
-def extract_toc(reader):
+def extract_toc(doc):
     toc = []
     
-    def process_outline(outline_list):
-        for item in outline_list:
-            if isinstance(item, list):
-                process_outline(item)
-            else:
-                try:
-                    title = getattr(item, 'title', None)
-                    if title:
-                        # Obter número da página (0-indexed no pypdf, converter para 1-indexed)
-                        page_num = reader.get_destination_page_number(item) + 1
-                        toc.append({"title": title.strip(), "page": page_num})
-                except Exception as e:
-                    pass
-
+    # Tenta extrair a partir dos bookmarks nativos do PDF
     try:
-        outline = reader.outline
-        if outline:
-            process_outline(outline)
+        toc_list = doc.get_toc()
+        if toc_list:
+            for level, title, page_num in toc_list:
+                toc.append({
+                    "title": title.strip(),
+                    "page": page_num
+                })
     except Exception as e:
-        print(f"Erro ao extrair outline/marcadores: {e}")
+        print(f"Erro ao extrair outline/bookmarks nativos: {e}")
 
-    # Fallback: se nenhum item de índice for encontrado via outline, escaneamos o texto das páginas
+    # Fallback: se nenhum item de índice for encontrado via bookmarks nativos, escaneamos o texto das páginas
     if not toc:
-        print("Marcadores não encontrados no PDF. Escaneando texto das páginas para achar seções...")
-        # Procura por "UNIDADE X", "TÓPICO X", ou "TEMA X"
+        print("Marcadores nativos não encontrados no PDF. Escaneando texto das páginas para achar seções...")
+        # Procura por "UNIDADE X", "TÓPICO X", "TEMA X", ou "TEMA DE APRENDIZAGEM X"
         unit_pattern = re.compile(r'^\s*(UNIDADE|TÓPICO|TEMA DE APRENDIZAGEM|TEMA)\s+\d+.*$', re.IGNORECASE)
-        for i, page in enumerate(reader.pages):
-            text = page.extract_text()
-            if not text:
-                continue
-            for line in text.split('\n'):
-                line_stripped = line.strip()
-                # Procurar títulos de unidade ou capitulo no início de linhas
-                if unit_pattern.match(line_stripped) and len(line_stripped) < 100:
-                    # Garantir que não repetimos o mesmo título na mesma página
-                    if not any(t["page"] == i + 1 and t["title"] == line_stripped for t in toc):
-                        toc.append({"title": line_stripped, "page": i + 1})
+        for page_idx in range(len(doc)):
+            page = doc[page_idx]
+            try:
+                text = page.get_text("text")
+                if not text:
+                    continue
+                for line in text.split('\n'):
+                    line_stripped = line.strip()
+                    # Procurar títulos de unidade ou capitulo no início de linhas
+                    if unit_pattern.match(line_stripped) and len(line_stripped) < 100:
+                        # Garantir que não repetimos o mesmo título na mesma página
+                        if not any(t["page"] == page_idx + 1 and t["title"] == line_stripped for t in toc):
+                            toc.append({"title": line_stripped, "page": page_idx + 1})
+            except Exception as e:
+                pass
                         
     # Ordena o índice por página
     toc.sort(key=lambda x: x["page"])
@@ -71,9 +67,9 @@ def process_pdf_to_js(pdf_path, subject_id, output_dir):
         print(f"Erro: O arquivo {pdf_path} não existe.")
         return False
         
-    print(f"Lendo PDF: {pdf_path}...")
-    reader = pypdf.PdfReader(pdf_path)
-    total_pages = len(reader.pages)
+    print(f"Lendo PDF com PyMuPDF (fitz): {pdf_path}...")
+    doc = fitz.open(pdf_path)
+    total_pages = len(doc)
     print(f"Total de páginas detectadas: {total_pages}")
     
     # Extrair título da matéria do nome do arquivo (sem extensão)
@@ -81,31 +77,101 @@ def process_pdf_to_js(pdf_path, subject_id, output_dir):
     
     # Obter índice/bookmarks
     print("Extraindo índice de tópicos...")
-    toc = extract_toc(reader)
+    toc = extract_toc(doc)
     print(f"Total de tópicos mapeados no índice: {len(toc)}")
     
-    # Extrair texto de cada página
-    print("Extraindo páginas...")
+    # Extrair texto e imagens de cada página preservando layout vertical (top-to-bottom)
+    print("Extraindo páginas, textos e imagens...")
     pages = []
-    for i in range(total_pages):
-        page = reader.pages[i]
+    
+    for page_idx in range(total_pages):
+        page = doc[page_idx]
+        
+        # 1. Mapear imagens e suas posições na página
+        page_images = []
         try:
-            raw_text = page.extract_text()
-            cleaned_text = clean_text(raw_text)
-            pages.append({
-                "number": i + 1,
-                "text": cleaned_text
-            })
+            image_list = page.get_images(full=True)
+            for img_info in image_list:
+                xref = img_info[0]
+                rects = page.get_image_rects(xref)
+                if not rects:
+                    continue
+                
+                # Extrair imagem física
+                base_image = doc.extract_image(xref)
+                image_bytes = base_image["image"]
+                image_ext = base_image["ext"]
+                
+                # Definir caminhos físicos
+                img_subfolder = os.path.join(output_dir, "images", subject_id)
+                os.makedirs(img_subfolder, exist_ok=True)
+                
+                img_name = f"page_{page_idx + 1}_img_{xref}.{image_ext}"
+                img_path = os.path.join(img_subfolder, img_name)
+                
+                # Salvar a imagem no disco se ainda não existir
+                if not os.path.exists(img_path):
+                    with open(img_path, "wb") as f_img:
+                        f_img.write(image_bytes)
+                
+                # Caminho relativo usado no frontend
+                rel_img_path = f"materials/images/{subject_id}/{img_name}"
+                
+                for r in rects:
+                    page_images.append({
+                        "type": "image",
+                        "y0": r.y0,
+                        "src": rel_img_path
+                    })
         except Exception as e:
-            print(f"Erro na página {i+1}: {e}")
-            pages.append({
-                "number": i + 1,
-                "text": "[Erro ao extrair o texto desta página]"
-            })
+            print(f"Erro ao processar imagens na página {page_idx + 1}: {e}")
             
-        if (i + 1) % 50 == 0:
-            print(f"Progresso: {i+1}/{total_pages} páginas extraídas...")
-
+        # 2. Mapear blocos de texto
+        page_text_blocks = []
+        try:
+            text_blocks = page.get_text("blocks")
+            for b in text_blocks:
+                # b: (x0, y0, x1, y1, text, block_no, block_type)
+                cleaned = clean_text(b[4])
+                if cleaned:
+                    page_text_blocks.append({
+                        "type": "text",
+                        "y0": b[1],
+                        "text": cleaned
+                    })
+        except Exception as e:
+            print(f"Erro ao extrair blocos de texto na página {page_idx + 1}: {e}")
+            
+        # 3. Mesclar e ordenar todos os elementos pela coordenada Y0 (de cima para baixo)
+        all_elements = page_images + page_text_blocks
+        all_elements.sort(key=lambda x: x["y0"])
+        
+        # 4. Compilar plain text consolidado (mantendo retrocompatibilidade e pesquisa textual)
+        page_text = "\n\n".join([el["text"] for el in all_elements if el["type"] == "text"])
+        
+        # 5. Compilar blocos estruturados na ordem correta de layout
+        blocks = []
+        for el in all_elements:
+            if el["type"] == "text":
+                blocks.append({
+                    "type": "text",
+                    "text": el["text"]
+                })
+            elif el["type"] == "image":
+                blocks.append({
+                    "type": "image",
+                    "src": el["src"]
+                })
+                
+        pages.append({
+            "number": page_idx + 1,
+            "text": page_text,
+            "blocks": blocks
+        })
+        
+        if (page_idx + 1) % 50 == 0:
+            print(f"Progresso: {page_idx + 1}/{total_pages} páginas processadas...")
+            
     # Estruturar os dados no formato JS
     data = {
         "title": title,
@@ -119,7 +185,7 @@ window.FisioMaterials = window.FisioMaterials || {{}};
 window.FisioMaterials["{subject_id}"] = {json.dumps(data, ensure_ascii=False, indent=2)};
 """
 
-    # Assegurar que os diretórios existam e salvar o arquivo
+    # Salvar o arquivo de materiais JS
     os.makedirs(output_dir, exist_ok=True)
     out_file_path = os.path.join(output_dir, f"{subject_id}.js")
     
