@@ -2525,7 +2525,6 @@ function setupBackupRestore() {
 
 // 7. LÓGICA DO CADERNO DIGITAL AVANÇADO (CONTEÚDO INTEGRAL & SELEÇÃO LIVRE)
 let currentTool = 'read'; // 'read', 'highlight', 'erase'
-let currentReaderTheme = localStorage.getItem("fisio_reader_theme") || "light";
 
 function setupStudyPanelEvents() {
   const btnOpenCaderno = document.getElementById("btn-open-caderno");
@@ -2576,12 +2575,6 @@ function setupStudyPanelEvents() {
   if (btnToolRead) btnToolRead.addEventListener("click", () => switchReaderTool('read'));
   if (btnToolHighlight) btnToolHighlight.addEventListener("click", () => switchReaderTool('highlight'));
   if (btnToolErase) btnToolErase.addEventListener("click", () => switchReaderTool('erase'));
-
-  // Botão de Tema do Leitor
-  const btnToggleReaderTheme = document.getElementById("btn-toggle-reader-theme");
-  if (btnToggleReaderTheme) {
-    btnToggleReaderTheme.addEventListener("click", toggleReaderTheme);
-  }
 
   // Abas da Sidebar
   if (btnSidebarToc) btnSidebarToc.addEventListener("click", () => switchSidebarTab('toc'));
@@ -2758,123 +2751,6 @@ function loadSubjectMaterial(subjectId, callback) {
   document.body.appendChild(script);
 }
 
-function toggleReaderTheme() {
-  const contentArea = document.getElementById("caderno-content-area");
-  const icon = document.getElementById("reader-theme-icon");
-  const text = document.getElementById("reader-theme-text");
-  
-  if (currentReaderTheme === "light") {
-    currentReaderTheme = "dark";
-    contentArea.classList.remove("reader-theme-light");
-    contentArea.classList.add("reader-theme-dark");
-    if (icon) {
-      icon.setAttribute("data-lucide", "moon");
-      if (window.lucide) window.lucide.createIcons();
-    }
-    if (text) text.textContent = "Tema Escuro";
-  } else {
-    currentReaderTheme = "light";
-    contentArea.classList.remove("reader-theme-dark");
-    contentArea.classList.add("reader-theme-light");
-    if (icon) {
-      icon.setAttribute("data-lucide", "sun");
-      if (window.lucide) window.lucide.createIcons();
-    }
-    if (text) text.textContent = "Tema Claro";
-  }
-  localStorage.setItem("fisio_reader_theme", currentReaderTheme);
-}
-
-function renderTextBlock(cleanText, container) {
-  // Check if it's a figure title
-  if (cleanText.startsWith("Figura ") || cleanText.startsWith("FIGURA ")) {
-    const p = document.createElement("p");
-    p.className = "figure-caption";
-    p.textContent = cleanText;
-    container.appendChild(p);
-    return;
-  }
-  
-  // Check if it's a source caption
-  if (cleanText.startsWith("Fonte:") || cleanText.startsWith("FONTE:")) {
-    const p = document.createElement("p");
-    p.className = "source-caption";
-    p.textContent = cleanText;
-    container.appendChild(p);
-    return;
-  }
-
-  // Check if it matches a callout pattern
-  const calloutRegex = /^(NOTA|LEMBRETE|ATENÇÃO|DICA|CURIOSIDADE|QR\s*CODE|ENADE)(?:\s*[:\-–—]|\n+)([\s\S]*)$/i;
-  const match = cleanText.match(calloutRegex);
-  
-  if (match) {
-    const type = match[1].toUpperCase().replace(/\s+/g, "");
-    const bodyText = match[2].trim();
-    
-    const calloutDiv = document.createElement("div");
-    calloutDiv.className = "pdf-callout-box";
-    calloutDiv.setAttribute("data-type", type);
-    
-    const header = document.createElement("div");
-    header.className = "pdf-callout-header";
-    
-    let iconName = "info";
-    let titleText = type;
-    
-    if (type === "NOTA") iconName = "info";
-    else if (type === "LEMBRETE") iconName = "bell";
-    else if (type === "ATENÇÃO") iconName = "alert-triangle";
-    else if (type === "DICA") iconName = "lightbulb";
-    else if (type === "CURIOSIDADE") iconName = "help-circle";
-    else if (type === "QRCODE") { iconName = "qr-code"; titleText = "QR CODE"; }
-    else if (type === "ENADE") iconName = "check-square";
-    
-    header.innerHTML = `<i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i> <span>${titleText}</span>`;
-    calloutDiv.appendChild(header);
-    
-    if (bodyText) {
-      const p = document.createElement("p");
-      p.style.whiteSpace = "pre-wrap";
-      p.textContent = bodyText;
-      calloutDiv.appendChild(p);
-    }
-    
-    container.appendChild(calloutDiv);
-  } else if (/^(NOTA|LEMBRETE|ATENÇÃO|DICA|CURIOSIDADE|QR\s*CODE|ENADE)$/i.test(cleanText)) {
-    // It is just the header word by itself
-    const type = cleanText.toUpperCase().replace(/\s+/g, "");
-    const calloutDiv = document.createElement("div");
-    calloutDiv.className = "pdf-callout-box";
-    calloutDiv.setAttribute("data-type", type);
-    
-    const header = document.createElement("div");
-    header.className = "pdf-callout-header";
-    
-    let iconName = "info";
-    let titleText = type;
-    
-    if (type === "NOTA") iconName = "info";
-    else if (type === "LEMBRETE") iconName = "bell";
-    else if (type === "ATENÇÃO") iconName = "alert-triangle";
-    else if (type === "DICA") iconName = "lightbulb";
-    else if (type === "CURIOSIDADE") iconName = "help-circle";
-    else if (type === "QRCODE") { iconName = "qr-code"; titleText = "QR CODE"; }
-    else if (type === "ENADE") iconName = "check-square";
-    
-    header.innerHTML = `<i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i> <span>${titleText}</span>`;
-    calloutDiv.appendChild(header);
-    
-    container.appendChild(calloutDiv);
-  } else {
-    // Regular paragraph
-    const p = document.createElement("p");
-    p.style.whiteSpace = "pre-wrap";
-    p.textContent = cleanText;
-    container.appendChild(p);
-  }
-}
-
 function renderCadernoBook(subjectId) {
   const bookData = window.FisioMaterials[subjectId];
   if (!bookData) return;
@@ -2921,17 +2797,6 @@ function renderCadernoBook(subjectId) {
 
   // Renderizar as páginas de texto
   contentEl.innerHTML = "";
-  contentEl.classList.remove("reader-theme-light", "reader-theme-dark");
-  contentEl.classList.add(`reader-theme-${currentReaderTheme}`);
-  
-  const rThemeIcon = document.getElementById("reader-theme-icon");
-  const rThemeText = document.getElementById("reader-theme-text");
-  if (rThemeIcon) {
-    rThemeIcon.setAttribute("data-lucide", currentReaderTheme === "light" ? "sun" : "moon");
-  }
-  if (rThemeText) {
-    rThemeText.textContent = currentReaderTheme === "light" ? "Tema Claro" : "Tema Escuro";
-  }
   
   // Obter disciplina do estado para ler highlights
   let subject = null;
@@ -2943,31 +2808,24 @@ function renderCadernoBook(subjectId) {
 
   bookData.pages.forEach(page => {
     const pageDiv = document.createElement("div");
-    pageDiv.className = "caderno-page-sheet";
+    pageDiv.className = "caderno-page";
     pageDiv.id = `page-container-${page.number}`;
     pageDiv.setAttribute("data-page", page.number);
+    pageDiv.style.borderBottom = "1px dashed rgba(255, 255, 255, 0.05)";
+    pageDiv.style.paddingBottom = "24px";
+    pageDiv.style.marginBottom = "32px";
 
-    // Cabeçalho da página (Running Header)
+    // Cabeçalho da página
     const pageHeader = document.createElement("div");
-    pageHeader.className = "page-header-line";
-    
-    // Obter marcador de unidade para o running header
-    let currentSectionTitle = "UNIDADE 1";
-    if (bookData.toc) {
-      // Achar o último marcador ToC que esteja antes ou na página atual
-      const activeToC = [...bookData.toc]
-        .reverse()
-        .find(item => item.page <= page.number);
-      if (activeToC) {
-        // Obter apenas "UNIDADE X" ou título curto
-        const tocMatch = activeToC.title.match(/(UNIDADE\s+\d+|TÓPICO\s+\d+)/i);
-        currentSectionTitle = tocMatch ? tocMatch[1].toUpperCase() : activeToC.title.substring(0, 30).toUpperCase();
-      }
-    }
-
+    pageHeader.style.display = "flex";
+    pageHeader.style.justifyContent = "space-between";
+    pageHeader.style.fontSize = "0.75rem";
+    pageHeader.style.color = "var(--text-muted)";
+    pageHeader.style.marginBottom = "14px";
+    pageHeader.style.userSelect = "none";
     pageHeader.innerHTML = `
-      <span>${bookData.title}</span>
-      <span>${currentSectionTitle}</span>
+      <span>Página ${page.number}</span>
+      <span style="font-weight: 500;">${bookData.title}</span>
     `;
     pageDiv.appendChild(pageHeader);
 
@@ -2980,12 +2838,15 @@ function renderCadernoBook(subjectId) {
         if (block.type === "text") {
           const cleanText = block.text.trim();
           if (cleanText) {
-            renderTextBlock(cleanText, textContainer);
+            const p = document.createElement("p");
+            p.style.whiteSpace = "pre-wrap";
+            p.textContent = cleanText;
+            textContainer.appendChild(p);
           }
         } else if (block.type === "image") {
           const imgWrapper = document.createElement("div");
           imgWrapper.style.textAlign = "center";
-          imgWrapper.style.margin = "24px 0";
+          imgWrapper.style.margin = "20px 0";
           imgWrapper.style.userSelect = "none";
           
           const img = document.createElement("img");
@@ -2994,7 +2855,7 @@ function renderCadernoBook(subjectId) {
           img.style.maxWidth = "100%";
           img.style.maxHeight = "400px";
           img.style.borderRadius = "var(--radius-md)";
-          img.style.boxShadow = "0 8px 24px rgba(0,0,0,0.15)";
+          img.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
           img.style.border = "1px solid var(--border-glass)";
           img.style.display = "inline-block";
           img.style.transition = "transform 0.3s ease";
@@ -3015,23 +2876,17 @@ function renderCadernoBook(subjectId) {
       paras.forEach(pText => {
         const cleanP = pText.trim();
         if (cleanP) {
-          renderTextBlock(cleanP, textContainer);
+          const p = document.createElement("p");
+          p.style.whiteSpace = "pre-wrap";
+          p.textContent = cleanP;
+          textContainer.appendChild(p);
         }
       });
     } else {
-      textContainer.innerHTML = `<p style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; text-align: center;">Esta página está em branco ou contém apenas imagens.</p>`;
+      textContainer.innerHTML = `<p style="color: var(--text-muted); font-style: italic; font-size: 0.9rem;">Esta página está em branco ou contém apenas imagens.</p>`;
     }
     
     pageDiv.appendChild(textContainer);
-
-    // Rodapé da página (Running Footer)
-    const pageFooter = document.createElement("div");
-    pageFooter.className = "page-footer-line";
-    pageFooter.innerHTML = `
-      <span>UNIASSELVI</span>
-      <span style="font-weight: 700;">${page.number}</span>
-    `;
-    pageDiv.appendChild(pageFooter);
 
     // Aplicar highlights salvos para esta página
     const pageHighlights = savedHighlights.filter(hl => hl.pageNum === page.number);
@@ -3208,12 +3063,15 @@ function rebuildPageTextAndHighlights(pageNum, textContainer) {
       if (block.type === "text") {
         const cleanText = block.text.trim();
         if (cleanText) {
-          renderTextBlock(cleanText, textContainer);
+          const p = document.createElement("p");
+          p.style.whiteSpace = "pre-wrap";
+          p.textContent = cleanText;
+          textContainer.appendChild(p);
         }
       } else if (block.type === "image") {
         const imgWrapper = document.createElement("div");
         imgWrapper.style.textAlign = "center";
-        imgWrapper.style.margin = "24px 0";
+        imgWrapper.style.margin = "20px 0";
         imgWrapper.style.userSelect = "none";
         
         const img = document.createElement("img");
@@ -3222,7 +3080,7 @@ function rebuildPageTextAndHighlights(pageNum, textContainer) {
         img.style.maxWidth = "100%";
         img.style.maxHeight = "400px";
         img.style.borderRadius = "var(--radius-md)";
-        img.style.boxShadow = "0 8px 24px rgba(0,0,0,0.15)";
+        img.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
         img.style.border = "1px solid var(--border-glass)";
         img.style.display = "inline-block";
         img.style.transition = "transform 0.3s ease";
@@ -3243,7 +3101,10 @@ function rebuildPageTextAndHighlights(pageNum, textContainer) {
     paras.forEach(pText => {
       const cleanP = pText.trim();
       if (cleanP) {
-        renderTextBlock(cleanP, textContainer);
+        const p = document.createElement("p");
+        p.style.whiteSpace = "pre-wrap";
+        p.textContent = cleanP;
+        textContainer.appendChild(p);
       }
     });
   }
@@ -3259,8 +3120,6 @@ function rebuildPageTextAndHighlights(pageNum, textContainer) {
   const savedHighlights = subject.studyHighlights || [];
   const pageHighlights = savedHighlights.filter(hl => hl.pageNum === pageNum);
   applyPageHighlights(textContainer, pageHighlights);
-
-  if (window.lucide) window.lucide.createIcons();
 }
 
 function getSelectionCharacterOffsetsWithin(element) {
