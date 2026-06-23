@@ -3156,4 +3156,185 @@ label {
   border-color: var(--primary);
 }
 
+/* --- ESTILO DE PÁGINA FÍSICA DO CADERNO DIGITAL (ESTILO PDF) --- */
+.caderno-page-sheet {
+  margin: 20px auto 40px auto;
+  padding: 50px 60px;
+  max-width: 800px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Margens internas de cabeçalho e rodapé */
+.page-header-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid transparent;
+  user-select: none;
+}
+
+.page-footer-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 12px;
+  margin-top: 24px;
+  border-top: 1px solid transparent;
+  user-select: none;
+}
+
+/* Legendas de Figuras e Fontes */
+.study-content-rich .figure-caption {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.study-content-rich .source-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+/* Caixas de Alerta / Callout das Páginas (Ex: NOTA, LEMBRETE, ATENÇÃO) */
+.pdf-callout-box {
+  border-left: 4px solid var(--primary);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  box-sizing: border-box;
+}
+
+.pdf-callout-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.pdf-callout-box p {
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* --- TEMA CLARO DO LIVRO (Padrão PDF Original) --- */
+.reader-theme-light .caderno-page-sheet {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.reader-theme-light .caderno-page-sheet p {
+  color: #334155 !important;
+}
+
+.reader-theme-light .page-header-line,
+.reader-theme-light .page-footer-line {
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+.reader-theme-light .pdf-callout-box {
+  background: #f8fafc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.reader-theme-light .pdf-callout-box p {
+  color: #475569 !important;
+}
+
+.reader-theme-light .figure-caption {
+  color: #0f172a !important;
+}
+
+.reader-theme-light .source-caption {
+  color: #64748b !important;
+}
+
+/* Ajuste de highlights do marca-texto no tema claro */
+.reader-theme-light mark.custom-highlight {
+  background-color: rgba(251, 191, 36, 0.45) !important; /* amarelo mais quente para contraste */
+}
+
+.reader-theme-light mark.custom-highlight:hover {
+  background-color: rgba(251, 191, 36, 0.65) !important;
+}
+
+/* --- TEMA ESCURO DO LIVRO (Modo Foco / Configurações Atuais) --- */
+.reader-theme-dark .caderno-page-sheet {
+  background: rgba(22, 38, 37, 0.45) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #cbd5e1 !important;
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.reader-theme-dark .caderno-page-sheet p {
+  color: #cbd5e1 !important;
+}
+
+.reader-theme-dark .page-header-line,
+.reader-theme-dark .page-footer-line {
+  border-color: var(--border-glass) !important;
+  color: var(--text-muted) !important;
+}
+
+.reader-theme-dark .pdf-callout-box {
+  background: rgba(255, 255, 255, 0.02) !important;
+  box-shadow: none !important;
+}
+
+.reader-theme-dark .pdf-callout-box p {
+  color: #94a3b8 !important;
+}
+
+.reader-theme-dark .figure-caption {
+  color: #f1f5f9 !important;
+}
+
+.reader-theme-dark .source-caption {
+  color: #94a3b8 !important;
+}
+
+/* Ajustes de responsividade para celular */
+@media (max-width: 768px) {
+  .caderno-page-sheet {
+    padding: 30px 20px !important;
+    margin-bottom: 24px !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+  .page-header-line {
+    margin-bottom: 16px !important;
+  }
+  .page-footer-line {
+    margin-top: 16px !important;
+  }
+}
+
 
