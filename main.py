@@ -137,9 +137,19 @@ class MainWindow(QMainWindow):
             # 3. Se a versão embutida for maior, sobrescreve a pasta local (nova versão instalada por instalador/exe)
             if bundle_version > local_version:
                 print(f"[Core] Sobrescrevendo pasta local (Versão embutida {bundle_version} > Versão local {local_version})")
+                copy_errors = []
                 try:
                     if os.path.exists(persist_web):
-                        shutil.rmtree(persist_web)
+                        try:
+                            shutil.rmtree(persist_web)
+                        except Exception as e_rm:
+                            print(f"[Core] Erro ao rmtree, limpando arquivos individuais: {e_rm}")
+                            for root_del, dirs_del, files_del in os.walk(persist_web, topdown=False):
+                                for file_del in files_del:
+                                    try:
+                                        os.remove(os.path.join(root_del, file_del))
+                                    except Exception:
+                                        pass
                     os.makedirs(persist_web, exist_ok=True)
                     
                     for root, dirs, files in os.walk(src_web):
@@ -148,13 +158,40 @@ class MainWindow(QMainWindow):
                         os.makedirs(dest_path, exist_ok=True)
                         
                         for file in files:
-                            shutil.copy2(os.path.join(root, file), os.path.join(dest_path, file))
+                            src_file = os.path.join(root, file)
+                            dest_file = os.path.join(dest_path, file)
+                            try:
+                                shutil.copy2(src_file, dest_file)
+                            except Exception as fe:
+                                import time
+                                time.sleep(0.1)
+                                try:
+                                    shutil.copy2(src_file, dest_file)
+                                except Exception as fe2:
+                                    copy_errors.append(f"{file}: {fe2}")
+                                    print(f"[Core] Erro ao copiar {file}: {fe2}")
+                                    
+                    if copy_errors:
+                        error_summary = "\n".join(copy_errors[:10])
+                        if len(copy_errors) > 10:
+                            error_summary += f"\n... e mais {len(copy_errors) - 10} arquivos."
+                        QMessageBox.warning(
+                            None,
+                            "Aviso de Inicialização",
+                            f"Alguns arquivos não puderam ser copiados (possivelmente bloqueados pelo antivírus ou OneDrive):\n\n{error_summary}\n\nTente reiniciar o computador caso as imagens não apareçam."
+                        )
                             
                     # Atualiza o arquivo de versão local
                     with open(local_version_path, 'w', encoding='utf-8') as f:
                         json.dump({'version': bundle_version}, f)
                 except Exception as e:
                     print(f"[Core] Erro ao copiar arquivos estáticos: {e}")
+                    import traceback
+                    QMessageBox.critical(
+                        None,
+                        "Erro Crítico de Inicialização",
+                        f"Não foi possível extrair os arquivos do aplicativo:\n\n{e}\n\n{traceback.format_exc()}"
+                    )
             
             # 4. Procura atualizações online no GitHub
             check_for_updates(persist_dir, persist_web)
