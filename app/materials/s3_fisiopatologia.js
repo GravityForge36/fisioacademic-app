@@ -151,7 +151,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_3_img_18.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_3_img_18.jpeg"
         },
         {
           "type": "text",
@@ -265,7 +265,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_4_img_41.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_4_img_41.jpeg"
         },
         {
           "type": "text",
@@ -321,7 +321,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_4_img_43.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_4_img_43.jpeg"
         },
         {
           "type": "text",
@@ -448,7 +448,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_8_img_114.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_8_img_114.jpeg"
         },
         {
           "type": "text",
@@ -534,7 +534,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_9_img_119.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_9_img_119.jpeg"
         },
         {
           "type": "text",
@@ -592,7 +592,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_10_img_126.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_10_img_126.jpeg"
         },
         {
           "type": "text",
@@ -640,7 +640,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_12_img_134.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_12_img_134.jpeg"
         },
         {
           "type": "text",
@@ -674,7 +674,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_13_img_138.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_13_img_138.jpeg"
         },
         {
           "type": "text",
@@ -734,19 +734,19 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_15_img_321.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_15_img_321.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_15_img_323.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_15_img_323.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_15_img_320.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_15_img_320.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_15_img_322.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_15_img_322.jpeg"
         },
         {
           "type": "text",
@@ -1044,7 +1044,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_18_img_341.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_18_img_341.jpeg"
         },
         {
           "type": "text",
@@ -1108,7 +1108,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_20_img_352.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_20_img_352.jpeg"
         },
         {
           "type": "text",
@@ -1142,7 +1142,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_21_img_363.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_21_img_363.jpeg"
         },
         {
           "type": "text",
@@ -1232,7 +1232,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_24_img_373.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_24_img_373.jpeg"
         },
         {
           "type": "text",
@@ -1648,7 +1648,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_30_img_410.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_30_img_410.jpeg"
         },
         {
           "type": "text",
@@ -1794,7 +1794,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_33_img_421.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_33_img_421.jpeg"
         },
         {
           "type": "text",
@@ -1820,7 +1820,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_34_img_425.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_34_img_425.jpeg"
         },
         {
           "type": "text",
@@ -1928,7 +1928,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_38_img_435.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_38_img_435.jpeg"
         },
         {
           "type": "text",
@@ -2046,7 +2046,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_41_img_443.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_41_img_443.jpeg"
         },
         {
           "type": "text",
@@ -2254,7 +2254,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_47_img_464.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_47_img_464.jpeg"
         },
         {
           "type": "text",
@@ -2724,7 +2724,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_52_img_496.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_52_img_496.jpeg"
         },
         {
           "type": "text",
@@ -2894,7 +2894,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_55_img_510.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_55_img_510.jpeg"
         },
         {
           "type": "text",
@@ -2924,7 +2924,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_56_img_514.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_56_img_514.jpeg"
         },
         {
           "type": "text",
@@ -3086,7 +3086,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_59_img_522.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_59_img_522.jpeg"
         },
         {
           "type": "text",
@@ -3130,7 +3130,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_61_img_528.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_61_img_528.jpeg"
         },
         {
           "type": "text",
@@ -3382,7 +3382,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_67_img_542.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_67_img_542.jpeg"
         },
         {
           "type": "text",
@@ -3464,7 +3464,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_70_img_557.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_70_img_557.jpeg"
         },
         {
           "type": "text",
@@ -4011,7 +4011,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_78_img_594.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_78_img_594.jpeg"
         },
         {
           "type": "text",
@@ -4363,7 +4363,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_84_img_624.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_84_img_624.jpeg"
         },
         {
           "type": "text",
@@ -4407,7 +4407,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_86_img_631.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_86_img_631.jpeg"
         },
         {
           "type": "text",
@@ -4457,7 +4457,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_87_img_636.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_87_img_636.jpeg"
         },
         {
           "type": "text",
@@ -5127,7 +5127,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_96_img_678.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_96_img_678.jpeg"
         },
         {
           "type": "text",
@@ -5299,7 +5299,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_100_img_700.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_100_img_700.jpeg"
         },
         {
           "type": "text",
@@ -5353,7 +5353,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_101_img_708.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_101_img_708.jpeg"
         },
         {
           "type": "text",
@@ -5529,7 +5529,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_107_img_724.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_107_img_724.jpeg"
         },
         {
           "type": "text",
@@ -5655,7 +5655,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_112_img_736.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_112_img_736.jpeg"
         },
         {
           "type": "text",
@@ -6215,7 +6215,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_118_img_804.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_118_img_804.jpeg"
         },
         {
           "type": "text",
@@ -6351,7 +6351,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_120_img_814.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_120_img_814.jpeg"
         },
         {
           "type": "text",
@@ -6369,7 +6369,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_121_img_824.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_121_img_824.jpeg"
         },
         {
           "type": "text",
@@ -6593,7 +6593,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_125_img_838.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_125_img_838.jpeg"
         },
         {
           "type": "text",
@@ -6703,7 +6703,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_128_img_848.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_128_img_848.jpeg"
         },
         {
           "type": "text",
@@ -6725,7 +6725,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_129_img_852.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_129_img_852.jpeg"
         },
         {
           "type": "text",
@@ -7474,7 +7474,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_142_img_921.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_142_img_921.jpeg"
         },
         {
           "type": "text",
@@ -7632,7 +7632,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_145_img_935.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_145_img_935.jpeg"
         },
         {
           "type": "text",
@@ -7650,7 +7650,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_146_img_943.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_146_img_943.jpeg"
         },
         {
           "type": "text",
@@ -7716,7 +7716,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_147_img_950.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_147_img_950.jpeg"
         },
         {
           "type": "text",
@@ -7772,7 +7772,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_149_img_956.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_149_img_956.jpeg"
         },
         {
           "type": "text",
@@ -7798,7 +7798,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_150_img_960.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_150_img_960.jpeg"
         },
         {
           "type": "text",
@@ -7920,7 +7920,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_155_img_978.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_155_img_978.jpeg"
         },
         {
           "type": "text",
@@ -8606,7 +8606,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_164_img_1016.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_164_img_1016.jpeg"
         },
         {
           "type": "text",
@@ -8776,7 +8776,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_167_img_1028.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_167_img_1028.jpeg"
         },
         {
           "type": "text",
@@ -8824,7 +8824,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_169_img_1034.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_169_img_1034.jpeg"
         },
         {
           "type": "text",
@@ -8912,7 +8912,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_171_img_1040.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_171_img_1040.jpeg"
         },
         {
           "type": "text",
@@ -8934,7 +8934,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_172_img_1044.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_172_img_1044.jpeg"
         },
         {
           "type": "text",
@@ -9016,7 +9016,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_175_img_1052.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_175_img_1052.jpeg"
         },
         {
           "type": "text",
@@ -9132,7 +9132,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_179_img_1063.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_179_img_1063.jpeg"
         },
         {
           "type": "text",
@@ -9766,7 +9766,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_188_img_1116.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_188_img_1116.jpeg"
         },
         {
           "type": "text",
@@ -9984,7 +9984,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_193_img_1132.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_193_img_1132.jpeg"
         },
         {
           "type": "text",
@@ -10042,7 +10042,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_196_img_1140.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_196_img_1140.jpeg"
         },
         {
           "type": "text",
@@ -10084,7 +10084,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_197_img_1144.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_197_img_1144.jpeg"
         },
         {
           "type": "text",
@@ -10218,7 +10218,7 @@ window.FisioMaterials["s3_fisiopatologia"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_fisiopatologia/page_202_img_1156.jpx"
+          "src": "materials/images/s3_fisiopatologia/page_202_img_1156.jpeg"
         },
         {
           "type": "text",

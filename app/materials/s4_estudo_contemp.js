@@ -268,7 +268,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_4_img_106.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_4_img_106.jpeg"
         },
         {
           "type": "text",
@@ -324,7 +324,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_4_img_108.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_4_img_108.jpeg"
         },
         {
           "type": "text",
@@ -416,7 +416,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_6_img_143.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_6_img_143.jpeg"
         },
         {
           "type": "text",
@@ -578,7 +578,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_9_img_189.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_9_img_189.jpeg"
         },
         {
           "type": "text",
@@ -750,7 +750,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_11_img_219.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_11_img_219.jpeg"
         },
         {
           "type": "text",
@@ -1164,7 +1164,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_16_img_243.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_16_img_243.jpeg"
         },
         {
           "type": "text",
@@ -1680,7 +1680,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_24_img_301.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_24_img_301.jpeg"
         },
         {
           "type": "text",
@@ -1782,7 +1782,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_25_img_306.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_25_img_306.jpeg"
         },
         {
           "type": "text",
@@ -2252,7 +2252,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_32_img_385.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_32_img_385.jpeg"
         },
         {
           "type": "text",
@@ -2306,7 +2306,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_33_img_393.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_33_img_393.jpeg"
         },
         {
           "type": "text",
@@ -2328,7 +2328,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_34_img_398.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_34_img_398.jpeg"
         },
         {
           "type": "text",
@@ -2374,7 +2374,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_35_img_428.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_35_img_428.jpeg"
         },
         {
           "type": "text",
@@ -2490,7 +2490,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_37_img_445.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_37_img_445.jpeg"
         },
         {
           "type": "text",
@@ -2648,7 +2648,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_40_img_466.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_40_img_466.jpeg"
         },
         {
           "type": "text",
@@ -2728,7 +2728,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_42_img_475.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_42_img_475.jpeg"
         },
         {
           "type": "text",
@@ -2742,7 +2742,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_43_img_480.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_43_img_480.jpeg"
         },
         {
           "type": "text",
@@ -2816,7 +2816,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_44_img_485.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_44_img_485.jpeg"
         },
         {
           "type": "text",
@@ -2838,7 +2838,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_45_img_490.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_45_img_490.jpeg"
         },
         {
           "type": "text",
@@ -2996,7 +2996,7 @@ window.FisioMaterials["s4_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s4_estudo_contemp/page_48_img_501.jpx"
+          "src": "materials/images/s4_estudo_contemp/page_48_img_501.jpeg"
         },
         {
           "type": "text",

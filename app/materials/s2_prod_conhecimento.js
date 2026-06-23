@@ -335,7 +335,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_1_img_292.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_1_img_292.jpeg"
         },
         {
           "type": "text",
@@ -499,7 +499,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_3_img_361.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_3_img_361.jpeg"
         },
         {
           "type": "text",
@@ -511,7 +511,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_3_img_363.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_3_img_363.jpeg"
         },
         {
           "type": "text",
@@ -741,7 +741,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_8_img_516.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_8_img_516.jpeg"
         },
         {
           "type": "text",
@@ -831,7 +831,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_9_img_544.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_9_img_544.jpeg"
         },
         {
           "type": "image",
@@ -919,7 +919,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_11_img_576.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_11_img_576.jpeg"
         },
         {
           "type": "text",
@@ -995,7 +995,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_13_img_588.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_13_img_588.jpeg"
         },
         {
           "type": "image",
@@ -1037,7 +1037,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_14_img_604.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_14_img_604.jpeg"
         },
         {
           "type": "text",
@@ -1191,11 +1191,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_17_img_624.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_17_img_624.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_17_img_629.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_17_img_629.jpeg"
         },
         {
           "type": "text",
@@ -1439,7 +1439,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_23_img_658.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_23_img_658.jpeg"
         },
         {
           "type": "text",
@@ -1453,7 +1453,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_24_img_664.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_24_img_664.jpeg"
         },
         {
           "type": "text",
@@ -1541,7 +1541,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_26_img_672.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_26_img_672.jpeg"
         },
         {
           "type": "text",
@@ -1633,35 +1633,35 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_681.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_681.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_683.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_683.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_685.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_685.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_687.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_687.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_689.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_689.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_691.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_691.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_693.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_693.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_28_img_695.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_28_img_695.jpeg"
         },
         {
           "type": "image",
@@ -1909,7 +1909,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_34_img_739.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_34_img_739.jpeg"
         },
         {
           "type": "text",
@@ -1999,7 +1999,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_35_img_749.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_35_img_749.jpeg"
         },
         {
           "type": "text",
@@ -2265,7 +2265,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_38_img_786.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_38_img_786.jpeg"
         },
         {
           "type": "text",
@@ -2503,11 +2503,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_810.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_810.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_812.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_812.jpeg"
         },
         {
           "type": "image",
@@ -2523,19 +2523,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_826.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_826.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_828.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_828.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_830.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_830.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_832.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_832.jpeg"
         },
         {
           "type": "image",
@@ -2543,51 +2543,51 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_837.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_837.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_839.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_839.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_841.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_841.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_843.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_843.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_845.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_845.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_847.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_847.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_855.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_855.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_857.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_857.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_849.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_849.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_851.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_851.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_853.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_853.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_43_img_859.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_43_img_859.jpeg"
         },
         {
           "type": "text",
@@ -2705,7 +2705,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_46_img_878.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_46_img_878.jpeg"
         },
         {
           "type": "text",
@@ -3285,7 +3285,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_54_img_927.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_54_img_927.jpeg"
         },
         {
           "type": "text",
@@ -3335,7 +3335,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_55_img_938.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_55_img_938.jpeg"
         },
         {
           "type": "text",
@@ -3361,7 +3361,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_56_img_947.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_56_img_947.jpeg"
         },
         {
           "type": "text",
@@ -3399,7 +3399,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_954.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_954.jpeg"
         },
         {
           "type": "text",
@@ -3411,11 +3411,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_958.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_958.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_962.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_962.jpeg"
         },
         {
           "type": "text",
@@ -3423,7 +3423,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_966.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_966.jpeg"
         },
         {
           "type": "text",
@@ -3431,7 +3431,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_970.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_970.jpeg"
         },
         {
           "type": "text",
@@ -3439,7 +3439,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_974.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_974.jpeg"
         },
         {
           "type": "text",
@@ -3447,7 +3447,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_978.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_978.jpeg"
         },
         {
           "type": "text",
@@ -3455,7 +3455,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_57_img_982.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_57_img_982.jpeg"
         },
         {
           "type": "text",
@@ -3477,7 +3477,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_58_img_987.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_58_img_987.jpeg"
         },
         {
           "type": "text",
@@ -3675,7 +3675,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_61_img_1007.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_61_img_1007.jpeg"
         },
         {
           "type": "text",
@@ -4149,7 +4149,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_66_img_1032.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_66_img_1032.jpeg"
         },
         {
           "type": "text",
@@ -4237,7 +4237,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_68_img_1039.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_68_img_1039.jpeg"
         },
         {
           "type": "text",
@@ -4383,15 +4383,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_71_img_1051.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_71_img_1051.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_71_img_1053.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_71_img_1053.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_71_img_1055.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_71_img_1055.jpeg"
         },
         {
           "type": "text",
@@ -4399,11 +4399,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_71_img_1057.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_71_img_1057.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_71_img_1059.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_71_img_1059.jpeg"
         },
         {
           "type": "text",
@@ -4563,7 +4563,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1114.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1114.jpeg"
         },
         {
           "type": "image",
@@ -4599,7 +4599,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1098.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1098.jpeg"
         },
         {
           "type": "image",
@@ -4619,15 +4619,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1135.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1135.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1162.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1162.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1248.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1248.jpeg"
         },
         {
           "type": "image",
@@ -4679,7 +4679,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1199.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1199.jpeg"
         },
         {
           "type": "image",
@@ -4823,7 +4823,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1181.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1181.jpeg"
         },
         {
           "type": "image",
@@ -4847,7 +4847,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_73_img_1091.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_73_img_1091.jpeg"
         },
         {
           "type": "text",
@@ -4965,7 +4965,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_76_img_1315.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_76_img_1315.jpeg"
         },
         {
           "type": "text",
@@ -4977,7 +4977,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_76_img_1309.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_76_img_1309.jpeg"
         },
         {
           "type": "text",
@@ -5053,7 +5053,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_78_img_1328.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_78_img_1328.jpeg"
         },
         {
           "type": "text",
@@ -5127,7 +5127,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1342.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1342.jpeg"
         },
         {
           "type": "image",
@@ -5147,7 +5147,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1359.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1359.jpeg"
         },
         {
           "type": "image",
@@ -5163,15 +5163,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1364.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1364.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1369.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1369.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1698.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1698.jpeg"
         },
         {
           "type": "image",
@@ -5187,11 +5187,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1380.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1380.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1382.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1382.jpeg"
         },
         {
           "type": "image",
@@ -5207,7 +5207,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1390.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1390.jpeg"
         },
         {
           "type": "image",
@@ -5219,7 +5219,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1392.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1392.jpeg"
         },
         {
           "type": "image",
@@ -5235,15 +5235,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1409.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1409.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1411.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1411.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1413.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1413.jpeg"
         },
         {
           "type": "image",
@@ -5251,7 +5251,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1418.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1418.jpeg"
         },
         {
           "type": "image",
@@ -5267,19 +5267,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1431.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1431.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1429.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1429.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1433.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1433.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1440.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1440.jpeg"
         },
         {
           "type": "image",
@@ -5287,7 +5287,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1438.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1438.jpeg"
         },
         {
           "type": "image",
@@ -5299,7 +5299,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1454.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1454.jpeg"
         },
         {
           "type": "image",
@@ -5339,7 +5339,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1471.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1471.jpeg"
         },
         {
           "type": "image",
@@ -5351,7 +5351,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1491.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1491.jpeg"
         },
         {
           "type": "image",
@@ -5383,7 +5383,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1522.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1522.jpeg"
         },
         {
           "type": "image",
@@ -5395,7 +5395,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1511.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1511.jpeg"
         },
         {
           "type": "image",
@@ -5403,11 +5403,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1524.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1524.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1526.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1526.jpeg"
         },
         {
           "type": "image",
@@ -5427,7 +5427,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1540.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1540.jpeg"
         },
         {
           "type": "image",
@@ -5451,11 +5451,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1557.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1557.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1559.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1559.jpeg"
         },
         {
           "type": "image",
@@ -5483,7 +5483,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1579.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1579.jpeg"
         },
         {
           "type": "image",
@@ -5551,15 +5551,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1632.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1632.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1634.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1634.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1636.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1636.jpeg"
         },
         {
           "type": "image",
@@ -5591,7 +5591,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1656.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1656.jpeg"
         },
         {
           "type": "image",
@@ -5607,7 +5607,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1664.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1664.jpeg"
         },
         {
           "type": "image",
@@ -5639,31 +5639,31 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1369.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1369.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1690.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1690.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1692.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1692.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1696.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1696.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1698.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1698.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1700.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1700.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1694.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1694.jpeg"
         },
         {
           "type": "image",
@@ -5671,11 +5671,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1702.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1702.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1704.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1704.jpeg"
         },
         {
           "type": "image",
@@ -5683,7 +5683,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1709.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1709.jpeg"
         },
         {
           "type": "image",
@@ -5691,11 +5691,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1714.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1714.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1719.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1719.jpeg"
         },
         {
           "type": "image",
@@ -5703,7 +5703,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_79_img_1724.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_79_img_1724.jpeg"
         },
         {
           "type": "image",
@@ -5733,11 +5733,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_80_img_1738.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_80_img_1738.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_80_img_1734.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_80_img_1734.jpeg"
         },
         {
           "type": "text",
@@ -5785,7 +5785,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_82_img_1747.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_82_img_1747.jpeg"
         },
         {
           "type": "text",
@@ -6043,7 +6043,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_87_img_1769.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_87_img_1769.jpeg"
         },
         {
           "type": "text",
@@ -6381,7 +6381,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_94_img_1788.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_94_img_1788.jpeg"
         },
         {
           "type": "text",
@@ -6881,11 +6881,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1862.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1862.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1860.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1860.jpeg"
         },
         {
           "type": "image",
@@ -6893,11 +6893,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1867.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1867.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1869.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1869.jpeg"
         },
         {
           "type": "image",
@@ -6913,15 +6913,15 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1879.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1879.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1881.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1881.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1877.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1877.jpeg"
         },
         {
           "type": "text",
@@ -6933,7 +6933,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1889.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1889.jpeg"
         },
         {
           "type": "image",
@@ -6945,7 +6945,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1897.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1897.jpeg"
         },
         {
           "type": "image",
@@ -7033,7 +7033,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_1959.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_1959.jpeg"
         },
         {
           "type": "image",
@@ -7245,23 +7245,23 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_2108.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_2108.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_2110.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_2110.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_2112.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_2112.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_2114.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_2114.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_104_img_2116.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_104_img_2116.jpeg"
         },
         {
           "type": "image",
@@ -7405,7 +7405,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_108_img_2142.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_108_img_2142.jpeg"
         },
         {
           "type": "text",
@@ -7417,7 +7417,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_108_img_2138.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_108_img_2138.jpeg"
         },
         {
           "type": "text",
@@ -7523,7 +7523,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_111_img_2152.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_111_img_2152.jpeg"
         },
         {
           "type": "text",
@@ -7731,7 +7731,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_117_img_2173.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_117_img_2173.jpeg"
         },
         {
           "type": "text",
@@ -7803,35 +7803,35 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2181.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2181.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2183.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2183.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2185.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2185.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2187.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2187.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2189.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2189.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2191.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2191.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2193.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2193.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_119_img_2195.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_119_img_2195.jpeg"
         },
         {
           "type": "text",
@@ -8125,7 +8125,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_122_img_2211.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_122_img_2211.jpeg"
         },
         {
           "type": "text",
@@ -8241,39 +8241,39 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2227.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2227.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2221.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2221.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2223.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2223.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2225.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2225.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2233.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2233.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2229.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2229.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2231.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2231.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2235.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2235.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_124_img_2237.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_124_img_2237.jpeg"
         },
         {
           "type": "text",
@@ -8405,7 +8405,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_128_img_2249.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_128_img_2249.jpeg"
         },
         {
           "type": "text",
@@ -8435,7 +8435,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_129_img_2253.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_129_img_2253.jpeg"
         },
         {
           "type": "text",
@@ -8579,7 +8579,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_133_img_2266.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_133_img_2266.jpeg"
         },
         {
           "type": "text",
@@ -8719,7 +8719,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_137_img_2279.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_137_img_2279.jpeg"
         },
         {
           "type": "text",
@@ -8801,7 +8801,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_140_img_2289.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_140_img_2289.jpeg"
         },
         {
           "type": "text",
@@ -9105,11 +9105,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2331.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2331.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2333.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2333.jpeg"
         },
         {
           "type": "image",
@@ -9121,19 +9121,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2341.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2341.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2343.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2343.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2345.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2345.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2347.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2347.jpeg"
         },
         {
           "type": "image",
@@ -9141,39 +9141,39 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2352.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2352.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2354.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2354.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2356.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2356.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2358.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2358.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2360.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2360.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2362.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2362.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2364.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2364.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2366.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2366.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_146_img_2368.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_146_img_2368.jpeg"
         },
         {
           "type": "text",
@@ -9279,11 +9279,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2331.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2331.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2333.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2333.jpeg"
         },
         {
           "type": "image",
@@ -9319,19 +9319,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2341.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2341.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2343.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2343.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2345.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2345.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2347.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2347.jpeg"
         },
         {
           "type": "text",
@@ -9363,19 +9363,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2352.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2352.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2354.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2354.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2356.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2356.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2358.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2358.jpeg"
         },
         {
           "type": "text",
@@ -9383,23 +9383,23 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2360.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2360.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2362.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2362.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2364.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2364.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2366.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2366.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_147_img_2368.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_147_img_2368.jpeg"
         },
         {
           "type": "text",
@@ -9553,7 +9553,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_150_img_2388.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_150_img_2388.jpeg"
         },
         {
           "type": "text",
@@ -9961,7 +9961,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_158_img_2420.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_158_img_2420.jpeg"
         },
         {
           "type": "text",
@@ -10169,39 +10169,39 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2467.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2467.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2469.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2469.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2471.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2471.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2473.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2473.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2475.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2475.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2477.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2477.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2479.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2479.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2481.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2481.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2483.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2483.jpeg"
         },
         {
           "type": "text",
@@ -10209,39 +10209,39 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2485.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2485.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2487.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2487.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2489.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2489.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2491.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2491.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2493.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2493.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2495.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2495.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2497.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2497.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2499.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2499.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_162_img_2501.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_162_img_2501.jpeg"
         },
         {
           "type": "image",
@@ -10259,7 +10259,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_163_img_2539.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_163_img_2539.jpeg"
         },
         {
           "type": "text",
@@ -10321,7 +10321,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_164_img_2545.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_164_img_2545.jpeg"
         },
         {
           "type": "text",
@@ -10547,7 +10547,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_169_img_2558.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_169_img_2558.jpeg"
         },
         {
           "type": "text",
@@ -11233,7 +11233,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_178_img_2590.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_178_img_2590.jpeg"
         },
         {
           "type": "text",
@@ -11499,19 +11499,19 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2613.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2613.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2615.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2615.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2617.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2617.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2619.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2619.jpeg"
         },
         {
           "type": "text",
@@ -11519,11 +11519,11 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2621.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2621.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_183_img_2623.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_183_img_2623.jpeg"
         }
       ]
     },
@@ -11605,7 +11605,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_186_img_2632.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_186_img_2632.jpeg"
         },
         {
           "type": "text",
@@ -11765,7 +11765,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_188_img_2642.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_188_img_2642.jpeg"
         },
         {
           "type": "text",
@@ -11921,7 +11921,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_192_img_2700.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_192_img_2700.jpeg"
         },
         {
           "type": "text",
@@ -11959,7 +11959,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_193_img_2707.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_193_img_2707.jpeg"
         },
         {
           "type": "text",
@@ -12175,7 +12175,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_199_img_2728.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_199_img_2728.jpeg"
         },
         {
           "type": "text",
@@ -12609,7 +12609,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_208_img_2758.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_208_img_2758.jpeg"
         },
         {
           "type": "text",
@@ -12867,7 +12867,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_213_img_2772.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_213_img_2772.jpeg"
         },
         {
           "type": "text",
@@ -12963,7 +12963,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_215_img_2781.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_215_img_2781.jpeg"
         },
         {
           "type": "text",
@@ -12981,7 +12981,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_216_img_2787.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_216_img_2787.jpeg"
         },
         {
           "type": "text",
@@ -13077,23 +13077,23 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_218_img_2796.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_218_img_2796.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_218_img_2798.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_218_img_2798.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_218_img_2800.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_218_img_2800.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_218_img_2802.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_218_img_2802.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_218_img_2804.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_218_img_2804.jpeg"
         },
         {
           "type": "text",
@@ -13131,23 +13131,23 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_219_img_2796.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_219_img_2796.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_219_img_2798.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_219_img_2798.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_219_img_2800.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_219_img_2800.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_219_img_2802.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_219_img_2802.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_219_img_2804.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_219_img_2804.jpeg"
         },
         {
           "type": "text",
@@ -13169,7 +13169,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_220_img_2819.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_220_img_2819.jpeg"
         },
         {
           "type": "text",
@@ -13219,7 +13219,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_221_img_2826.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_221_img_2826.jpeg"
         },
         {
           "type": "text",
@@ -13387,7 +13387,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_225_img_2854.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_225_img_2854.jpeg"
         },
         {
           "type": "text",
@@ -13529,7 +13529,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_228_img_2867.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_228_img_2867.jpeg"
         },
         {
           "type": "text",
@@ -13563,7 +13563,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_229_img_2871.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_229_img_2871.jpeg"
         },
         {
           "type": "text",
@@ -13837,7 +13837,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_234_img_2901.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_234_img_2901.jpeg"
         },
         {
           "type": "text",
@@ -13863,7 +13863,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_235_img_2905.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_235_img_2905.jpeg"
         },
         {
           "type": "text",
@@ -13927,7 +13927,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_237_img_2911.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_237_img_2911.jpeg"
         },
         {
           "type": "text",
@@ -14465,7 +14465,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_244_img_2933.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_244_img_2933.jpeg"
         },
         {
           "type": "text",
@@ -14649,7 +14649,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_248_img_2958.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_248_img_2958.jpeg"
         },
         {
           "type": "text",
@@ -14657,7 +14657,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_248_img_2954.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_248_img_2954.jpeg"
         },
         {
           "type": "text",
@@ -14739,7 +14739,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_251_img_2969.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_251_img_2969.jpeg"
         },
         {
           "type": "text",
@@ -14785,7 +14785,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_252_img_2975.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_252_img_2975.jpeg"
         },
         {
           "type": "text",
@@ -14823,7 +14823,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_253_img_2982.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_253_img_2982.jpeg"
         },
         {
           "type": "text",
@@ -14923,7 +14923,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_255_img_2990.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_255_img_2990.jpeg"
         },
         {
           "type": "text",
@@ -15009,7 +15009,7 @@ window.FisioMaterials["s2_prod_conhecimento"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_prod_conhecimento/page_258_img_3000.jpx"
+          "src": "materials/images/s2_prod_conhecimento/page_258_img_3000.jpeg"
         },
         {
           "type": "text",

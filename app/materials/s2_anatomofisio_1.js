@@ -320,7 +320,7 @@ window.FisioMaterials["s2_anatomofisio_1"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_anatomofisio_1/page_4_img_384.jpx"
+          "src": "materials/images/s2_anatomofisio_1/page_4_img_384.jpeg"
         },
         {
           "type": "text",
@@ -376,7 +376,7 @@ window.FisioMaterials["s2_anatomofisio_1"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_anatomofisio_1/page_4_img_385.jpx"
+          "src": "materials/images/s2_anatomofisio_1/page_4_img_385.jpeg"
         },
         {
           "type": "text",
@@ -6769,7 +6769,7 @@ window.FisioMaterials["s2_anatomofisio_1"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s2_anatomofisio_1/page_57_img_4068.jpx"
+          "src": "materials/images/s2_anatomofisio_1/page_57_img_4068.jpeg"
         },
         {
           "type": "text",

@@ -341,7 +341,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_4_img_46.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_4_img_46.jpeg"
         },
         {
           "type": "text",
@@ -393,7 +393,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_4_img_47.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_4_img_47.jpeg"
         },
         {
           "type": "text",
@@ -528,7 +528,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_8_img_110.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_8_img_110.jpeg"
         },
         {
           "type": "text",
@@ -962,7 +962,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_15_img_127.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_15_img_127.jpeg"
         },
         {
           "type": "text",
@@ -1558,7 +1558,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_23_img_147.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_23_img_147.jpeg"
         },
         {
           "type": "text",
@@ -1628,7 +1628,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_24_img_150.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_24_img_150.jpeg"
         },
         {
           "type": "text",
@@ -2400,7 +2400,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_34_img_187.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_34_img_187.jpeg"
         },
         {
           "type": "text",
@@ -2576,71 +2576,71 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1838.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1838.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1858.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1858.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1561.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1561.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1836.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1836.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1542.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1542.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1540.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1540.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1835.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1835.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_2096.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_2096.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1833.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1833.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1539.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1539.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_2090.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_2090.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1523.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1523.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1834.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1834.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1557.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1557.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1537.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1537.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_2097.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_2097.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_36_img_1538.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_36_img_1538.jpeg"
         },
         {
           "type": "text",
@@ -2686,7 +2686,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1838.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1838.jpeg"
         },
         {
           "type": "text",
@@ -2694,19 +2694,19 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1858.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1858.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1561.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1561.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1836.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1836.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1542.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1542.jpeg"
         },
         {
           "type": "text",
@@ -2714,27 +2714,27 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1540.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1540.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1835.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1835.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_2096.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_2096.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1833.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1833.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1539.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1539.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_2090.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_2090.jpeg"
         },
         {
           "type": "text",
@@ -2742,27 +2742,27 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1523.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1523.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1834.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1834.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1557.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1557.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1537.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1537.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_2097.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_2097.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_37_img_1538.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_37_img_1538.jpeg"
         },
         {
           "type": "text",
@@ -2792,7 +2792,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_38_img_202.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_38_img_202.jpeg"
         },
         {
           "type": "text",
@@ -2902,7 +2902,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_39_img_207.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_39_img_207.jpeg"
         },
         {
           "type": "text",
@@ -3510,7 +3510,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_49_img_232.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_49_img_232.jpeg"
         },
         {
           "type": "text",
@@ -4076,7 +4076,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_60_img_276.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_60_img_276.jpeg"
         },
         {
           "type": "text",
@@ -4324,7 +4324,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_64_img_292.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_64_img_292.jpeg"
         },
         {
           "type": "text",
@@ -4362,7 +4362,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_65_img_303.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_65_img_303.jpeg"
         },
         {
           "type": "text",
@@ -4374,7 +4374,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_65_img_305.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_65_img_305.jpeg"
         },
         {
           "type": "text",
@@ -4436,7 +4436,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_66_img_309.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_66_img_309.jpeg"
         },
         {
           "type": "text",
@@ -4804,7 +4804,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_70_img_344.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_70_img_344.jpeg"
         },
         {
           "type": "text",
@@ -4898,7 +4898,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_71_img_348.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_71_img_348.jpeg"
         },
         {
           "type": "text",
@@ -5272,7 +5272,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_369.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_369.jpeg"
         },
         {
           "type": "text",
@@ -5280,7 +5280,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_370.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_370.jpeg"
         },
         {
           "type": "text",
@@ -5292,19 +5292,19 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_366.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_366.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_365.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_365.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_367.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_367.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_76_img_368.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_76_img_368.jpeg"
         },
         {
           "type": "text",
@@ -5358,7 +5358,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_77_img_373.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_77_img_373.jpeg"
         },
         {
           "type": "text",
@@ -5376,7 +5376,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_78_img_377.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_78_img_377.jpeg"
         },
         {
           "type": "text",
@@ -5512,7 +5512,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_80_img_383.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_80_img_383.jpeg"
         },
         {
           "type": "text",
@@ -5526,7 +5526,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_81_img_387.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_81_img_387.jpeg"
         },
         {
           "type": "text",
@@ -6495,7 +6495,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_94_img_495.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_94_img_495.jpeg"
         },
         {
           "type": "text",
@@ -6759,7 +6759,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_98_img_520.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_98_img_520.jpeg"
         },
         {
           "type": "text",
@@ -6825,7 +6825,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_99_img_540.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_99_img_540.jpeg"
         },
         {
           "type": "text",
@@ -6911,7 +6911,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_100_img_548.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_100_img_548.jpeg"
         },
         {
           "type": "text",
@@ -6955,7 +6955,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_100_img_547.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_100_img_547.jpeg"
         },
         {
           "type": "text",
@@ -7227,7 +7227,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_104_img_562.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_104_img_562.jpeg"
         },
         {
           "type": "text",
@@ -7919,7 +7919,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_114_img_593.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_114_img_593.jpeg"
         },
         {
           "type": "text",
@@ -8619,7 +8619,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_122_img_636.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_122_img_636.jpeg"
         },
         {
           "type": "text",
@@ -8833,7 +8833,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_125_img_645.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_125_img_645.jpeg"
         },
         {
           "type": "text",
@@ -9165,7 +9165,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_131_img_662.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_131_img_662.jpeg"
         },
         {
           "type": "text",
@@ -9243,7 +9243,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_132_img_667.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_132_img_667.jpeg"
         },
         {
           "type": "text",
@@ -9295,7 +9295,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_132_img_666.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_132_img_666.jpeg"
         },
         {
           "type": "text",
@@ -9321,7 +9321,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_133_img_672.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_133_img_672.jpeg"
         },
         {
           "type": "text",
@@ -10319,7 +10319,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_148_img_725.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_148_img_725.jpeg"
         },
         {
           "type": "text",
@@ -10561,7 +10561,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_151_img_735.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_151_img_735.jpeg"
         },
         {
           "type": "text",
@@ -10967,7 +10967,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_156_img_747.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_156_img_747.jpeg"
         },
         {
           "type": "text",
@@ -11089,7 +11089,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_159_img_755.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_159_img_755.jpeg"
         },
         {
           "type": "text",
@@ -11309,7 +11309,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_161_img_761.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_161_img_761.jpeg"
         },
         {
           "type": "text",
@@ -12062,7 +12062,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_172_img_807.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_172_img_807.jpeg"
         },
         {
           "type": "text",
@@ -12260,7 +12260,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_175_img_817.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_175_img_817.jpeg"
         },
         {
           "type": "text",
@@ -12358,7 +12358,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_176_img_821.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_176_img_821.jpeg"
         },
         {
           "type": "text",
@@ -12764,7 +12764,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_181_img_841.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_181_img_841.jpeg"
         },
         {
           "type": "text",
@@ -13652,7 +13652,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_195_img_877.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_195_img_877.jpeg"
         },
         {
           "type": "text",
@@ -14128,7 +14128,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_203_img_901.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_203_img_901.jpeg"
         },
         {
           "type": "text",
@@ -14610,7 +14610,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_208_img_943.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_208_img_943.jpeg"
         },
         {
           "type": "text",
@@ -14832,7 +14832,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_211_img_952.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_211_img_952.jpeg"
         },
         {
           "type": "text",
@@ -15094,7 +15094,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_216_img_977.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_216_img_977.jpeg"
         },
         {
           "type": "image",
@@ -15176,7 +15176,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_217_img_987.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_217_img_987.jpeg"
         },
         {
           "type": "text",
@@ -15348,39 +15348,39 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1008.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1008.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1009.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1009.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1006.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1006.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1010.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1010.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1002.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1002.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1011.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1011.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1014.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1014.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1015.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1015.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1013.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1013.jpeg"
         },
         {
           "type": "text",
@@ -15400,19 +15400,19 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1016.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1016.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1018.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1018.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1017.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1017.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1019.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1019.jpeg"
         },
         {
           "type": "image",
@@ -15420,7 +15420,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1004.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1004.jpeg"
         },
         {
           "type": "image",
@@ -15428,7 +15428,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1024.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1024.jpeg"
         },
         {
           "type": "image",
@@ -15436,7 +15436,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1025.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1025.jpeg"
         },
         {
           "type": "image",
@@ -15452,15 +15452,15 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1012.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1012.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1026.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1026.jpeg"
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_219_img_1000.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_219_img_1000.jpeg"
         },
         {
           "type": "text",
@@ -15558,7 +15558,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_220_img_1032.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_220_img_1032.jpeg"
         },
         {
           "type": "text",
@@ -15664,7 +15664,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_221_img_1035.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_221_img_1035.jpeg"
         },
         {
           "type": "text",
@@ -15682,7 +15682,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_222_img_1039.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_222_img_1039.jpeg"
         },
         {
           "type": "text",
@@ -15988,7 +15988,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_227_img_1060.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_227_img_1060.jpeg"
         },
         {
           "type": "text",
@@ -16136,7 +16136,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_229_img_1065.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_229_img_1065.jpeg"
         },
         {
           "type": "text",
@@ -16478,7 +16478,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_234_img_1112.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_234_img_1112.jpeg"
         },
         {
           "type": "text",
@@ -16698,7 +16698,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_238_img_1137.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_238_img_1137.jpeg"
         },
         {
           "type": "text",
@@ -16750,7 +16750,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_238_img_1134.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_238_img_1134.jpeg"
         },
         {
           "type": "text",
@@ -16886,7 +16886,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_242_img_1148.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_242_img_1148.jpeg"
         },
         {
           "type": "text",
@@ -17254,7 +17254,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_248_img_1166.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_248_img_1166.jpeg"
         },
         {
           "type": "text",
@@ -17426,7 +17426,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_250_img_1185.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_250_img_1185.jpeg"
         },
         {
           "type": "text",
@@ -17460,7 +17460,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_251_img_1191.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_251_img_1191.jpeg"
         },
         {
           "type": "text",
@@ -17862,7 +17862,7 @@ window.FisioMaterials["s3_empreendedorismo"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s3_empreendedorismo/page_256_img_1209.jpx"
+          "src": "materials/images/s3_empreendedorismo/page_256_img_1209.jpeg"
         },
         {
           "type": "text",

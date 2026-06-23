@@ -53,7 +53,7 @@ def check_for_updates(persist_dir, persist_web):
                         zip_url,
                         headers={'User-Agent': 'Mozilla/5.0'}
                     )
-                    with urllib.request.urlopen(download_req, timeout=20) as dl_response:
+                    with urllib.request.urlopen(download_req, timeout=120) as dl_response:
                         with open(zip_path, 'wb') as out_file:
                             out_file.write(dl_response.read())
                     

@@ -101,6 +101,19 @@ def process_pdf_to_js(pdf_path, subject_id, output_dir):
                 base_image = doc.extract_image(xref)
                 image_bytes = base_image["image"]
                 image_ext = base_image["ext"]
+
+                # Se for JPX (JPEG2000), converte para JPEG para compatibilidade com QWebEngine/Chromium
+                if image_ext.lower() in ["jpx", "jp2", "jpeg2000"]:
+                    try:
+                        import io
+                        from PIL import Image
+                        img = Image.open(io.BytesIO(image_bytes))
+                        out_io = io.BytesIO()
+                        img.convert("RGB").save(out_io, format="JPEG", quality=75)
+                        image_bytes = out_io.getvalue()
+                        image_ext = "jpeg"
+                    except Exception as ex:
+                        print(f"Erro ao converter JPX para JPEG na pagina {page_idx + 1}: {ex}")
                 
                 # Definir caminhos físicos
                 img_subfolder = os.path.join(output_dir, "images", subject_id)

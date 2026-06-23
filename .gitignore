@@ -13,3 +13,6 @@ dist/
 # Cache do Python
 __pycache__/
 *.pyc
+
+# Pasta de materiais original (desenvolvimento) - a pasta de produção é app/materials/
+materials/

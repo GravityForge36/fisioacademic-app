@@ -204,7 +204,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_4_img_41.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_4_img_41.jpeg"
         },
         {
           "type": "text",
@@ -260,7 +260,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_4_img_43.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_4_img_43.jpeg"
         },
         {
           "type": "text",
@@ -376,7 +376,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_6_img_130.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_6_img_130.jpeg"
         },
         {
           "type": "text",
@@ -498,7 +498,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_9_img_139.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_9_img_139.jpeg"
         },
         {
           "type": "text",
@@ -540,7 +540,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_10_img_143.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_10_img_143.jpeg"
         },
         {
           "type": "text",
@@ -818,7 +818,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_17_img_158.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_17_img_158.jpeg"
         },
         {
           "type": "text",
@@ -1270,7 +1270,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_29_img_207.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_29_img_207.jpeg"
         },
         {
           "type": "text",
@@ -1448,7 +1448,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_34_img_222.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_34_img_222.jpeg"
         },
         {
           "type": "text",
@@ -1508,7 +1508,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
       "blocks": [
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_36_img_228.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_36_img_228.jpeg"
         },
         {
           "type": "text",
@@ -1524,7 +1524,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_36_img_229.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_36_img_229.jpeg"
         },
         {
           "type": "text",
@@ -1704,7 +1704,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_42_img_243.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_42_img_243.jpeg"
         },
         {
           "type": "text",
@@ -1756,7 +1756,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_44_img_249.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_44_img_249.jpeg"
         },
         {
           "type": "text",
@@ -1842,7 +1842,7 @@ window.FisioMaterials["s7_estudo_contemp"] = {
         },
         {
           "type": "image",
-          "src": "materials/images/s7_estudo_contemp/page_47_img_257.jpx"
+          "src": "materials/images/s7_estudo_contemp/page_47_img_257.jpeg"
         },
         {
           "type": "text",
