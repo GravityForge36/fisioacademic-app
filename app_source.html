@@ -45,12 +45,42 @@
       height: 100vh !important;
       max-height: 100vh !important;
       border-radius: 0 !important;
-      border-left: 1px solid var(--border-glass) !important;
+      border-left: none !important;
       margin: 0 !important;
       box-shadow: none !important;
     }
     
-    /* Esconde botões de destacar/flutuar janela */
+    /* Barra redimensionadora (splitter) */
+    #notebook-resizer {
+      position: absolute;
+      left: -3px;
+      top: 0;
+      width: 6px;
+      height: 100%;
+      cursor: col-resize;
+      z-index: 10000;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 1px solid var(--border-glass);
+      transition: background 0.2s, width 0.2s, left 0.2s;
+    }
+    #notebook-resizer:hover {
+      background: var(--primary) !important;
+      width: 8px;
+      left: -4px;
+    }
+    
+    /* Ocultar navegação (seções e páginas) */
+    #modal-notebook.notebook-nav-hidden #notebook-sections-column,
+    #modal-notebook.notebook-nav-hidden #notebook-pages-column {
+      display: none !important;
+    }
+    
+    /* Largura mínima da folha de papel no modo divisão para ativar a rolagem horizontal */
+    body.notebook-split-active .notebook-sheet {
+      min-width: 650px !important;
+    }
+    
+    /* Esconde botões obsoletos de destacar/flutuar janela */
     #btn-detach-notebook,
     #btn-modal-detach-notebook {
       display: none !important;
@@ -125,7 +155,7 @@
               <i data-lucide="log-out" style="width: 13px; height: 13px;"></i> Sair
             </button>
           </div>
-          <div style="font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 8px; font-family: monospace;" id="sidebar-app-version">Versão 45</div>
+          <div style="font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 8px; font-family: monospace;" id="sidebar-app-version">Versão 46</div>
         </div>
       </div>
     </aside>
@@ -1705,7 +1735,8 @@
 
   <!-- MODAL: BLOCO DE NOTAS AVANÇADO (ESTILO ONENOTE) -->
   <div class="modal-backdrop" id="modal-notebook" style="z-index: 1500; display: none;">
-    <div class="modal-card glass-modal" style="max-width: 1400px; width: 95%; height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; border: 1px solid var(--border-glass);">
+    <div class="modal-card glass-modal" style="max-width: 1400px; width: 95%; height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; border: 1px solid var(--border-glass); position: relative;">
+      <div id="notebook-resizer" title="Arraste para redimensionar o caderno e a leitura"></div>
       
       <!-- Cabeçalho / Ribbon de Formatação (estilo MS Ribbon) -->
       <div class="notebook-ribbon" style="background: #2d2d2d; padding: 8px 16px; border-bottom: 1px solid #3c3c3c; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; color: #fff;">
@@ -1719,6 +1750,14 @@
         
         <!-- Ribbon Formatting Toolbar -->
         <div class="notebook-toolbar" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; background: #252526; padding: 6px 12px; border-radius: 4px; border: 1px solid #3c3c3c;">
+          <!-- Navigation panel toggle button -->
+          <button type="button" class="nb-tool-btn" id="btn-toggle-notebook-nav" title="Ocultar/Exibir Seções e Páginas (Foco)" style="padding: 0 8px; height: 28px; background: #2d2d2d; color: #fff; border: 1px solid #3c3c3c; border-radius: 3px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; font-family: var(--font-body);">
+            <i data-lucide="menu" style="width: 14px; height: 14px;"></i>
+            <span>Navegação</span>
+          </button>
+          
+          <div style="width: 1px; height: 18px; background: #3c3c3c; margin: 0 4px;"></div>
+          
           <!-- Font Family -->
           <select id="nb-font-family" class="custom-select" style="height: 28px; font-size: 0.8rem; padding: 2px 8px; width: 120px; background: #1e1e1e; color: #fff; border: 1px solid #3c3c3c; border-radius: 3px;" title="Fonte">
             <option value="Calibri">Calibri</option>
@@ -1788,7 +1827,7 @@
       <div style="flex-grow: 1; display: flex; overflow: hidden; background: #1e1e1e;">
         
         <!-- Coluna 1: Seções (OneNote vertical purple tab style) -->
-        <div style="width: 180px; flex-shrink: 0; background: #2d2d2d; border-right: 1px solid #3c3c3c; display: flex; flex-direction: column; height: 100%;">
+        <div id="notebook-sections-column" style="width: 180px; flex-shrink: 0; background: #2d2d2d; border-right: 1px solid #3c3c3c; display: flex; flex-direction: column; height: 100%;">
           <div style="padding: 10px 14px; font-size: 0.75rem; font-weight: 700; color: #888; text-transform: uppercase; border-bottom: 1px solid #3c3c3c; display: flex; justify-content: space-between; align-items: center;">
             <span>Seções</span>
           </div>
@@ -1803,7 +1842,7 @@
         </div>
         
         <!-- Coluna 2: Páginas -->
-        <div style="width: 220px; flex-shrink: 0; background: #252526; border-right: 1px solid #3c3c3c; display: flex; flex-direction: column; height: 100%;">
+        <div id="notebook-pages-column" style="width: 220px; flex-shrink: 0; background: #252526; border-right: 1px solid #3c3c3c; display: flex; flex-direction: column; height: 100%;">
           <div style="padding: 10px 14px; font-size: 0.75rem; font-weight: 700; color: #888; text-transform: uppercase; border-bottom: 1px solid #3c3c3c;">
             Páginas
           </div>
@@ -1818,7 +1857,7 @@
         </div>
         
         <!-- Coluna 3: Editor (Folha Pautada estilo Word/OneNote) -->
-        <div id="notebook-editor-scroll-container" style="flex-grow: 1; background: #f3f4f6; padding: 24px 0; overflow-y: auto; height: 100%; display: block; box-sizing: border-box; position: relative;">
+        <div id="notebook-editor-scroll-container" style="flex-grow: 1; background: #f3f4f6; padding: 24px 0; overflow: auto; height: 100%; display: block; box-sizing: border-box; position: relative;">
           <!-- Barra Superior Mobile do Editor -->
           <div class="notebook-mobile-editor-nav" style="display: none; padding: 8px 16px; background: #252526; border-bottom: 1px solid #3c3c3c; align-items: center; justify-content: space-between; color: #fff; margin-top: -24px; margin-bottom: 24px;">
             <button type="button" class="btn btn-secondary btn-sm" id="btn-mobile-notebook-back-to-list" style="padding: 4px 10px; font-size: 0.8rem; background: #2d2d2d; border: 1px solid #3c3c3c; display: flex; align-items: center; gap: 4px; color: #fff;">

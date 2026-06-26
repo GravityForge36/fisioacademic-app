@@ -2570,6 +2570,7 @@ function setupStudyPanelEvents() {
   if (btnCloseCaderno) btnCloseCaderno.addEventListener("click", () => {
     document.getElementById("modal-caderno").classList.remove("active");
     document.body.classList.remove("notebook-split-active");
+    resetSplitStyles();
     const modalNotebook = document.getElementById("modal-notebook");
     if (modalNotebook) modalNotebook.style.display = "none";
     if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
@@ -2624,6 +2625,7 @@ function setupStudyPanelEvents() {
 
   // Inicializar Bloco de Notas Estilo OneNote
   setupNotebookEvents();
+  setupSplitterEvents();
 }
 
 function switchReaderTool(tool) {
@@ -4327,6 +4329,7 @@ function setupNotebookEvents() {
   if (btnCloseNotebook) btnCloseNotebook.addEventListener("click", () => {
     autoSaveCurrentPage();
     document.body.classList.remove("notebook-split-active");
+    resetSplitStyles();
     document.getElementById("modal-notebook").style.display = "none";
     
     // Reabre modal de disciplina se o leitor não estiver aberto
@@ -4339,6 +4342,16 @@ function setupNotebookEvents() {
   
   if (btnAddSection) btnAddSection.addEventListener("click", addSection);
   if (btnAddPage) btnAddPage.addEventListener("click", addPage);
+
+  const btnToggleNav = document.getElementById("btn-toggle-notebook-nav");
+  if (btnToggleNav) {
+    btnToggleNav.addEventListener("click", () => {
+      const modalNotebook = document.getElementById("modal-notebook");
+      if (modalNotebook) {
+        modalNotebook.classList.toggle("notebook-nav-hidden");
+      }
+    });
+  }
 
   const btnMobileNotebookBackToList = document.getElementById("btn-mobile-notebook-back-to-list");
   if (btnMobileNotebookBackToList) {
@@ -4661,6 +4674,58 @@ window.addEventListener("storage", (e) => {
 
 // 8. INICIALIZAÇÃO NO CARREGAMENTO DA PÁGINA
 window.addEventListener("DOMContentLoaded", checkAuthAndStart);
+
+// Funções auxiliares para controle de divisão de tela (Split-screen)
+function resetSplitStyles() {
+  const modalCaderno = document.getElementById("modal-caderno");
+  const modalNotebook = document.getElementById("modal-notebook");
+  if (modalCaderno) {
+    modalCaderno.style.removeProperty("width");
+  }
+  if (modalNotebook) {
+    modalNotebook.style.removeProperty("width");
+    modalNotebook.style.removeProperty("left");
+  }
+}
+
+function setupSplitterEvents() {
+  const resizer = document.getElementById("notebook-resizer");
+  if (!resizer) return;
+
+  resizer.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+
+    function onMouseMove(moveEvent) {
+      let pct = (moveEvent.clientX / window.innerWidth) * 100;
+      // Limitar largura entre 15% e 85% para manter legibilidade mínima de ambos os lados
+      if (pct < 15) pct = 15;
+      if (pct > 85) pct = 85;
+
+      const modalCaderno = document.getElementById("modal-caderno");
+      const modalNotebook = document.getElementById("modal-notebook");
+
+      if (modalCaderno) {
+        modalCaderno.style.setProperty("width", pct + "vw", "important");
+      }
+      if (modalNotebook) {
+        modalNotebook.style.setProperty("width", (100 - pct) + "vw", "important");
+        modalNotebook.style.setProperty("left", pct + "vw", "important");
+      }
+    }
+
+    function onMouseUp() {
+      document.body.style.cursor = "";
+      document.body.style.removeProperty("user-select");
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    }
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+  });
+}
 
 // Exportar estado para outros módulos
 window.FisioApp = {
