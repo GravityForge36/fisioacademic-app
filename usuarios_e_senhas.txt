@@ -1,0 +1,13 @@
+==================================================
+      FISIOACADEMIC - REGISTRO DE CREDENCIAIS      
+==================================================
+Este arquivo contem todos os perfis e senhas cadastrados no aplicativo.
+Ele e atualizado automaticamente ao criar ou alterar contas.
+Guarde-o com seguranca.
+
+[Perfil #1]
+Nome de Exibição: Robson
+Nome de Usuário:  rs
+Senha:            123456
+Semestre:         1º Semestre
+--------------------------------------------------

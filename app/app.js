@@ -2569,6 +2569,9 @@ function setupStudyPanelEvents() {
   
   if (btnCloseCaderno) btnCloseCaderno.addEventListener("click", () => {
     document.getElementById("modal-caderno").classList.remove("active");
+    document.body.classList.remove("notebook-split-active");
+    const modalNotebook = document.getElementById("modal-notebook");
+    if (modalNotebook) modalNotebook.style.display = "none";
     if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
   });
   
@@ -2715,6 +2718,7 @@ function openCadernoDigital() {
   // Carregar dinamicamente o arquivo JS
   loadSubjectMaterial(currentActiveSubjectId, () => {
     renderCadernoBook(currentActiveSubjectId);
+    openNotebook(); // Abre automaticamente o bloco de notas ao abrir o leitor
   });
 }
 
@@ -3600,7 +3604,15 @@ function openNotebook() {
   
   // 2. Open modal
   const modalNotebook = document.getElementById("modal-notebook");
-  if (modalNotebook) modalNotebook.style.display = "flex";
+  if (modalNotebook) {
+    modalNotebook.style.display = "flex";
+    
+    // Ativa a divisão de tela se o leitor estiver aberto
+    const modalCaderno = document.getElementById("modal-caderno");
+    if (modalCaderno && modalCaderno.classList.contains("active")) {
+      document.body.classList.add("notebook-split-active");
+    }
+  }
   
   // Set window title
   const titleEl = document.getElementById("notebook-modal-title");
@@ -4312,30 +4324,17 @@ function setupNotebookEvents() {
   
   if (btnOpenNotebook) btnOpenNotebook.addEventListener("click", openNotebook);
   
-  const btnDetachNotebook = document.getElementById("btn-detach-notebook");
-  const btnModalDetachNotebook = document.getElementById("btn-modal-detach-notebook");
-  
-  const detachAction = () => {
-    if (!currentActiveSubjectId) return;
-    autoSaveCurrentPage();
-    const modalNotebook = document.getElementById("modal-notebook");
-    if (modalNotebook) modalNotebook.style.display = "none";
-    
-    if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
-    
-    const currentPath = window.location.pathname;
-    const basePage = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-    const url = `${basePage}?mode=notebook&subjectId=${currentActiveSubjectId}`;
-    window.open(url, "_blank", "width=900,height=700");
-  };
-
-  if (btnDetachNotebook) btnDetachNotebook.addEventListener("click", detachAction);
-  if (btnModalDetachNotebook) btnModalDetachNotebook.addEventListener("click", detachAction);
   if (btnCloseNotebook) btnCloseNotebook.addEventListener("click", () => {
     autoSaveCurrentPage();
+    document.body.classList.remove("notebook-split-active");
     document.getElementById("modal-notebook").style.display = "none";
-    // reopen subject modal to keep normal flow
-    if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
+    
+    // Reabre modal de disciplina se o leitor não estiver aberto
+    const modalCaderno = document.getElementById("modal-caderno");
+    const isCadernoActive = modalCaderno && modalCaderno.classList.contains("active");
+    if (!isCadernoActive && currentActiveSubjectId) {
+      openSubjectModal(currentActiveSubjectId);
+    }
   });
   
   if (btnAddSection) btnAddSection.addEventListener("click", addSection);
