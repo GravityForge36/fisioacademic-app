@@ -13,6 +13,42 @@
   <meta name="theme-color" content="#0c0f16">
   <!-- Estilos Personalizados -->
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos para o modo caderno destacado/flutuante */
+    body.body-mode-notebook .app-container,
+    body.body-mode-notebook > .modal-backdrop:not(#modal-notebook),
+    body.body-mode-notebook .auth-overlay,
+    body.body-mode-notebook .pwa-installer-overlay {
+      display: none !important;
+    }
+    
+    body.body-mode-notebook #modal-notebook {
+      display: flex !important;
+      position: fixed !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999 !important;
+      background: #1e1e1e !important;
+    }
+    
+    body.body-mode-notebook #modal-notebook .modal-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      border-radius: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin: 0 !important;
+    }
+    
+    body.body-mode-notebook #btn-close-notebook,
+    body.body-mode-notebook #btn-modal-detach-notebook {
+      display: none !important;
+    }
+  </style>
   <!-- Lucide Icons -->
   <script src="lucide.min.js"></script>
 </head>
@@ -82,7 +118,7 @@
               <i data-lucide="log-out" style="width: 13px; height: 13px;"></i> Sair
             </button>
           </div>
-          <div style="font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 8px; font-family: monospace;" id="sidebar-app-version">Versão 43</div>
+          <div style="font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 8px; font-family: monospace;" id="sidebar-app-version">Versão 44</div>
         </div>
       </div>
     </aside>
@@ -1282,8 +1318,11 @@
               <h5 style="margin: 0 0 8px 0; font-size: 1rem; font-family: var(--font-title); color: var(--text);">Anotações de Estudo</h5>
               <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Organize suas observações em seções e páginas formatadas com o nosso caderno estilo OneNote.</p>
             </div>
-            <button type="button" class="btn btn-primary w-full" id="btn-open-notebook" style="height: 40px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <i data-lucide="external-link" style="width: 16px; height: 16px;"></i> Minhas Observações
+            <button type="button" class="btn btn-primary w-full" id="btn-open-notebook" style="height: 40px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px;">
+              <i data-lucide="book-open" style="width: 16px; height: 16px;"></i> Abrir Bloco de Notas
+            </button>
+            <button type="button" class="btn btn-outline w-full" id="btn-detach-notebook" style="height: 40px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--primary); color: var(--primary); background: rgba(43, 186, 181, 0.05);">
+              <i data-lucide="external-link" style="width: 16px; height: 16px;"></i> Destacar Bloco de Notas
             </button>
           </div>
           
@@ -1671,7 +1710,12 @@
             <i data-lucide="book-open" style="width: 20px; height: 20px; color: var(--primary);"></i>
             <span style="font-family: var(--font-title); font-weight: 600; font-size: 1rem;" id="notebook-modal-title">Bloco de Notas de Estudos</span>
           </div>
-          <button class="btn-close" id="btn-close-notebook" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #bbb; line-height: 1;">&times;</button>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button type="button" id="btn-modal-detach-notebook" title="Destacar em Janela Separada" style="background: none; border: none; cursor: pointer; color: #bbb; display: flex; align-items: center; justify-content: center; padding: 4px;">
+              <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
+            </button>
+            <button class="btn-close" id="btn-close-notebook" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #bbb; line-height: 1;">&times;</button>
+          </div>
         </div>
         
         <!-- Ribbon Formatting Toolbar -->

@@ -5,7 +5,7 @@ import json
 import zipfile
 import shutil
 import tempfile
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from PySide6.QtGui import QIcon
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -100,9 +100,65 @@ class ConsolePage(QWebEnginePage):
     def javaScriptConsoleMessage(self, level, message, lineNumber, sourceID):
         print(f"JS Console: {message} (Line: {lineNumber}, Source: {sourceID})")
 
+    def createWindow(self, type):
+        main_win = QApplication.activeWindow()
+        if not main_win:
+            main_win = self.parent()
+            
+        profile = self.profile()
+        sec_win = SecondaryWindow(profile, main_win)
+        
+        # Manter referência para evitar garbage collection
+        if hasattr(main_win, 'secondary_windows'):
+            main_win.secondary_windows.append(sec_win)
+        else:
+            main_win.secondary_windows = [sec_win]
+            
+        # Limpar referência ao fechar
+        sec_win.setAttribute(Qt.WA_DeleteOnClose)
+        
+        def on_destroyed():
+            if hasattr(main_win, 'secondary_windows') and sec_win in main_win.secondary_windows:
+                try:
+                    main_win.secondary_windows.remove(sec_win)
+                except Exception:
+                    pass
+        sec_win.destroyed.connect(on_destroyed)
+        
+        sec_win.show()
+        return sec_win.page
+
+class SecondaryWindow(QMainWindow):
+    def __init__(self, profile, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Bloco de Notas - FisioAcademic")
+        self.resize(900, 700)
+        self.setMinimumSize(800, 600)
+        
+        self.browser = QWebEngineView()
+        self.page = ConsolePage(profile, self)
+        self.browser.setPage(self.page)
+        
+        # Conectar o manipulador de downloads ao perfil compartilhado
+        profile.downloadRequested.connect(self.handle_download_static)
+        
+        # Define o ícone da janela se o pai tiver
+        if parent and hasattr(parent, 'windowIcon'):
+            self.setWindowIcon(parent.windowIcon())
+            
+        self.setCentralWidget(self.browser)
+
+    def handle_download_static(self, download: QWebEngineDownloadRequest):
+        main_win = QApplication.activeWindow()
+        if main_win and hasattr(main_win, 'handle_download'):
+            main_win.handle_download(download)
+        else:
+            download.accept()
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.secondary_windows = []
         self.setWindowTitle("FisioAcademic - Gestor de Estudos de Fisioterapia")
         self.resize(1280, 800)
         self.setMinimumSize(1024, 768)

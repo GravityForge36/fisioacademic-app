@@ -905,6 +905,15 @@ function isAppRunningAsStandalone() {
 }
 
 function checkAuthAndStart() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isNotebookMode = urlParams.get('mode') === 'notebook';
+  const notebookSubjectId = urlParams.get('subjectId');
+  
+  if (isNotebookMode) {
+    sessionStorage.setItem("fisio_session_active", "true");
+    document.body.classList.add("body-mode-notebook");
+  }
+
   setupAuthEvents();
   saveCredentialsToRootSilently();
 
@@ -968,6 +977,11 @@ function checkAuthAndStart() {
       applyTheme(activeProfile.theme);
     }
     initApp();
+    
+    if (isNotebookMode && notebookSubjectId) {
+      currentActiveSubjectId = notebookSubjectId;
+      openNotebook();
+    }
   } else {
     document.getElementById("auth-overlay").style.display = "flex";
     document.getElementById("auth-select-password-area").style.display = "none";
@@ -4297,6 +4311,26 @@ function setupNotebookEvents() {
   const btnAddPage = document.getElementById("btn-notebook-add-page");
   
   if (btnOpenNotebook) btnOpenNotebook.addEventListener("click", openNotebook);
+  
+  const btnDetachNotebook = document.getElementById("btn-detach-notebook");
+  const btnModalDetachNotebook = document.getElementById("btn-modal-detach-notebook");
+  
+  const detachAction = () => {
+    if (!currentActiveSubjectId) return;
+    autoSaveCurrentPage();
+    const modalNotebook = document.getElementById("modal-notebook");
+    if (modalNotebook) modalNotebook.style.display = "none";
+    
+    if (currentActiveSubjectId) openSubjectModal(currentActiveSubjectId);
+    
+    const currentPath = window.location.pathname;
+    const basePage = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+    const url = `${basePage}?mode=notebook&subjectId=${currentActiveSubjectId}`;
+    window.open(url, "_blank", "width=900,height=700");
+  };
+
+  if (btnDetachNotebook) btnDetachNotebook.addEventListener("click", detachAction);
+  if (btnModalDetachNotebook) btnModalDetachNotebook.addEventListener("click", detachAction);
   if (btnCloseNotebook) btnCloseNotebook.addEventListener("click", () => {
     autoSaveCurrentPage();
     document.getElementById("modal-notebook").style.display = "none";
@@ -4557,6 +4591,74 @@ function insertTodoCheckbox() {
   selection.removeAllRanges();
   selection.addRange(range);
 }
+
+// Sincronização em tempo real entre janelas (Leitor e Bloco de Notas flutuante)
+window.addEventListener("storage", (e) => {
+  const profileKey = getProfileKey("fisio_curriculum");
+  if (e.key === profileKey) {
+    const localCurriculum = localStorage.getItem(profileKey);
+    if (localCurriculum) {
+      const parsedCurriculum = JSON.parse(localCurriculum);
+      state.curriculum = parsedCurriculum;
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const isNotebookMode = urlParams.get('mode') === 'notebook';
+      
+      if (isNotebookMode) {
+        if (currentActiveSubjectId) {
+          let subject = null;
+          for (let sem of state.curriculum) {
+            subject = sem.subjects.find(s => s.id === currentActiveSubjectId);
+            if (subject) break;
+          }
+          if (subject) {
+            activeNotebookSubject = subject;
+            
+            const activeElement = document.activeElement;
+            const isEditorFocused = activeElement && (
+              activeElement.classList.contains('notebook-page-content-editor') ||
+              activeElement.id === 'notebook-page-title-input'
+            );
+            
+            renderNotebookSections();
+            renderNotebookPages();
+            
+            if (!isEditorFocused) {
+              loadNotebookPageContent();
+            }
+          }
+        }
+      } else {
+        renderDashboard();
+        
+        if (currentActiveSubjectId) {
+          const contentEl = document.getElementById("caderno-content-area");
+          if (contentEl && contentEl.innerHTML.trim() !== "") {
+            const scrollContainer = document.getElementById("caderno-scroll-container");
+            const scrollTop = scrollContainer ? scrollContainer.scrollTop : 0;
+            renderCadernoBook(currentActiveSubjectId);
+            if (scrollContainer) scrollContainer.scrollTop = scrollTop;
+          }
+        }
+        
+        const modalNotebook = document.getElementById("modal-notebook");
+        if (modalNotebook && modalNotebook.style.display === "flex") {
+          let subject = null;
+          for (let sem of state.curriculum) {
+            subject = sem.subjects.find(s => s.id === currentActiveSubjectId);
+            if (subject) break;
+          }
+          if (subject) {
+            activeNotebookSubject = subject;
+            renderNotebookSections();
+            renderNotebookPages();
+            loadNotebookPageContent();
+          }
+        }
+      }
+    }
+  }
+});
 
 // 8. INICIALIZAÇÃO NO CARREGAMENTO DA PÁGINA
 window.addEventListener("DOMContentLoaded", checkAuthAndStart);
